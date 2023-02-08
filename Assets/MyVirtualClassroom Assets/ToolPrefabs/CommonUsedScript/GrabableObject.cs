@@ -17,6 +17,8 @@ public class GrabableObject : MonoBehaviour
     [SerializeField, HideInInspector]
     protected Rigidbody ourRB;
     [SerializeField, HideInInspector]
+    protected BoxCollider ourBC;
+    [SerializeField, HideInInspector]
     protected XRGrabInteractable ourXRGrab;
 
     public Outline ourOutline;
@@ -36,6 +38,7 @@ public class GrabableObject : MonoBehaviour
         XRGrabInteractabkeOnTwo.OnGrabbingObject += GrabingOject;
         XRGrabInteractabkeOnTwo.OnDroppingObject += DroppingObject;
 
+        ourBC = GetComponent<BoxCollider>();
         ourRB = GetComponent<Rigidbody>();
         ourXRGrab = GetComponent<XRGrabInteractable>();
     }
@@ -108,8 +111,9 @@ public class GrabableObject : MonoBehaviour
     protected virtual void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Hand") && !ourHandIsHolding)
+        {
             DrawOutline(1);
-
+        }
     }
 
     protected virtual void OnTriggerExit(Collider other)
@@ -125,6 +129,7 @@ public class GrabableObject : MonoBehaviour
 
         ourGrabbingHandObject = aGrabbingHandObject;
         ourHandIsHolding = true;
+        DrawOutline(0);
     }
 
     protected virtual void DroppingObject()
@@ -151,7 +156,7 @@ public class GrabableObject : MonoBehaviour
         }
     }
 
-    public void DeactiveGrabAndRigidBody()
+    public void RemoveGrabAndRigidbody()
     {
         Destroy(ourXRGrab);
         Destroy(ourRB);

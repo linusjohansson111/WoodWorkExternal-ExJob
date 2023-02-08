@@ -55,9 +55,9 @@ public class Gluetube : GrabableObject
         {
             DrawRaycastingObjectOutline(true, hit.transform.name);
             
-            if (hit.transform.CompareTag("Sliceable"))
+            if (hit.collider.transform.CompareTag("Sliceable"))
             {
-                CreateGlueDot(hit.point, hit.transform);
+                CreateGlueDot(hit.point, hit.collider.transform);
             }
             else if (hit.transform.CompareTag("Glue"))
             {

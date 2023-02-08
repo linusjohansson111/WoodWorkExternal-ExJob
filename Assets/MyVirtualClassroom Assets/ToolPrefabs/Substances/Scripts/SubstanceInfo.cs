@@ -56,7 +56,7 @@ public class SubstanceInfo
         TouchSide = aTouchSide;
         TouchNormal = GetSideNormal();
 
-        if (aTouchSide == BoxHitSide.TOP || aTouchSide == BoxHitSide.RIGHT || aTouchSide == BoxHitSide.FORWARD)
+        if (aTouchSide == BoxHitSide.TOP || aTouchSide == BoxHitSide.RIGHT || aTouchSide == BoxHitSide.FRONT)
             TouchPoint = MaxPos;
         else
             TouchPoint = MinPos;
@@ -83,7 +83,7 @@ public class SubstanceInfo
         else if (TouchSide == BoxHitSide.BOTTOM)
             aPosition.y = MinPos.y;
 
-        else if (TouchSide == BoxHitSide.FORWARD)
+        else if (TouchSide == BoxHitSide.FRONT)
             aPosition.z = MaxPos.z;
         else if (TouchSide == BoxHitSide.BACK)
             aPosition.z = MinPos.z;
@@ -104,7 +104,7 @@ public class SubstanceInfo
         else if (TouchSide == BoxHitSide.BOTTOM)
             edgePoint = new Vector3(aPosition.x, MinPos.y, aPosition.z);
 
-        else if (TouchSide == BoxHitSide.FORWARD)
+        else if (TouchSide == BoxHitSide.FRONT)
             edgePoint = new Vector3(aPosition.x, aPosition.y, MaxPos.z);
         else if (TouchSide == BoxHitSide.BACK)
             edgePoint = new Vector3(aPosition.x, aPosition.y, MinPos.z);
@@ -126,7 +126,7 @@ public class SubstanceInfo
                 WithinAxisBound(aTouchPoint.z, MaxPos.z, MinPos.z))
                 return true;
         }
-        else if (TouchSide == BoxHitSide.FORWARD || TouchSide == BoxHitSide.BACK)
+        else if (TouchSide == BoxHitSide.FRONT || TouchSide == BoxHitSide.BACK)
         {
             if (WithinAxisBound(aTouchPoint.x, MaxPos.x, MinPos.x) &&
                 WithinAxisBound(aTouchPoint.y, MaxPos.y, MinPos.y))
@@ -156,7 +156,7 @@ public class SubstanceInfo
             if (TouchSide == BoxHitSide.BOTTOM)
             return Vector3.down;
         else
-            if (TouchSide == BoxHitSide.FORWARD)
+            if (TouchSide == BoxHitSide.FRONT)
             return Vector3.forward;
         else
             if (TouchSide == BoxHitSide.BACK)
@@ -176,7 +176,7 @@ public class SubstanceInfo
         else if (TouchSide == BoxHitSide.BOTTOM)
             aTouchPosition.y = MinPos.y;
 
-        else if (TouchSide == BoxHitSide.FORWARD)
+        else if (TouchSide == BoxHitSide.FRONT)
             aTouchPosition.z = MaxPos.z;
         else if (TouchSide == BoxHitSide.BACK)
             aTouchPosition.z = MinPos.z;

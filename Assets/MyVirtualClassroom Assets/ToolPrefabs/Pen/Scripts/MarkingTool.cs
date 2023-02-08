@@ -211,7 +211,7 @@ public class MarkingTool : MonoBehaviour
             myTargetData.TouchSide == BoxHitSide.BOTTOM)
             return GetPerpendicularOnAxisZ(aHoldingHandTransform.position.z);//GetPositionOnAxisY(aHoldingHandTransform.position);
         else
-        if (myTargetData.TouchSide == BoxHitSide.FORWARD ||
+        if (myTargetData.TouchSide == BoxHitSide.FRONT ||
             myTargetData.TouchSide == BoxHitSide.BACK)
             return GetPositionOnAxisZ(aHoldingHandTransform.position);
 
@@ -268,7 +268,7 @@ public class MarkingTool : MonoBehaviour
             FreezeAxisY(0, Vector3.up);
         else if (myTargetData.TouchSide == BoxHitSide.BOTTOM)
             FreezeAxisY(1, Vector3.down);
-        else if (myTargetData.TouchSide == BoxHitSide.FORWARD)
+        else if (myTargetData.TouchSide == BoxHitSide.FRONT)
             FreezeAxisZ(1, Vector3.forward);
         else if (myTargetData.TouchSide == BoxHitSide.BACK)
             FreezeAxisZ(-1, Vector3.back);

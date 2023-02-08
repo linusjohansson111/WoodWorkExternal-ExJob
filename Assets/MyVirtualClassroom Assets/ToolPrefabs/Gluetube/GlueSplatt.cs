@@ -11,34 +11,21 @@ public class GlueSplatt : MonoBehaviour
     private bool myIsAttachingOtherSubstance = false;
     private bool myCreateNewProduct = false;
 
-    private bool tempBool = false;
     private AssembledProduct myNewAssembyProductParent;
     private Transform myAddingSubstanceTransform;
+
+    private BoxCollider myBC;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        myBC = GetComponent<BoxCollider>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        //RayHitSubstance();
-
-        //if(myCreateNewProduct && !tempBool)
-        //{
-        //    myNewAssembyProductParent.AddNewPart(transform.parent.transform.GetComponent<Substance>());
-        //    //myCreateNewProduct = false;
-        //    tempBool = true;
-        //}
-
-        //if(Input.GetKey(KeyCode.Space) && !myCreateNewProduct)
-        //{
-        //    myNewAssembyProductParent = Instantiate(AssemblyParentPrefab.gameObject, transform.parent.transform.position, transform.parent.transform.rotation).GetComponent<AssembledProduct>();
-        //    //Instantiate(transform.parent.gameObject, transform.parent.position, transform.parent.rotation, myNewAssembyProductParent.transform);
-        //    myCreateNewProduct = true;
-        //}
+        RayHitSubstance();
     }
 
     private void LateUpdate()
@@ -58,8 +45,19 @@ public class GlueSplatt : MonoBehaviour
             //Debug.Log("LIMMMMM");
             //collision.gameObject.GetComponent<Substance>().SetWoodToKinematic(true);
             //collision.gameObject.transform.parent = gameObject.transform.parent;
-            collision.transform.GetComponent<Substance>().AttachToGlue(transform);
             //rb.transform.parent = collision.transform;
+
+            //pointer.rotation = Quaternion.FromToRotation(Vector3.up, hit.normal);
+            
+            //collision.transform.rotation = Quaternion.FromToRotation(transform.up, collision.transform.up);
+            //transform.parent.GetComponent<Substance>().AttachingNewPart(collision.transform.GetComponent<Substance>());
+            //if(transform.parent.parent == null)
+            //{
+            //    transform.parent.parent = Instantiate(AssemblyParentPrefab.gameObject, transform.parent.position, transform.parent.rotation).transform;
+            //}
+            //collision.transform.GetComponent<Substance>().AttachToGlue(transform);
+
+
         }
     }
 
@@ -68,21 +66,14 @@ public class GlueSplatt : MonoBehaviour
         if (myIsAttachingOtherSubstance)
             return;
 
-        //if(Physics.Raycast(transform.position, transform.up, out RaycastHit hit, .001f))
-        //{
-        //    if(hit.transform.CompareTag("Sliceable"))
-        //    {
-        //        if (transform.parent.parent == null)
-        //        {
-        //            //transform.parent.parent = Instantiate(AssemblyParentPrefab.gameObject, transform.position, Quaternion.identity).transform;
-        //            //myNewAssembyProductParent = Instantiate(AssemblyParentPrefab.gameObject, transform.parent.position, transform.parent.rotation).GetComponent<AssembledProduct>();
-        //            //myAddingSubstanceTransform = hit.transform;
-        //            //myCreateNewProduct = true;
-        //        }
-        //        //else
-        //        //    AttachObject(hit.transform);
-        //    }
-        //}
+        if (Physics.Raycast(transform.position, transform.up, out RaycastHit hit, .001f))
+        {
+            if (hit.transform.CompareTag("Sliceable"))
+            {
+                transform.parent.GetComponent<Substance>().AttachingNewPart(hit.transform.GetComponent<Substance>(), transform);
+                myIsAttachingOtherSubstance = true;
+            }
+        }
     }
 
     private void CreateNewAssamblyProduct()

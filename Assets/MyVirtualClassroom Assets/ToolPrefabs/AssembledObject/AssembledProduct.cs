@@ -26,12 +26,11 @@ public class AssembledProduct : GrabableObject
     }
 
     /// <summary>
-    /// Add in a new substance object among the assembled child to this
-    /// object
+    /// Add in a new substance object among the assembled child to this object
     /// </summary>
     /// <param name="aNewPart">The substance object to be added</param>
     public void AddNewPart(Substance aNewPart)
     {
-        aNewPart.PutIntoAssamblyParent(transform);
+        aNewPart.PutIntoAssamblyParent(this);
     }
 }

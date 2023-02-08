@@ -15,7 +15,16 @@ public class Substance : GrabableObject, MaterialInterface
     public MaterialType MaterialType;
 
     [SerializeField]
-    public AssembledProduct AssemblyParentPrefab;
+    public GameObject AssemblyParentPrefab;
+
+    [HideInInspector]
+    public float Width { get => mySize.z; }
+    
+    [HideInInspector] 
+    public float Height { get => mySize.y; }
+    
+    [HideInInspector] 
+    public float Lenght { get => mySize.x; }
 
     [SerializeField, HideInInspector] 
     private Sliceable Sliceable;
@@ -38,6 +47,10 @@ public class Substance : GrabableObject, MaterialInterface
     private HandObject myGrappingHand;
 
     private bool tempKeypressed = false;
+
+    private AssembledProduct myProductParent;
+
+    private Vector3 mySize;
 
     private enum TouchMode { HAND = 0, SLICER = 2, SUBSTANCE = 3, RIGHTANGLED = 5, RAY = 4, NONE = 0 }
 
@@ -75,22 +88,15 @@ public class Substance : GrabableObject, MaterialInterface
         if (GetComponent<BoxCollider>() == null)
             transform.AddComponent<BoxCollider>();
 
-        //if (GetComponent<Outline>() != null)
-        //    myOutline = GetComponent<Outline>();
-        //else if (GetComponentInChildren<Outline>() != null)
-        //    myOutline = GetComponentInChildren<Outline>();
-        //else
-        //    myOutline = transform.AddComponent<Outline>();
-
         WhenSliced();
-
-        //myOutline.OutlineWidth = 10;
 
         DrawOutline((int)TouchMode.NONE);
 
         mySubstanceInfo = new SubstanceInfo(
             GetComponent<BoxCollider>().bounds.max,
             GetComponent<BoxCollider>().bounds.min);
+
+        mySize = GetComponent<Renderer>().bounds.size;
 
         mySlicerOnTouch = false;
     }
@@ -158,16 +164,48 @@ public class Substance : GrabableObject, MaterialInterface
     /// Assign this object as child to the given parent transform
     /// </summary>
     /// <param name="aParentTransform">Parent transform to be assign to</param>
-    public void PutIntoAssamblyParent(Transform aParentTransform)
+    public void PutIntoAssamblyParent(AssembledProduct aParentProduct)
     {
-        transform.parent = aParentTransform;
-        DeactiveGrabAndRigidBody();
+        transform.parent = aParentProduct.transform;
+        myProductParent = aParentProduct;
+
+    }
+
+    private void CreateNewProduct()
+    {
+        RemoveGrabAndRigidbody();
+        Instantiate(AssemblyParentPrefab, transform.position, transform.rotation).GetComponent<AssembledProduct>().AddNewPart(this);
+        ourBC.isTrigger = true;
     }
 
     public void AttachToGlue(Transform aGlueTransform)
     {
-        transform.parent = aGlueTransform.parent;
-        DeactiveGrabAndRigidBody();
+        RemoveGrabAndRigidbody();
+        BoxHitSide attichingFace = ColliderTools.GetHitside(transform, aGlueTransform.position);
+        SnapOnGlue(attichingFace, aGlueTransform);
+        ourHandIsHolding = false;
+        ourBC.isTrigger = true;
+        //myProductParent.AddNewPart(anAttachingSubstance);
+        //BoxHitSide temp = ColliderTools.GetHitside(transform, aGlueTransform.position);
+    }
+
+    /// <summary>
+    /// Fasterning a substance object with this substance object
+    /// If this object is not assign to an AssembledProduct as parent
+    /// an AssembledProduct object will instantiate into the scene and
+    /// the sended substance object will be added into the same AssembledProduct
+    /// </summary>
+    /// <param name="anAttachingSubstance">The attaching substance object to be attach to this substance</param>
+    public void AttachingNewPart(Substance anAttachingSubstance, Transform aGlueTransform)
+    {
+        if (transform.parent == null)
+        {
+            CreateNewProduct();
+            //myProductParent = Instantiate(AssemblyParentPrefab, transform.position, transform.rotation).GetComponent<AssembledProduct>();
+            //myProductParent.AddNewPart(this);
+        }
+        anAttachingSubstance.AttachToGlue(aGlueTransform);
+        myProductParent.AddNewPart(anAttachingSubstance);
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -177,6 +215,11 @@ public class Substance : GrabableObject, MaterialInterface
 
         if(collision.transform.CompareTag("WorkStation"))
             SetWoodToKinematic(true);
+
+        if(collision.transform.CompareTag("Glue"))
+        {
+            
+        }
     }
 
     protected override void OnTriggerEnter(Collider other)
@@ -239,34 +282,11 @@ public class Substance : GrabableObject, MaterialInterface
         DrawOutline((int)TouchMode.RAY);
     }
 
-    /// <summary>
-    /// Fasterning a substance object with this substance object
-    /// If this object is not assign to an AssembledProduct as parent
-    /// an AssembledProduct object will instantiate into the scene and
-    /// the sended substance object will be added into the same AssembledProduct
-    /// </summary>
-    /// <param name="anAttachingSubstance">The attaching substance object to be attach to this substance</param>
-    public void AttachingNewPart(Transform anAttachingSubstance)
-    {
-        //if (transform.parent == null)
-        //{
-        //    AssembledProduct formingParent = Instantiate(AssemblyParentPrefab.gameObject, transform.position, Quaternion.identity).GetComponent<AssembledProduct>();
-        //    formingParent.AddNewPart(this);
-
-        //    //SetWoodToKinematic(true);
-        //    //transform.parent = formingParent.transform;
-        //}
-
-            //transform.parent.GetComponent<AssembledProduct>().AddNewPart(anAttachingSubstance.GetComponent<Substance>());
-            //anAttachingSubstance.parent = transform.parent;
-            //anAttachingSubstance.GetComponent<Substance>().SetWoodToKinematic(true);
-    }
-
     private Vector3 GetTouchMinMaxPosition(BoxHitSide aTouchSide)
     {
         mySubstanceInfo.TouchSide = aTouchSide;
 
-        if(HitSide == BoxHitSide.TOP || HitSide == BoxHitSide.RIGHT || HitSide == BoxHitSide.FORWARD)
+        if(HitSide == BoxHitSide.TOP || HitSide == BoxHitSide.RIGHT || HitSide == BoxHitSide.FRONT)
             return mySubstanceInfo.MaxPos;
 
         return mySubstanceInfo.MinPos;
@@ -276,7 +296,7 @@ public class Substance : GrabableObject, MaterialInterface
     {
         mySubstanceInfo.TouchSide = aTouchSide;
 
-        if (aTouchSide == BoxHitSide.TOP || aTouchSide == BoxHitSide.RIGHT || aTouchSide == BoxHitSide.FORWARD)
+        if (aTouchSide == BoxHitSide.TOP || aTouchSide == BoxHitSide.RIGHT || aTouchSide == BoxHitSide.FRONT)
             mySubstanceInfo.TouchPoint = mySubstanceInfo.MaxPos;
         else
             mySubstanceInfo.TouchPoint = mySubstanceInfo.MinPos;
@@ -308,5 +328,41 @@ public class Substance : GrabableObject, MaterialInterface
     private Vector3 Vector3Abs(Vector3 v1, Vector3 v2)
     {
         return new Vector3(Mathf.Abs(v2.x - v1.x), Mathf.Abs(v2.y - v1.y), Mathf.Abs(v2.y - v1.y));
+    }
+
+    private void SnapOnGlue(BoxHitSide aHitSide, Transform aGluePosition)
+    {
+        if (aHitSide == BoxHitSide.RIGHT)
+        {
+            transform.position = aGluePosition.position + (aGluePosition.up * (Lenght * .5f));
+            //transform.Rotate(new Vector3(0f, 0f, 90f));
+        }
+        else if (aHitSide == BoxHitSide.LEFT)
+        {
+            transform.position = aGluePosition.position + (aGluePosition.up * (Lenght * .5f));
+            //transform.Rotate(new Vector3(0f, 0f, -90f));
+        }
+        else if (aHitSide == BoxHitSide.TOP)
+        {
+
+            transform.position = aGluePosition.position + (aGluePosition.up * (Height * .5f));
+            //transform.Rotate(new Vector3(0f, 0f, 180f));
+        }
+        else if (aHitSide == BoxHitSide.BOTTOM)
+        {
+
+            transform.position = aGluePosition.position + (aGluePosition.up * (Height * .5f));
+            //transform.Rotate(new Vector3(0f, 0f, 0f));
+        }
+        else if (aHitSide == BoxHitSide.FRONT)
+        {
+            transform.position = aGluePosition.position + (aGluePosition.up * (Width * .5f));
+            //transform.Rotate(new Vector3(90f, 0f, 0f));
+        }
+        else if (aHitSide == BoxHitSide.BACK)
+        {
+            transform.position = aGluePosition.position + (aGluePosition.up * (Width * .5f));
+            //transform.Rotate(new Vector3(-90f, 0f, 0f));
+        }
     }
 }

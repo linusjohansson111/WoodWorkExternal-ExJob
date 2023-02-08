@@ -145,7 +145,7 @@ public class Pen : MonoBehaviour
             return new Vector3(myDrawObjectInfo.TouchPoint.x, PenTip.position.y, PenTip.position.z);
         else if (myDrawObjectInfo.TouchSide == BoxHitSide.TOP || myDrawObjectInfo.TouchSide == BoxHitSide.BOTTOM)
             return new Vector3(PenTip.position.x, myDrawObjectInfo.TouchPoint.y, PenTip.position.z);
-        else if (myDrawObjectInfo.TouchSide == BoxHitSide.FORWARD || myDrawObjectInfo.TouchSide == BoxHitSide.BACK)
+        else if (myDrawObjectInfo.TouchSide == BoxHitSide.FRONT || myDrawObjectInfo.TouchSide == BoxHitSide.BACK)
             return new Vector3(PenTip.position.x, PenTip.position.y, myDrawObjectInfo.TouchPoint.z);
 
         return Vector3.zero;
@@ -169,7 +169,7 @@ public class Pen : MonoBehaviour
             point.x = GetMaxMinValue(point.x, myDrawObjectInfo.MaxPos.x, myDrawObjectInfo.MinPos.x);
             point.z = GetMaxMinValue(point.z, myDrawObjectInfo.MaxPos.z, myDrawObjectInfo.MinPos.z);
         }
-        else if (myDrawObjectInfo.TouchSide == BoxHitSide.FORWARD || myDrawObjectInfo.TouchSide == BoxHitSide.BACK) 
+        else if (myDrawObjectInfo.TouchSide == BoxHitSide.FRONT || myDrawObjectInfo.TouchSide == BoxHitSide.BACK) 
         {
             point.x = GetMaxMinValue(point.x, myDrawObjectInfo.MaxPos.x, myDrawObjectInfo.MinPos.x);
             point.y = GetMaxMinValue(point.y, myDrawObjectInfo.MaxPos.y, myDrawObjectInfo.MinPos.y);
@@ -209,7 +209,7 @@ public class Pen : MonoBehaviour
                     WithinBoundaryValue(aTipPosition.z, myDrawObjectInfo.MaxPos.z, myDrawObjectInfo.MinPos.z))
                 return true;
         }
-        else if (myDrawObjectInfo.TouchSide == BoxHitSide.FORWARD || myDrawObjectInfo.TouchSide == BoxHitSide.BACK)
+        else if (myDrawObjectInfo.TouchSide == BoxHitSide.FRONT || myDrawObjectInfo.TouchSide == BoxHitSide.BACK)
         {
             if (WithinBoundaryValue(aTipPosition.x, myDrawObjectInfo.MaxPos.x, myDrawObjectInfo.MinPos.x) ||
                     WithinBoundaryValue(aTipPosition.y, myDrawObjectInfo.MaxPos.y, myDrawObjectInfo.MinPos.y))
@@ -267,9 +267,9 @@ public class Pen : MonoBehaviour
                 this.transform.eulerAngles = new Vector3(0, 0, 180);
             FreezeAxisY();
         }
-        else if (aHitSide == BoxHitSide.FORWARD || aHitSide == BoxHitSide.BACK)
+        else if (aHitSide == BoxHitSide.FRONT || aHitSide == BoxHitSide.BACK)
         {
-            if (aHitSide == BoxHitSide.FORWARD)
+            if (aHitSide == BoxHitSide.FRONT)
                 this.transform.eulerAngles = new Vector3(90, 0, 0);
             else if (aHitSide == BoxHitSide.BACK)
                 this.transform.eulerAngles = new Vector3(-90, 0, 0);
