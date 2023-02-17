@@ -6,7 +6,7 @@ public enum BoxHitSide { NONE, TOP, BOTTOM, FRONT, BACK, LEFT, RIGHT }
 
 public class ColliderTools
 {
-    public static BoxHitSide GetHitside(Transform aObjectToBeHit, Vector3 aContactPoint)
+    public static BoxHitSide GetHitSide(Transform aObjectToBeHit, Vector3 aContactPoint)
     {
         Vector3 localPoint = aObjectToBeHit.InverseTransformPoint(aContactPoint);
         Vector3 localDir = localPoint.normalized;

@@ -22,6 +22,8 @@ public class Gluetube : GrabableObject
     private GameObject myRayHitObject;
     private string myRayHitObjectName = "";
 
+    private bool myGlueWasClicked = false;
+
     // Start is called before the first frame update
     protected override void Start()
     {
@@ -41,6 +43,9 @@ public class Gluetube : GrabableObject
         if (ourHandIsHolding)
         {
             HasRayHitTarget();
+
+            if(myGlueWasClicked)
+                myGlueWasClicked = IsActivePressed();
         }
     }
 
@@ -53,13 +58,13 @@ public class Gluetube : GrabableObject
     {
         if (Physics.Raycast(Muzzle.position, Muzzle.up, out RaycastHit hit, .05f))
         {
-            DrawRaycastingObjectOutline(true, hit.transform.name);
+            DrawRaycastingObjectOutline(true, hit.collider.transform.name);
             
-            if (hit.collider.transform.CompareTag("Sliceable"))
+            if (hit.collider.transform.CompareTag("Sliceable") && ClickOutGlue())
             {
                 CreateGlueDot(hit.point, hit.collider.transform);
             }
-            else if (hit.transform.CompareTag("Glue"))
+            else if (hit.collider.transform.CompareTag("Glue"))
             {
             }
         }
@@ -108,8 +113,8 @@ public class Gluetube : GrabableObject
     /// <param name="aParentTransform">The object the splatter will be child to</param>
     private void CreateGlueDot(Vector3 aSurfacePoint, Transform aParentTransform)
     {
-        if (IsActivePressed())
-            Instantiate(Splatter, aSurfacePoint, Quaternion.identity, aParentTransform);
+        Instantiate(Splatter, aSurfacePoint, aParentTransform.rotation, aParentTransform).GetComponent<GlueSplattQuad>().SetSnapPosition(Muzzle.position);
+        
     }
 
     protected override void DrawOutline(int aModeIndex)
@@ -125,5 +130,13 @@ public class Gluetube : GrabableObject
             SetOutlineAppearence(Outline.Mode.OutlineAll, Color.red);
         if (aModeIndex == 4)
             SetOutlineAppearence(Outline.Mode.OutlineAll, Color.green);
+    }
+
+    private bool ClickOutGlue()
+    {
+        if (myGlueWasClicked)
+            return false;
+
+        return myGlueWasClicked = IsActivePressed();
     }
 }

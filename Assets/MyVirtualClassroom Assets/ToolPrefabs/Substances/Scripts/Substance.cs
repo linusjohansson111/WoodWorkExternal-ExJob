@@ -8,6 +8,9 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 public class Substance : GrabableObject, MaterialInterface
 {
+    public delegate void DisplayTransformInfo(Transform anObjectTransform);
+    public static DisplayTransformInfo OnDisplayTransformInfo;
+
     public Color HandTouchColor = new(96, 203, 21, 255), SlicerTouchColor = new(203, 21, 40, 255);
     public Color SubstanceTouchColor, RightAngleTouchColor;
 
@@ -18,13 +21,31 @@ public class Substance : GrabableObject, MaterialInterface
     public GameObject AssemblyParentPrefab;
 
     [HideInInspector]
-    public float Width { get => mySize.z; }
+    public float Lenght { get => mySize.x; }
     
     [HideInInspector] 
     public float Height { get => mySize.y; }
     
     [HideInInspector] 
-    public float Lenght { get => mySize.x; }
+    public float Width { get => mySize.z; }
+
+    [HideInInspector]
+    public Vector3 TopPos { get => GetTheFurthestPositionOn(BoxHitSide.TOP); }
+
+    [HideInInspector]
+    public Vector3 BottomPos { get => GetTheFurthestPositionOn(BoxHitSide.BOTTOM); }
+
+    [HideInInspector]
+    public Vector3 RightPos { get => GetTheFurthestPositionOn(BoxHitSide.RIGHT); }
+
+    [HideInInspector]
+    public Vector3 LeftPos { get => GetTheFurthestPositionOn(BoxHitSide.LEFT); }
+
+    [HideInInspector]
+    public Vector3 FrontPos { get => GetTheFurthestPositionOn(BoxHitSide.FRONT); }
+
+    [HideInInspector]
+    public Vector3 BackPos { get => GetTheFurthestPositionOn(BoxHitSide.BACK); }
 
     [SerializeField, HideInInspector] 
     private Sliceable Sliceable;
@@ -39,6 +60,8 @@ public class Substance : GrabableObject, MaterialInterface
 
     [SerializeField, HideInInspector] 
     private Outline myOutline;
+
+    public BoxHitSide GlueHitSide = BoxHitSide.NONE;
 
     private bool mySlicerOnTouch = false;
 
@@ -105,6 +128,8 @@ public class Substance : GrabableObject, MaterialInterface
     protected override void Update()
     {
         base.Update();
+
+        //OnDisplayTransformInfo?.Invoke(transform);
     }
 
     /// <summary>
@@ -171,6 +196,24 @@ public class Substance : GrabableObject, MaterialInterface
 
     }
 
+    public Vector3 GetTheFurthestPositionOn(BoxHitSide aHitSide)
+    {
+        if (aHitSide == BoxHitSide.TOP)
+            return transform.position + (transform.up * (Height * .5f));
+        else if(aHitSide == BoxHitSide.BOTTOM)
+            return transform.position - (transform.up * (Height * .5f));
+        else if (aHitSide == BoxHitSide.RIGHT)
+            return transform.position + (transform.right * (Lenght * .5f));
+        else if (aHitSide == BoxHitSide.LEFT)
+            return transform.position - (transform.right * (Lenght * .5f));
+        else if (aHitSide == BoxHitSide.FRONT)
+            return transform.position + (transform.forward * (Width * .5f));
+        else if (aHitSide == BoxHitSide.BACK)
+            return transform.position - (transform.forward * (Width * .5f));
+
+        return transform.position;
+    }
+
     private void CreateNewProduct()
     {
         RemoveGrabAndRigidbody();
@@ -181,12 +224,11 @@ public class Substance : GrabableObject, MaterialInterface
     public void AttachToGlue(Transform aGlueTransform)
     {
         RemoveGrabAndRigidbody();
-        BoxHitSide attichingFace = ColliderTools.GetHitside(transform, aGlueTransform.position);
-        SnapOnGlue(attichingFace, aGlueTransform);
+
+
+        SnapOnGlue(GlueHitSide = ColliderTools.GetHitSide(transform, aGlueTransform.position), aGlueTransform.GetComponent<GlueSplattQuad>());
         ourHandIsHolding = false;
         ourBC.isTrigger = true;
-        //myProductParent.AddNewPart(anAttachingSubstance);
-        //BoxHitSide temp = ColliderTools.GetHitside(transform, aGlueTransform.position);
     }
 
     /// <summary>
@@ -201,9 +243,8 @@ public class Substance : GrabableObject, MaterialInterface
         if (transform.parent == null)
         {
             CreateNewProduct();
-            //myProductParent = Instantiate(AssemblyParentPrefab, transform.position, transform.rotation).GetComponent<AssembledProduct>();
-            //myProductParent.AddNewPart(this);
         }
+
         anAttachingSubstance.AttachToGlue(aGlueTransform);
         myProductParent.AddNewPart(anAttachingSubstance);
     }
@@ -330,39 +371,51 @@ public class Substance : GrabableObject, MaterialInterface
         return new Vector3(Mathf.Abs(v2.x - v1.x), Mathf.Abs(v2.y - v1.y), Mathf.Abs(v2.y - v1.y));
     }
 
-    private void SnapOnGlue(BoxHitSide aHitSide, Transform aGluePosition)
+    private void SnapOnGlue(BoxHitSide aHitSide, GlueSplattQuad aSplatt)
     {
+        transform.rotation = Quaternion.identity;
+        transform.position = aSplatt.Snap;
+
         if (aHitSide == BoxHitSide.RIGHT)
         {
-            transform.position = aGluePosition.position + (aGluePosition.up * (Lenght * .5f));
-            //transform.Rotate(new Vector3(0f, 0f, 90f));
+            transform.position += aSplatt.transform.up * (Lenght * .5f);
+            transform.Rotate(new Vector3(0f, 0f, -90f));
+            //x: 0 y: 0 z: -90
         }
         else if (aHitSide == BoxHitSide.LEFT)
         {
-            transform.position = aGluePosition.position + (aGluePosition.up * (Lenght * .5f));
-            //transform.Rotate(new Vector3(0f, 0f, -90f));
+            transform.position += aSplatt.transform.up * (Lenght * .5f);
+            transform.Rotate(new Vector3(0f, 0f, 90f));
+            //x: 0 y: 0 z: 90
         }
         else if (aHitSide == BoxHitSide.TOP)
         {
-
-            transform.position = aGluePosition.position + (aGluePosition.up * (Height * .5f));
-            //transform.Rotate(new Vector3(0f, 0f, 180f));
+            transform.position += aSplatt.transform.up * (Height * .5f);
+            transform.Rotate(new Vector3(0f, 0f, 180f));
+            //x: 0 y: 0 z: 0
         }
         else if (aHitSide == BoxHitSide.BOTTOM)
         {
-
-            transform.position = aGluePosition.position + (aGluePosition.up * (Height * .5f));
-            //transform.Rotate(new Vector3(0f, 0f, 0f));
+            transform.position += aSplatt.transform.up * (Height * .5f);
+            transform.Rotate(new Vector3(0f, 0f, 0f));
+            //x: 0 y: 0 z: 0
         }
         else if (aHitSide == BoxHitSide.FRONT)
         {
-            transform.position = aGluePosition.position + (aGluePosition.up * (Width * .5f));
-            //transform.Rotate(new Vector3(90f, 0f, 0f));
+            transform.position += aSplatt.transform.up * (Width * .5f);
+            transform.Rotate(new Vector3(0f, 0f, 90f));
+            //x: 90 y: 0 z: 0
         }
         else if (aHitSide == BoxHitSide.BACK)
         {
-            transform.position = aGluePosition.position + (aGluePosition.up * (Width * .5f));
-            //transform.Rotate(new Vector3(-90f, 0f, 0f));
+            transform.position += aSplatt.transform.up * (Width * .5f);
+            transform.Rotate(new Vector3(0f, 0f, -90f));
+            //x: -90 y: 0 z: 0
         }
+    }
+
+    private Vector3 SnapRotation(bool isVertical, float aDegree)
+    {
+        return new Vector3((isVertical ? 0 : aDegree), 0f, (isVertical ? aDegree : 0));
     }
 }

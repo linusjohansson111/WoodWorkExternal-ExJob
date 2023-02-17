@@ -1,25 +1,38 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using TMPro;
+using Unity.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class GlueSplatt : MonoBehaviour
 {
     [SerializeField]
     public GameObject AssemblyParentPrefab;
 
-    private bool myIsAttachingOtherSubstance = false;
-    private bool myCreateNewProduct = false;
+    public Transform TestVerticalSnapPoint;
+    public Transform TestHorizontalSnapPoint;
 
-    private AssembledProduct myNewAssembyProductParent;
-    private Transform myAddingSubstanceTransform;
+    private bool myIsAttachingOtherSubstance = false;
 
     private BoxCollider myBC;
+
+    [HideInInspector]
+    public Vector3 Snap { get { return myVerticalSnapPosition; } }
+    private Vector3 myVerticalSnapPosition;
+    private Vector3 myHorizontalSnapPosition;
+
+    public BoxHitSide AtParentSide = BoxHitSide.NONE;
+    private Substance myParentSubstance;
 
     // Start is called before the first frame update
     void Start()
     {
         myBC = GetComponent<BoxCollider>();
+        myParentSubstance = GetComponentInParent<Substance>();
+        SetSnapTransform(AtParentSide);
     }
 
     // Update is called once per frame
@@ -28,9 +41,14 @@ public class GlueSplatt : MonoBehaviour
         RayHitSubstance();
     }
 
-    private void LateUpdate()
+    public void SetSnapPosition(Vector3 aTubeMuzzlePosition)
     {
-        //CreateNewAssamblyProduct();
+        AtParentSide = ColliderTools.GetHitSide(transform.parent, aTubeMuzzlePosition);
+    }
+
+    public Vector3 GetSnapPosition(bool isVertical)
+    {
+        return (isVertical ? myVerticalSnapPosition : myHorizontalSnapPosition);
     }
 
     /// <summary>
@@ -48,16 +66,6 @@ public class GlueSplatt : MonoBehaviour
             //rb.transform.parent = collision.transform;
 
             //pointer.rotation = Quaternion.FromToRotation(Vector3.up, hit.normal);
-            
-            //collision.transform.rotation = Quaternion.FromToRotation(transform.up, collision.transform.up);
-            //transform.parent.GetComponent<Substance>().AttachingNewPart(collision.transform.GetComponent<Substance>());
-            //if(transform.parent.parent == null)
-            //{
-            //    transform.parent.parent = Instantiate(AssemblyParentPrefab.gameObject, transform.parent.position, transform.parent.rotation).transform;
-            //}
-            //collision.transform.GetComponent<Substance>().AttachToGlue(transform);
-
-
         }
     }
 
@@ -72,33 +80,52 @@ public class GlueSplatt : MonoBehaviour
             {
                 transform.parent.GetComponent<Substance>().AttachingNewPart(hit.transform.GetComponent<Substance>(), transform);
                 myIsAttachingOtherSubstance = true;
+                Destroy(this.gameObject);
             }
         }
     }
 
-    private void CreateNewAssamblyProduct()
+    /// <summary>
+    /// Set the snap position of this glue object on the side of it parents
+    /// Depending on which side the object was put on, one of the axis will be locked
+    /// with the value of the locked axis value
+    /// </summary>
+    /// <param name="aParentHitSide">The side this glue object hit on the parent</param>
+    private void SetSnapTransform(BoxHitSide aParentHitSide)
     {
-        if (!myCreateNewProduct)
-            return;
+        if (aParentHitSide == BoxHitSide.RIGHT || aParentHitSide == BoxHitSide.LEFT)
+        {
+            transform.Rotate(new Vector3(0f,0f,(aParentHitSide == BoxHitSide.RIGHT ? -90 : 90)));
+            myVerticalSnapPosition = new Vector3(myParentSubstance.GetTheFurthestPositionOn(aParentHitSide).x, transform.parent.transform.position.y, transform.position.z);
+            myHorizontalSnapPosition = new Vector3(myParentSubstance.GetTheFurthestPositionOn(aParentHitSide).x, transform.position.y, transform.parent.transform.position.z);
+        }
+        else if (aParentHitSide == BoxHitSide.TOP || aParentHitSide == BoxHitSide.BOTTOM)
+        {
+            transform.Rotate(new Vector3((aParentHitSide == BoxHitSide.TOP ? 0 : 180), 0f, 0f));
+            myVerticalSnapPosition = new Vector3(transform.position.x, myParentSubstance.GetTheFurthestPositionOn(aParentHitSide).y, transform.parent.transform.position.z);
+            myHorizontalSnapPosition = new Vector3(transform.parent.transform.position.x, myParentSubstance.GetTheFurthestPositionOn(aParentHitSide).y, transform.position.z);
+        }
+        else if (aParentHitSide == BoxHitSide.FRONT || aParentHitSide == BoxHitSide.BACK)
+        {
+            transform.Rotate(new Vector3((aParentHitSide == BoxHitSide.FRONT ? 90 : -90), 0f, 0f));
+            myVerticalSnapPosition = new Vector3(transform.position.x, transform.parent.transform.position.y, myParentSubstance.GetTheFurthestPositionOn(aParentHitSide).z);
+            myHorizontalSnapPosition = new Vector3(transform.parent.transform.position.x, transform.position.y, myParentSubstance.GetTheFurthestPositionOn(aParentHitSide).z);
+        }
 
-        //Instantiate(transform.parent.gameObject, transform.parent.transform.position, transform.parent.rotation, myNewAssembyProductParent.transform);
-        //myNewAssembyProductParent.AddNewPart(transform.parent.gameObject.GetComponent<Substance>());
-        //Destroy(transform.parent.gameObject);
-
-        //AttachObject(myAddingSubstanceTransform);
-
-        //myCreateNewProduct = false;
+        TestVerticalSnapPoint.position = myVerticalSnapPosition;
+        TestHorizontalSnapPoint.position = myHorizontalSnapPosition;
     }
 
-    private void AttachObject(Transform anAttachingObject)
+    private Vector3 SnapOrientation(bool isVertical, float anYValueOnTheHitingSide)
     {
-        Instantiate(anAttachingObject.gameObject, transform.position + (Vector3.up * 0.5f), Quaternion.identity, myNewAssembyProductParent.transform);
-        Destroy(anAttachingObject.gameObject);
-        //transform.parent.GetComponent<Substance>().AttachingNewPart(anAttachingObject);
+        float xValue = (isVertical ? transform.position.x : transform.parent.transform.position.x);
+        float zValue = (isVertical ? transform.parent.transform.position.z : transform.position.z);
+
+        return new Vector3(xValue, anYValueOnTheHitingSide, zValue);
     }
 
-    private Substance CreateCloneSubstanceToProduct(Transform aSubstanceTransform, Transform aProductParentTransform)
+    private void CreateQuad()
     {
-        return Instantiate(aSubstanceTransform.gameObject, aSubstanceTransform.position, aSubstanceTransform.rotation, aProductParentTransform).GetComponent<Substance>();
+
     }
 }
