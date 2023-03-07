@@ -40,12 +40,12 @@ public class Gluetube : GrabableObject
     {
         base.Update();
 
-        if (ourHandIsHolding)
+        if (ourIsHolding)
         {
             HasRayHitTarget();
 
-            if(myGlueWasClicked)
-                myGlueWasClicked = IsActivePressed();
+            if (myGlueWasClicked)
+                myGlueWasClicked = ourGrabbingHand.IsActivePressed;//IsActivePressed();
         }
     }
 
@@ -137,6 +137,6 @@ public class Gluetube : GrabableObject
         if (myGlueWasClicked)
             return false;
 
-        return myGlueWasClicked = IsActivePressed();
+        return myGlueWasClicked = ourGrabbingHand.IsActivePressed;
     }
 }

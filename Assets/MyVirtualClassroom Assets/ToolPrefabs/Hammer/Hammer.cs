@@ -13,15 +13,10 @@ public class Hammer : GrabableObject
     private bool hasPlayedAudio = false; //To stop it from playing sfx twice
     //
 
-    protected bool ourToolIsHolded = false;
-    private Outline myOutline;
+    //protected bool ourToolIsHolded = false;
+    //private Outline myOutline;
 
-    private enum TouchMode { HAND, NONE }
 
-    /*
-        Vector3(0.647000015,1.06099999,0.621999979)
-        Vector3(-1.49,11.991,0.436)
-    */
     // Start is called before the first frame update
     protected override void Start()
     {
@@ -29,16 +24,13 @@ public class Hammer : GrabableObject
         /* Get the audiosource attached to this gameobject */
         audioSource = gameObject.GetComponent<AudioSource>();
 
-        if (GetComponent<Outline>() != null)
-            myOutline = GetComponent<Outline>();
-        else if (GetComponentInChildren<Outline>() != null)
-        {
-            myOutline = GetComponentInChildren<Outline>();
-        }
+        //if (GetComponent<Outline>() != null)
+        //    myOutline = GetComponent<Outline>();
+        //else if (GetComponentInChildren<Outline>() != null)
+        //{
+        //    myOutline = GetComponentInChildren<Outline>();
+        //}
         //DrawOutline(TouchMode.HAND);
-
-        //Vector3 pos = new Vector3(0.5728601f, 1.132392f, 0.4270033f) - new Vector3(0.5737f, 1.1085f, 0.3936f);
-        //Vector3 rot = new Vector3(-9.012f, -9.992f, 4.286f) - new Vector3(14.663f, -21.328f, 1.11f);
     }
 
     private void OnCollisionEnter(Collision collision)

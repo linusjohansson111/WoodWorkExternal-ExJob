@@ -19,6 +19,12 @@ interface MaterialInterface
 
     public float Lenght { get; }
 
+    public float HalfWidth { get; }
+
+    public float HalfHeight { get; }
+
+    public float HalfLenght { get; }
+
     public Vector3 TopPos { get; }
 
     public Vector3 BottomPos { get; }

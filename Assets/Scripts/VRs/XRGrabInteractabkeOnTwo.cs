@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
-public class XRGrabInteractabkeOnTwo : XRGrabInteractable
+public class XRGrabInteractabkeOnTwo : XRGrabInteractabkeBase
 {
     public Transform LeftAttachTransform;
     public Transform RightAttachTransform;
@@ -11,7 +11,7 @@ public class XRGrabInteractabkeOnTwo : XRGrabInteractable
     public bool IsRightHandGraping { get; private set; }
     public bool IsLeftHandGraping { get; private set; }
 
-    public bool IsGrapped { get; private set; }
+    
 
     public delegate void GrabbingToolWithHand(UsingHand grabbingHandIndex);
     public static GrabbingToolWithHand OnGrabbingWithHand;
@@ -21,8 +21,6 @@ public class XRGrabInteractabkeOnTwo : XRGrabInteractable
 
     public delegate void DroppingTool();
     public static DroppingTool OnDroppingObject;
-
-    private HandObject myGrappingHandObject;
 
 
     protected override void OnSelectEntered(SelectEnterEventArgs args)
@@ -41,31 +39,33 @@ public class XRGrabInteractabkeOnTwo : XRGrabInteractable
             OnGrabbingWithHand?.Invoke(UsingHand.RIGHT_HAND);
         }
 
-        if(args.interactorObject.transform.CompareTag("Hand"))
-        {
-            myGrappingHandObject = args.interactorObject.transform.GetComponent<HandObject>();
-            if(myGrappingHandObject != null)
-            {
-                string name = this.transform.name;
 
-                if (myGrappingHandObject.Side == Preposition.LEFT)
-                {
-                    attachTransform = LeftAttachTransform;
-                    IsGrapped = IsLeftHandGraping = true;
-                    //OnGrabbingWithHand?.Invoke(UsingHand.LEFT_HAND);
-                }
-                else if(myGrappingHandObject.Side == Preposition.RIGHT)
-                {
-                    attachTransform = RightAttachTransform;
-                    IsGrapped = IsRightHandGraping = true;
-                    //OnGrabbingWithHand?.Invoke(UsingHand.RIGHT_HAND);
-                }
-                
-                myGrappingHandObject.IsGrapingObject(IsGrapped);
-                OnGrabbingObject?.Invoke(myGrappingHandObject, this.transform.name);
-            }
-        }
-        
+        //if (args.interactorObject.transform.CompareTag("Hand"))
+        //{
+        //    ourGrappingHand = args.interactorObject.transform.GetComponent<HandObject>();
+        //    GrabableObject grabbedObject = transform.GetComponent<GrabableObject>();
+
+        //    if (ourGrappingHand != null && !ourGrappingHand.IsGrapping &&
+        //        grabbedObject != null && !grabbedObject.IsHolding)
+        //    {
+        //        if (ourGrappingHand.Side == Preposition.LEFT)
+        //        {
+        //            attachTransform = LeftAttachTransform;
+        //            ourIsGrabbed = IsLeftHandGraping = true;
+        //            //OnGrabbingWithHand?.Invoke(UsingHand.LEFT_HAND);
+        //        }
+        //        else if (ourGrappingHand.Side == Preposition.RIGHT)
+        //        {
+        //            attachTransform = RightAttachTransform;
+        //            ourIsGrabbed = IsRightHandGraping = true;
+        //            //OnGrabbingWithHand?.Invoke(UsingHand.RIGHT_HAND);
+        //        }
+
+        //        ourGrappingHand.IsGrapingObject(IsGrapped);
+        //        OnGrabbingObject?.Invoke(ourGrappingHand, this.transform.name);
+        //    }
+        //}
+
         base.OnSelectEntered(args);
     }
 
@@ -76,16 +76,18 @@ public class XRGrabInteractabkeOnTwo : XRGrabInteractable
         else if (IsRightHandGraping && args.interactorObject.transform.CompareTag("RightHandTag"))
             IsRightHandGraping = false;
 
-        if(IsGrapped && args.interactorObject.transform.CompareTag("Hand"))
-        {
-            IsGrapped = IsLeftHandGraping = IsRightHandGraping = false;
-            myGrappingHandObject.IsGrapingObject(IsGrapped);
-        }
 
-        OnDroppingObject?.Invoke();
+        //if (IsGrapped && args.interactorObject.transform.CompareTag("Hand"))
+        //{
+        //    ourIsGrabbed = IsLeftHandGraping = IsRightHandGraping = false;
+        //    ourGrappingHand.IsGrapingObject(IsGrapped);
+        //}
+
+        //OnDroppingObject?.Invoke();
 
         base.OnSelectExited(args);
     }
+
 
     public void GetAttachTransform(Transform aLeftAttach, Transform aRightAttach)
     {

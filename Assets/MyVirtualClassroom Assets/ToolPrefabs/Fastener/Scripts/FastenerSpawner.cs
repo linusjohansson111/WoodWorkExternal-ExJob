@@ -20,8 +20,11 @@ public class FastenerSpawner : MonoBehaviour
 
     private bool myLidIsMoving = false;
     private bool myHandIsTouching = false;
+    private bool myHandIsHolding = false;
 
-    private const float OPENED_ANGLE = 65f;
+    private const float OPENED_ANGLE = 100f;
+
+    private HandObject myGrapHand;
 
     // Start is called before the first frame update
     void Start()
@@ -46,10 +49,13 @@ public class FastenerSpawner : MonoBehaviour
             Lid.eulerAngles = new Vector3(myLidAngle, 0, 0);
         }
 
-        if(myHandIsTouching)
-        {
-
-        }
+        //if(myHandIsTouching && !myHandIsHolding)
+        //{
+        //    if (myGrapHand.IsGrabPressed)
+        //    {
+        //        Instantiate(Fastener, transform.position, Quaternion.identity);
+        //    }
+        //}
         //if(Input.GetKey(KeyCode.Space)/* && !myLidIsMoving*/)
         //{
         //    myLidIsMoving = true;
@@ -59,17 +65,49 @@ public class FastenerSpawner : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.transform.CompareTag("LeftHandTag") || collision.gameObject.transform.CompareTag("RightHandTag"))
+        if(collision.gameObject.transform.CompareTag("WorkStation"))
         {
-            OpenLid();
+            GetComponent<Rigidbody>().isKinematic = true;
+            GetComponent<Rigidbody>().useGravity = false;
         }
     }
 
     private void OnCollisionExit(Collision collision)
     {
-        if (collision.gameObject.transform.CompareTag("LeftHandTag") || collision.gameObject.transform.CompareTag("RightHandTag"))
+        
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.transform.CompareTag("Hand"))
+        {
+            OpenLid();
+
+            if (myGrapHand == null)
+                myGrapHand = other.transform.GetComponent<HandObject>();
+
+            if (myGrapHand.IsGrabPressed && !myGrapHand.IsGrapping)
+            {
+                Instantiate(Fastener, transform.position, Quaternion.identity);
+            }
+
+            
+
+            //myHandIsTouching = true;
+            //myHandIsHolding = other.transform.GetComponent<HandObject>().IsGrapping;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.transform.CompareTag("Hand"))
         {
             CloseLid();
+
+            if(myGrapHand != null)
+               myGrapHand = null;
+
+            myHandIsTouching = false;
         }
     }
 
@@ -84,5 +122,13 @@ public class FastenerSpawner : MonoBehaviour
     {
         myLidIsMoving = true;
         myLidDirection = -1f;
+    }
+
+    private bool IsHandHoldingFastener()
+    {
+        if (myGrapHand == null)
+            return true;
+
+        return myGrapHand.IsGrapping;
     }
 }

@@ -23,14 +23,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4118660340752706494}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.025, y: 0, z: 0}
+  m_LocalRotation: {x: -0.20614724, y: -0.044865295, z: -0.013268297, w: 0.9774019}
+  m_LocalPosition: {x: 0.01867208, y: 0.035063, z: 0.0276}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4118660342159288695}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -23.839, y: -5.158, z: -0.466}
 --- !u!1 &4118660340979539369
 GameObject:
   m_ObjectHideFlags: 0
@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 4118660340979539375}
   m_Layer: 0
   m_Name: Face
-  m_TagString: Untagged
+  m_TagString: WeightHead
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -99,14 +99,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4118660341966906403}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.025, y: 0, z: 0}
+  m_LocalRotation: {x: -0.20650533, y: 0.0431872, z: 0.0053185723, w: 0.9774775}
+  m_LocalPosition: {x: -0.01867208, y: 0.035063, z: 0.0276}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4118660342159288695}
   m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -23.839, y: 5.158, z: -0.466}
 --- !u!1 &4118660342159288652
 GameObject:
   m_ObjectHideFlags: 0
@@ -122,7 +122,7 @@ GameObject:
   - component: {fileID: 4118660342159288691}
   m_Layer: 0
   m_Name: Hammer
-  m_TagString: Untagged
+  m_TagString: WeightHead
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -315,6 +315,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11ab74ba676fa3f4c99c443bc035174a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LeftAttachPoint: {fileID: 4118660340752706493}
+  RightAttachPoint: {fileID: 4118660341966906402}
   HandTouchOutlineColor: {r: 1, g: 1, b: 1, a: 1}
   LeftActive:
     m_UseReference: 0
@@ -364,6 +366,9 @@ MonoBehaviour:
       m_SingletonActionBindings: []
       m_Flags: 0
     m_Reference: {fileID: 0}
+  ourRB: {fileID: 0}
+  ourBC: {fileID: 0}
+  ourXRGrab: {fileID: 0}
   ourOutline: {fileID: 4118660341140428295}
   hammerOnWood: {fileID: 0}
 --- !u!1001 &4118660341140428290

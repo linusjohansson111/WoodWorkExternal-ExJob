@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,29 +7,78 @@ public enum BoxHitSide { NONE, TOP, BOTTOM, FRONT, BACK, LEFT, RIGHT }
 
 public class ColliderTools
 {
+    /// <summary>
+    /// Thanks to Erik
+    /// </summary>
+    /// <param name="raycastHit"></param>
+    /// <returns></returns>
+    public static BoxHitSide GetSideOnRectangle(Mesh aMeshToCheck, RaycastHit aRayFromCaster)
+    {
+        for (var i = 0; i < aMeshToCheck.triangles.Length; i++)
+        {
+            if (aRayFromCaster.triangleIndex == i)
+            {
+                if (i == 0 || i == 1)
+                    return BoxHitSide.FRONT;
+                else if (i == 4 || i == 5)
+                    return BoxHitSide.BACK;
+                else if (i == 2 || i == 3)
+                    return BoxHitSide.TOP;
+                else if (i == 6 || i == 7)
+                    return BoxHitSide.BOTTOM;
+                else if (i == 8 || i == 9)
+                    return BoxHitSide.LEFT;
+                else if (i == 10 || i == 11)
+                    return BoxHitSide.RIGHT;
+                else
+                    return BoxHitSide.NONE;
+            }
+        }
+
+        return BoxHitSide.NONE;
+    }
+
     public static BoxHitSide GetHitSide(Transform aObjectToBeHit, Vector3 aContactPoint)
     {
-        Vector3 localPoint = aObjectToBeHit.InverseTransformPoint(aContactPoint);
-        Vector3 localDir = localPoint.normalized;
+        Vector3 localPoint = aObjectToBeHit.InverseTransformPoint(aContactPoint) * 10;
 
-        float upDot = Vector3.Dot(localDir, Vector3.up);
-        float fwdDot = Vector3.Dot(localDir, Vector3.forward);
-        float rightDot = Vector3.Dot(localDir, Vector3.right);
-
-        Vector3 side = new Vector3(Mathf.Round(rightDot), Mathf.Round(upDot), Mathf.Round(fwdDot));
-
-        if (side.x == 1)
+        if (Mathf.RoundToInt(localPoint.x) == 5f)
             return BoxHitSide.RIGHT;
-        else if (side.x == -1)
+        else
+        if (Mathf.RoundToInt(localPoint.x) == -5f)
             return BoxHitSide.LEFT;
-        else if (side.y == 1)
+        else
+        if (Mathf.RoundToInt(localPoint.y) == 5f)
             return BoxHitSide.TOP;
-        else if (side.y == -1)
+        else
+        if (Mathf.RoundToInt(localPoint.y) == -5f)
             return BoxHitSide.BOTTOM;
-        else if (side.z == 1)
+        else
+        if (Mathf.RoundToInt(localPoint.z) == 5f)
             return BoxHitSide.FRONT;
-        else if (side.z == -1)
+        else
+        if (Mathf.RoundToInt(localPoint.z) == -5f)
             return BoxHitSide.BACK;
+        //Vector3 localDir = localPoint.normalized;
+
+        //float upDot = Vector3.Dot(localDir, Vector3.up);
+        //float fwdDot = Vector3.Dot(localDir, Vector3.forward);
+        //float rightDot = Vector3.Dot(localDir, Vector3.right);
+
+        //Vector3 side = new Vector3(Mathf.Round(rightDot), Mathf.Round(upDot), Mathf.Round(fwdDot));
+
+        //if (side.x == 1)
+        //    return BoxHitSide.RIGHT;
+        //else if (side.x == -1)
+        //    return BoxHitSide.LEFT;
+        //else if (side.y == 1)
+        //    return BoxHitSide.TOP;
+        //else if (side.y == -1)
+        //    return BoxHitSide.BOTTOM;
+        //else if (side.z == 1)
+        //    return BoxHitSide.FRONT;
+        //else if (side.z == -1)
+        //    return BoxHitSide.BACK;
 
         return BoxHitSide.NONE;
     }

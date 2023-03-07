@@ -3,8 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
-public class Nail : MonoBehaviour, ICFasteners
+public class Nail : GrabableObject, ICFasteners
 {
+    //[SerializeField]
+    //private Transform LeftAttach, RightAttach;
+    public Transform Tip , Head;
+
+    [HideInInspector]
+    public Vector3 TipPosition { get { return Tip.position; } }
+
+    public float HalfLenght { get; private set; }
+
     Transform transform;
     Rigidbody rigidbody;
 
@@ -16,24 +25,36 @@ public class Nail : MonoBehaviour, ICFasteners
     Vector3 localScale;
     int nrOfWoodsHammered = 0;
 
+    private BoxHitSide myLastHitSubstanceFade = BoxHitSide.NONE;
+    private Vector3 myHitSubstancePoint;
+
+    private HandObject myHoldingHand;
     /// <summary>
     /// The parent object the fastern will have as parent
     /// </summary>
     private GameObject myAttachToGO;
 
     // Start is called before the first frame update
-    void Start()
+    protected override void Start()
     {
+        base.Start();
+
         transform = GetComponent<Transform>();
         rigidbody = GetComponent<Rigidbody>();
         localScale = transform.localScale;
-        Debug.Log(localScale);
+        //Debug.Log(localScale);
+
+
+        HalfLenght = (transform.position - TipPosition).magnitude;
+
     }
 
-    // Update is called once per frame
-    void Update()
+    protected override void Update()
     {
-        
+        if (ourIsHolding)
+        {
+            HasRayHitTarget();
+        }
     }
 
     public void AddForceToObject(float aVelocity)
@@ -68,18 +89,20 @@ public class Nail : MonoBehaviour, ICFasteners
         if (collision.gameObject.tag == "Sliceable")
         {
             isOnWood = true;
-            nrOfWoodsHammered += 1;
+            //nrOfWoodsHammered += 1;
             myAttachToGO = collision.gameObject;
-            myAttachToGO.GetComponent<Substance>().SetWoodToKinematic(true);
-            if (nrOfWoodsHammered >= 2)
-            {
-                myAttachToGO.transform.parent = gameObject.transform.parent;
-            }
+            //myAttachToGO.GetComponent<Substance>().SetWoodToKinematic(true);
+            //if (nrOfWoodsHammered >= 2)
+            //{
+            //    myAttachToGO.transform.parent = gameObject.transform.parent;
+            //}
         }
 
-        if (collision.gameObject.tag == "Hammer" && isOnWood == true)
+        if (collision.gameObject.tag == "WeightHead" && isOnWood == true)
         {
-            AddForceToObject(2f);
+            Debug.Log("Hammer hit");
+            //Destroy(GetComponent<XRGrabInteractabkeOnTwo>());
+            //AddForceToObject(2f);
         }
     }
 
@@ -88,22 +111,65 @@ public class Nail : MonoBehaviour, ICFasteners
         if (collision.gameObject.tag == "Sliceable")
         {
             isOnWood = false;
-            Debug.Log("isOnWood is " + isOnWood);
+            //Debug.Log("isOnWood is " + isOnWood);
             myAttachToGO = null;
+
+            
         }
 
-        if (collision.gameObject.tag == "Hammer" && isAttached == false)
+        if (collision.gameObject.tag == "WeightHead" && isAttached == false)
         {
-            AddForceToObject(2f);
+            //AddForceToObject(2f);
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    protected override void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Sliceable")
+        base.OnTriggerEnter(other);
+
+        if (other.gameObject.CompareTag("Sliceable"))
         {
-            isAttached = true;
-            GetComponent<XRGrabInteractable>().interactionLayerMask = 0;
+            isOnWood = true;
+            myAttachToGO = other.gameObject;
+            //myLastHitSubstanceFade = ColliderTools.GetHitSide(other.transform, transform.position);
+            //isAttached = true;
+            //GetComponent<XRGrabInteractable>().interactionLayerMask = 0;
+        }
+
+        if (other.gameObject.CompareTag("WeightHead") && isOnWood == true)
+        {
+            if (transform.parent == null)
+            {
+                RemoveGrabAndRigidbody();
+                BoxHitSide hitFace = myLastHitSubstanceFade;
+                myAttachToGO.GetComponent<Substance>().AttachNewNail(this, myHitSubstancePoint);
+            }
+            if(Head.position.y > myHitSubstancePoint.y)
+                AddForceToObject(2f);
+        }
+    }
+
+    protected override void OnTriggerExit(Collider other)
+    {
+        base.OnTriggerExit(other);
+
+        if (other.gameObject.CompareTag("Sliceable"))
+        {
+            isOnWood = false;
+            //Debug.Log("Left Wood");
+            //isAttached = true;
+            //GetComponent<XRGrabInteractable>().interactionLayerMask = 0;
+        }
+    }
+
+    private void HasRayHitTarget()
+    {
+        if (Physics.Raycast(TipPosition, -Tip.up, out RaycastHit hit, .001f))
+        {
+            if (hit.collider.transform.CompareTag("Sliceable"))
+            {
+                myHitSubstancePoint = hit.point;                
+            }
         }
     }
 }

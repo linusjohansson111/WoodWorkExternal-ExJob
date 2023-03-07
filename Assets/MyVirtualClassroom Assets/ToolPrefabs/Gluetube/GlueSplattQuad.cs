@@ -13,12 +13,8 @@ public class GlueSplattQuad : MonoBehaviour
     [SerializeField]
     public Transform VerticalSnapPoint, HorizontalSnapPoint;
 
-    [HideInInspector]
-    public Vector3 Snap { get { return (myIsVertical ? myVerticalSnapPosition : myHorizontalSnapPosition); } }
-
     public BoxHitSide AtParentSide = BoxHitSide.NONE;
 
-    private bool myIsVertical = true;
     private Vector3 myVerticalSnapPosition;
     private Vector3 myHorizontalSnapPosition;
 
@@ -46,6 +42,11 @@ public class GlueSplattQuad : MonoBehaviour
     public void SetSnapPosition(Vector3 aTubeMuzzlePos)
     {
         AtParentSide = ColliderTools.GetHitSide(transform.parent, aTubeMuzzlePos);
+    }
+
+    public Vector3 GetSnapPosition(bool isVertical)
+    {
+        return (isVertical ? myVerticalSnapPosition : myHorizontalSnapPosition);
     }
 
     private void CreateQuad()
@@ -105,8 +106,12 @@ public class GlueSplattQuad : MonoBehaviour
         {
             if (hit.transform.CompareTag("Sliceable"))
             {
-                transform.parent.GetComponent<Substance>().AttachingNewPart(hit.transform.GetComponent<Substance>(), transform);
-                Destroy(this.gameObject);
+                if (hit.transform.parent == null)
+                {
+                    myParentSubstance.AttachingNewPart(hit.transform.GetComponent<Substance>(), transform);
+                    //myParentSubstance.AttachingNewPart(hit, transform);
+                    Destroy(this.gameObject);
+                }
             }
         }
     }
@@ -115,24 +120,24 @@ public class GlueSplattQuad : MonoBehaviour
     {
         if (aParentHitSide == BoxHitSide.RIGHT || aParentHitSide == BoxHitSide.LEFT)
         {
-            myVerticalSnapPosition = new Vector3(transform.position.x, myParentTransform.position.y, transform.position.z);
-            myHorizontalSnapPosition = new Vector3(transform.position.x, transform.position.y, myParentTransform.position.z);
-
             transform.Rotate(new Vector3(0f, 0f, (aParentHitSide == BoxHitSide.RIGHT ? -90 : 90)));
+            
+            myVerticalSnapPosition = new Vector3(myParentTransform.position.x, transform.position.y, transform.position.z);
+            myHorizontalSnapPosition = new Vector3(transform.position.x, transform.position.y, myParentTransform.position.z);
         }
         else if (aParentHitSide == BoxHitSide.TOP || aParentHitSide == BoxHitSide.BOTTOM)
         {
+            transform.Rotate(new Vector3((aParentHitSide == BoxHitSide.TOP ? 0 : 180), 0f, 0f));
+
             myVerticalSnapPosition = new Vector3(transform.position.x, transform.position.y, myParentTransform.position.z);
             myHorizontalSnapPosition = new Vector3(myParentTransform.position.x, transform.position.y, transform.position.z);
-
-            transform.Rotate(new Vector3((aParentHitSide == BoxHitSide.TOP ? 0 : 180), 0f, 0f));
         }
         else if (aParentHitSide == BoxHitSide.FRONT || aParentHitSide == BoxHitSide.BACK)
         {
-            myVerticalSnapPosition = new Vector3(transform.position.x, myParentTransform.position.y, transform.position.z);
-            myHorizontalSnapPosition = new Vector3(myParentTransform.position.x, transform.position.y, transform.position.z);
-
             transform.Rotate(new Vector3((aParentHitSide == BoxHitSide.FRONT ? 90 : -90), 0f, 0f));
+
+            myVerticalSnapPosition = new Vector3(transform.position.x, transform.position.y, myParentTransform.position.z);
+            myHorizontalSnapPosition = new Vector3(myParentTransform.position.x, transform.position.y, transform.position.z);
         }
 
         VerticalSnapPoint.position = myVerticalSnapPosition;

@@ -12,6 +12,8 @@ TagManager:
   - Hand
   - Glue
   - WorkStation
+  - Fastener
+  - WeightHead
   layers:
   - Default
   - TransparentFX

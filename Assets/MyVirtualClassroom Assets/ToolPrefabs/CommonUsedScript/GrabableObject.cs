@@ -8,28 +8,30 @@ using UnityEngine.XR.Interaction.Toolkit;
 public class GrabableObject : MonoBehaviour
 {
     [SerializeField]
+    protected Transform LeftAttachPoint, RightAttachPoint;
+    [SerializeField]
     protected Color HandTouchOutlineColor = Color.white;
     [SerializeField]
     protected InputActionProperty LeftActive, RightActive;
     [SerializeField]
     protected InputActionProperty LeftGrab, RightGrab;
+    
 
-    [SerializeField, HideInInspector]
     protected Rigidbody ourRB;
-    [SerializeField, HideInInspector]
     protected BoxCollider ourBC;
-    [SerializeField, HideInInspector]
-    protected XRGrabInteractable ourXRGrab;
+    protected XRGrabInteractabkeBase ourXRGrab;
 
     public Outline ourOutline;
+
+    public bool IsHolding{ get { return ourIsHolding; } }
     
-    protected HandObject ourGrabbingHandObject;
+    protected HandObject ourGrabbingHand;
 
     protected Vector3 myGrabbingHandLastPosition;
 
     protected bool ourIsLeftHandHolding;
     protected bool ourIsRightHandHolding;
-    protected bool ourHandIsHolding = false;
+    protected bool ourIsHolding = false;
 
     protected bool ourHasOutline = false;
 
@@ -40,7 +42,10 @@ public class GrabableObject : MonoBehaviour
 
         ourBC = GetComponent<BoxCollider>();
         ourRB = GetComponent<Rigidbody>();
-        ourXRGrab = GetComponent<XRGrabInteractable>();
+        ourXRGrab = GetComponent<XRGrabInteractabkeBase>();
+
+        ourXRGrab.SetGrabbingObject(this);
+
     }
 
     protected virtual void OnDestroy()
@@ -67,8 +72,8 @@ public class GrabableObject : MonoBehaviour
 
     protected Vector3 GrabbingHandPosition()
     {
-        if(ourHandIsHolding)
-            return ourGrabbingHandObject.transform.position;
+        if(ourIsHolding)
+            return ourGrabbingHand.transform.position;
 
         return Vector3.zero;
     }
@@ -97,21 +102,17 @@ public class GrabableObject : MonoBehaviour
         return 0;
     }
 
-    protected bool IsActivePressed()
-    {
-        if (!ourHandIsHolding)
-            return false;
-
-        if (ourGrabbingHandObject.Side == Preposition.LEFT)
-            return LeftActive.action.IsPressed();
-        
-        return RightActive.action.IsPressed();
-    }
-
     protected virtual void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Hand") && !ourHandIsHolding)
+        if (other.CompareTag("Hand") && !ourIsHolding)
         {
+            Preposition hand = other.transform.GetComponent<HandObject>().Side;
+            if (hand == Preposition.LEFT)
+                ourXRGrab.SetOptionalAttachPoint(LeftAttachPoint);
+            else 
+            if(hand == Preposition.RIGHT)
+                ourXRGrab.SetOptionalAttachPoint(RightAttachPoint);
+
             DrawOutline(1);
         }
     }
@@ -119,7 +120,10 @@ public class GrabableObject : MonoBehaviour
     protected virtual void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Hand"))
+        {
+            ourXRGrab.SetOptionalAttachPoint(null);
             DrawOutline(0);
+        }
     }
 
     protected virtual void GrabingOject(HandObject aGrabbingHandObject, string aGrabbedObjectName)
@@ -127,17 +131,17 @@ public class GrabableObject : MonoBehaviour
         if (transform.name != aGrabbedObjectName)
             return;
 
-        ourGrabbingHandObject = aGrabbingHandObject;
-        ourHandIsHolding = true;
+        ourGrabbingHand = aGrabbingHandObject;
+        ourIsHolding = true;
         DrawOutline(0);
     }
 
     protected virtual void DroppingObject()
     {
-        if (ourHandIsHolding)
+        if (ourIsHolding)
         {
-            ourGrabbingHandObject = null;
-            ourHandIsHolding = false;
+            ourGrabbingHand = null;
+            ourIsHolding = false;
         }
     }
 
@@ -153,6 +157,22 @@ public class GrabableObject : MonoBehaviour
             ourOutline.enabled = true;
             if (aModeIndex == 1)
                 SetOutlineAppearence(Outline.Mode.OutlineVisible, HandTouchOutlineColor);
+        }
+    }
+
+    public void GrabbObject(HandObject aGrabbingHand)
+    {
+        ourGrabbingHand = aGrabbingHand;
+        ourIsHolding = true;
+        DrawOutline(0);
+    }
+
+    public void DroppObject()
+    {
+        if(ourIsHolding)
+        {
+            ourGrabbingHand = null;
+            ourIsHolding = false;
         }
     }
 

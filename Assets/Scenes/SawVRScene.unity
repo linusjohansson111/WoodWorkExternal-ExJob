@@ -621,6 +621,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HandSide: 0
+  ActiveProperty:
+    m_UseReference: 1
+    m_Action:
+      m_Name: Active Property
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 6f94b954-5193-4345-8245-1b20ddd4450e
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: -5982496924579745919, guid: c348712bda248c246b8c49b3db54643f,
+      type: 3}
+  GrabProperty:
+    m_UseReference: 1
+    m_Action:
+      m_Name: Grab Property
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 92ba238c-2bf4-4457-92b0-1db587cebd8a
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: -6131295136447488360, guid: c348712bda248c246b8c49b3db54643f,
+      type: 3}
 --- !u!1001 &249450647
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1054,6 +1080,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cf8cdaf6f4cf6945bbab7a9770cf4d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LeftAttachPoint: {fileID: 0}
+  RightAttachPoint: {fileID: 0}
   HandTouchOutlineColor: {r: 0.3764706, g: 0.79607844, b: 0.08235294, a: 1}
   LeftActive:
     m_UseReference: 0
@@ -1103,12 +1131,10 @@ MonoBehaviour:
       m_SingletonActionBindings: []
       m_Flags: 0
     m_Reference: {fileID: 0}
-  ourRB: {fileID: 0}
-  ourBC: {fileID: 0}
-  ourXRGrab: {fileID: 0}
   ourOutline: {fileID: 303491570}
   HandTouchColor: {r: 0.3764706, g: 0.79607844, b: 0.08235294, a: 1}
   SlicerTouchColor: {r: 0.79607844, g: 0.082352936, b: 0.15665567, a: 1}
+  FastenerTouchColor: {r: 1, g: 0, b: 1, a: 1}
   SubstanceTouchColor: {r: 1, g: 0.43214116, b: 0, a: 1}
   RightAngleTouchColor: {r: 0, g: 0.5283019, b: 0.33109054, a: 1}
   MaterialType: 0
@@ -1223,11 +1249,11 @@ Transform:
   m_GameObject: {fileID: 303491569}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.023, y: 1, z: 0.711}
-  m_LocalScale: {x: 0.5, y: 0.035, z: 0.2}
+  m_LocalScale: {x: 0.3, y: 0.035, z: 0.2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 19
+  m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &303491579
 MonoBehaviour:
@@ -1692,6 +1718,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HandSide: 1
+  ActiveProperty:
+    m_UseReference: 1
+    m_Action:
+      m_Name: Active Property
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 8824ece9-099a-4a68-ab2f-c7f7031a8d2b
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: 83097790271614945, guid: c348712bda248c246b8c49b3db54643f,
+      type: 3}
+  GrabProperty:
+    m_UseReference: 1
+    m_Action:
+      m_Name: Grab Property
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 60e430e6-d715-4c00-ae96-91fee0598a46
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: 187161793506945269, guid: c348712bda248c246b8c49b3db54643f,
+      type: 3}
 --- !u!1 &347981424
 GameObject:
   m_ObjectHideFlags: 0
@@ -2062,7 +2114,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 06832687ffec1da4ca8cb7134e692fc1,
         type: 3}
       propertyPath: m_RootOrder
-      value: 15
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 06832687ffec1da4ca8cb7134e692fc1,
         type: 3}
@@ -2329,6 +2381,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cf8cdaf6f4cf6945bbab7a9770cf4d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LeftAttachPoint: {fileID: 0}
+  RightAttachPoint: {fileID: 0}
   HandTouchOutlineColor: {r: 0.3764706, g: 0.79607844, b: 0.08235294, a: 1}
   LeftActive:
     m_UseReference: 0
@@ -2378,12 +2432,10 @@ MonoBehaviour:
       m_SingletonActionBindings: []
       m_Flags: 0
     m_Reference: {fileID: 0}
-  ourRB: {fileID: 0}
-  ourBC: {fileID: 0}
-  ourXRGrab: {fileID: 0}
   ourOutline: {fileID: 572549288}
   HandTouchColor: {r: 0.3764706, g: 0.79607844, b: 0.08235294, a: 1}
   SlicerTouchColor: {r: 0.79607844, g: 0.082352936, b: 0.15665567, a: 1}
+  FastenerTouchColor: {r: 1, g: 0, b: 1, a: 1}
   SubstanceTouchColor: {r: 1, g: 0.43214116, b: 0, a: 1}
   RightAngleTouchColor: {r: 0, g: 0.5283019, b: 0.33109054, a: 1}
   MaterialType: 0
@@ -2498,11 +2550,11 @@ Transform:
   m_GameObject: {fileID: 572549287}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.023, y: 0.943, z: 0.995}
-  m_LocalScale: {x: 0.5, y: 0.035, z: 0.2}
+  m_LocalScale: {x: 0.3, y: 0.035, z: 0.2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 21
+  m_RootOrder: 22
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &572549297
 MonoBehaviour:
@@ -2838,6 +2890,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cf8cdaf6f4cf6945bbab7a9770cf4d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LeftAttachPoint: {fileID: 0}
+  RightAttachPoint: {fileID: 0}
   HandTouchOutlineColor: {r: 0.3764706, g: 0.79607844, b: 0.08235294, a: 1}
   LeftActive:
     m_UseReference: 0
@@ -2887,12 +2941,10 @@ MonoBehaviour:
       m_SingletonActionBindings: []
       m_Flags: 0
     m_Reference: {fileID: 0}
-  ourRB: {fileID: 0}
-  ourBC: {fileID: 0}
-  ourXRGrab: {fileID: 0}
   ourOutline: {fileID: 899206471}
   HandTouchColor: {r: 0.3764706, g: 0.79607844, b: 0.08235294, a: 1}
   SlicerTouchColor: {r: 0.79607844, g: 0.082352936, b: 0.15665567, a: 1}
+  FastenerTouchColor: {r: 1, g: 0, b: 1, a: 1}
   SubstanceTouchColor: {r: 1, g: 0.43214116, b: 0, a: 1}
   RightAngleTouchColor: {r: 0, g: 0.5283019, b: 0.33109054, a: 1}
   MaterialType: 0
@@ -3007,11 +3059,11 @@ Transform:
   m_GameObject: {fileID: 899206470}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.5115, y: 0.99, z: 0.713}
-  m_LocalScale: {x: 0.2, y: 0.035, z: 0.2}
+  m_LocalScale: {x: 0.15, y: 0.035, z: 0.2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 18
+  m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &899206480
 MonoBehaviour:
@@ -3479,7 +3531,7 @@ Transform:
   m_GameObject: {fileID: 980532799}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.378, y: 0.378, z: 0.378}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -4203,6 +4255,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cf8cdaf6f4cf6945bbab7a9770cf4d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LeftAttachPoint: {fileID: 0}
+  RightAttachPoint: {fileID: 0}
   HandTouchOutlineColor: {r: 0.3764706, g: 0.79607844, b: 0.08235294, a: 1}
   LeftActive:
     m_UseReference: 0
@@ -4252,12 +4306,10 @@ MonoBehaviour:
       m_SingletonActionBindings: []
       m_Flags: 0
     m_Reference: {fileID: 0}
-  ourRB: {fileID: 0}
-  ourBC: {fileID: 0}
-  ourXRGrab: {fileID: 0}
   ourOutline: {fileID: 1347331908}
   HandTouchColor: {r: 0.3764706, g: 0.79607844, b: 0.08235294, a: 1}
   SlicerTouchColor: {r: 0.79607844, g: 0.082352936, b: 0.15665567, a: 1}
+  FastenerTouchColor: {r: 1, g: 0, b: 1, a: 1}
   SubstanceTouchColor: {r: 1, g: 0.43214116, b: 0, a: 1}
   RightAngleTouchColor: {r: 0, g: 0.5283019, b: 0.33109054, a: 1}
   MaterialType: 0
@@ -4371,12 +4423,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1347331907}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.384, y: 0.998, z: 1}
-  m_LocalScale: {x: 0.2, y: 0.035, z: 0.2}
+  m_LocalPosition: {x: -0.523, y: 0.998, z: 1}
+  m_LocalScale: {x: 0.15, y: 0.035, z: 0.2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 20
+  m_RootOrder: 21
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1347331917
 MonoBehaviour:
@@ -4881,6 +4933,85 @@ Transform:
   m_Father: {fileID: 1827044693}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1642218517
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4469373756597520439, guid: b48e56afca5ff1142a637ee58a8a1f9a,
+        type: 3}
+      propertyPath: m_InteractionManager
+      value: 
+      objectReference: {fileID: 631369407}
+    - target: {fileID: 7171933910497997934, guid: b48e56afca5ff1142a637ee58a8a1f9a,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 7171933910497997934, guid: b48e56afca5ff1142a637ee58a8a1f9a,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7171933910497997934, guid: b48e56afca5ff1142a637ee58a8a1f9a,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7171933910497997934, guid: b48e56afca5ff1142a637ee58a8a1f9a,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7171933910497997934, guid: b48e56afca5ff1142a637ee58a8a1f9a,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7171933910497997934, guid: b48e56afca5ff1142a637ee58a8a1f9a,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7171933910497997934, guid: b48e56afca5ff1142a637ee58a8a1f9a,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7171933910497997934, guid: b48e56afca5ff1142a637ee58a8a1f9a,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7171933910497997934, guid: b48e56afca5ff1142a637ee58a8a1f9a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7171933910497997934, guid: b48e56afca5ff1142a637ee58a8a1f9a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7171933910497997934, guid: b48e56afca5ff1142a637ee58a8a1f9a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7171933910497997935, guid: b48e56afca5ff1142a637ee58a8a1f9a,
+        type: 3}
+      propertyPath: m_Name
+      value: Nail
+      objectReference: {fileID: 0}
+    - target: {fileID: 7171933910497997935, guid: b48e56afca5ff1142a637ee58a8a1f9a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b48e56afca5ff1142a637ee58a8a1f9a, type: 3}
 --- !u!4 &1679629771 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 1effc9b3b37a95c459f11cfe90010af6,
@@ -5226,7 +5357,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 22
+  m_RootOrder: 23
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1827044689
 GameObject:
@@ -5688,7 +5819,7 @@ PrefabInstance:
     - target: {fileID: 4235288467777914586, guid: 5250a350f499e6745bac184330b37603,
         type: 3}
       propertyPath: m_RootOrder
-      value: 14
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 4235288467777914586, guid: 5250a350f499e6745bac184330b37603,
         type: 3}
@@ -5889,6 +6020,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cf8cdaf6f4cf6945bbab7a9770cf4d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LeftAttachPoint: {fileID: 0}
+  RightAttachPoint: {fileID: 0}
   HandTouchOutlineColor: {r: 1, g: 1, b: 1, a: 1}
   LeftActive:
     m_UseReference: 0
@@ -5938,12 +6071,10 @@ MonoBehaviour:
       m_SingletonActionBindings: []
       m_Flags: 0
     m_Reference: {fileID: 0}
-  ourRB: {fileID: 0}
-  ourBC: {fileID: 0}
-  ourXRGrab: {fileID: 0}
   ourOutline: {fileID: 1940049148}
   HandTouchColor: {r: 0.3764706, g: 0.79607844, b: 0.08235294, a: 1}
   SlicerTouchColor: {r: 0.79607844, g: 0.082352936, b: 0.15665567, a: 1}
+  FastenerTouchColor: {r: 1, g: 0, b: 1, a: 1}
   SubstanceTouchColor: {r: 1, g: 0.43214116, b: 0, a: 1}
   RightAngleTouchColor: {r: 0, g: 0.5283019, b: 0.33109054, a: 1}
   MaterialType: 0
@@ -6359,115 +6490,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4118660340752706493, guid: 7c98a8d8f5be9ab48bba542dd87f68e5,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.01867208
-      objectReference: {fileID: 0}
-    - target: {fileID: 4118660340752706493, guid: 7c98a8d8f5be9ab48bba542dd87f68e5,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.035063
-      objectReference: {fileID: 0}
-    - target: {fileID: 4118660340752706493, guid: 7c98a8d8f5be9ab48bba542dd87f68e5,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0.0276
-      objectReference: {fileID: 0}
-    - target: {fileID: 4118660340752706493, guid: 7c98a8d8f5be9ab48bba542dd87f68e5,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.9774019
-      objectReference: {fileID: 0}
-    - target: {fileID: 4118660340752706493, guid: 7c98a8d8f5be9ab48bba542dd87f68e5,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0.20614724
-      objectReference: {fileID: 0}
-    - target: {fileID: 4118660340752706493, guid: 7c98a8d8f5be9ab48bba542dd87f68e5,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0.044865295
-      objectReference: {fileID: 0}
-    - target: {fileID: 4118660340752706493, guid: 7c98a8d8f5be9ab48bba542dd87f68e5,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0.013268297
-      objectReference: {fileID: 0}
-    - target: {fileID: 4118660340752706493, guid: 7c98a8d8f5be9ab48bba542dd87f68e5,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: -23.839
-      objectReference: {fileID: 0}
-    - target: {fileID: 4118660340752706493, guid: 7c98a8d8f5be9ab48bba542dd87f68e5,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: -5.158
-      objectReference: {fileID: 0}
-    - target: {fileID: 4118660340752706493, guid: 7c98a8d8f5be9ab48bba542dd87f68e5,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: -0.466
-      objectReference: {fileID: 0}
-    - target: {fileID: 4118660341966906402, guid: 7c98a8d8f5be9ab48bba542dd87f68e5,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.01867208
-      objectReference: {fileID: 0}
-    - target: {fileID: 4118660341966906402, guid: 7c98a8d8f5be9ab48bba542dd87f68e5,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.035063
-      objectReference: {fileID: 0}
-    - target: {fileID: 4118660341966906402, guid: 7c98a8d8f5be9ab48bba542dd87f68e5,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0.0276
-      objectReference: {fileID: 0}
-    - target: {fileID: 4118660341966906402, guid: 7c98a8d8f5be9ab48bba542dd87f68e5,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.9774775
-      objectReference: {fileID: 0}
-    - target: {fileID: 4118660341966906402, guid: 7c98a8d8f5be9ab48bba542dd87f68e5,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0.20650533
-      objectReference: {fileID: 0}
-    - target: {fileID: 4118660341966906402, guid: 7c98a8d8f5be9ab48bba542dd87f68e5,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0.0431872
-      objectReference: {fileID: 0}
-    - target: {fileID: 4118660341966906402, guid: 7c98a8d8f5be9ab48bba542dd87f68e5,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0.0053185723
-      objectReference: {fileID: 0}
-    - target: {fileID: 4118660341966906402, guid: 7c98a8d8f5be9ab48bba542dd87f68e5,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: -23.839
-      objectReference: {fileID: 0}
-    - target: {fileID: 4118660341966906402, guid: 7c98a8d8f5be9ab48bba542dd87f68e5,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 5.158
-      objectReference: {fileID: 0}
-    - target: {fileID: 4118660341966906402, guid: 7c98a8d8f5be9ab48bba542dd87f68e5,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: -0.466
-      objectReference: {fileID: 0}
     - target: {fileID: 4118660342159288652, guid: 7c98a8d8f5be9ab48bba542dd87f68e5,
         type: 3}
       propertyPath: m_Name
       value: Hammer
-      objectReference: {fileID: 0}
-    - target: {fileID: 4118660342159288652, guid: 7c98a8d8f5be9ab48bba542dd87f68e5,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4118660342159288690, guid: 7c98a8d8f5be9ab48bba542dd87f68e5,
         type: 3}
@@ -6477,7 +6503,7 @@ PrefabInstance:
     - target: {fileID: 4118660342159288695, guid: 7c98a8d8f5be9ab48bba542dd87f68e5,
         type: 3}
       propertyPath: m_RootOrder
-      value: 16
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 4118660342159288695, guid: 7c98a8d8f5be9ab48bba542dd87f68e5,
         type: 3}
@@ -6541,7 +6567,7 @@ PrefabInstance:
     - target: {fileID: 6760770614018059622, guid: 0aa1c8f8fa0c9134186416cd550a7cec,
         type: 3}
       propertyPath: m_RootOrder
-      value: 17
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 6760770614018059622, guid: 0aa1c8f8fa0c9134186416cd550a7cec,
         type: 3}
@@ -6556,7 +6582,7 @@ PrefabInstance:
     - target: {fileID: 6760770614018059622, guid: 0aa1c8f8fa0c9134186416cd550a7cec,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.739
+      value: 0.957
       objectReference: {fileID: 0}
     - target: {fileID: 6760770614018059622, guid: 0aa1c8f8fa0c9134186416cd550a7cec,
         type: 3}
@@ -6615,7 +6641,7 @@ PrefabInstance:
     - target: {fileID: 4372681843709078243, guid: 2d44787f72d029c48904e4ea16391714,
         type: 3}
       propertyPath: m_RootOrder
-      value: 13
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 4372681843709078243, guid: 2d44787f72d029c48904e4ea16391714,
         type: 3}
@@ -6746,6 +6772,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8887096461626930520, guid: a4e11593f9e847e44af728b0ff01b38b,
+        type: 3}
+      propertyPath: m_IsKinematic
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8887096461626930521, guid: a4e11593f9e847e44af728b0ff01b38b,
         type: 3}
       propertyPath: m_Name
@@ -6754,7 +6785,7 @@ PrefabInstance:
     - target: {fileID: 8887096461626930523, guid: a4e11593f9e847e44af728b0ff01b38b,
         type: 3}
       propertyPath: m_RootOrder
-      value: 12
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 8887096461626930523, guid: a4e11593f9e847e44af728b0ff01b38b,
         type: 3}
@@ -6764,12 +6795,12 @@ PrefabInstance:
     - target: {fileID: 8887096461626930523, guid: a4e11593f9e847e44af728b0ff01b38b,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.954
+      value: 0.9735
       objectReference: {fileID: 0}
     - target: {fileID: 8887096461626930523, guid: a4e11593f9e847e44af728b0ff01b38b,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.9
+      value: 0.76
       objectReference: {fileID: 0}
     - target: {fileID: 8887096461626930523, guid: a4e11593f9e847e44af728b0ff01b38b,
         type: 3}
