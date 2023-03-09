@@ -61,6 +61,7 @@ public class Nail : GrabableObject, ICFasteners
     {
         aVelocity = -1f * 0.3f * Time.deltaTime;
         transform.position += Vector3.up * aVelocity;
+        nrOfWoodsHammered++;
     }
 
     public void SetIsBeingHeld(bool isHeld)
@@ -144,8 +145,7 @@ public class Nail : GrabableObject, ICFasteners
                 BoxHitSide hitFace = myLastHitSubstanceFade;
                 myAttachToGO.GetComponent<Substance>().AttachNewNail(this, myHitSubstancePoint);
             }
-            if(Head.position.y > myHitSubstancePoint.y)
-                AddForceToObject(2f);
+            AddForceToObject(2f);
         }
     }
 

@@ -113,7 +113,7 @@ public class Gluetube : GrabableObject
     /// <param name="aParentTransform">The object the splatter will be child to</param>
     private void CreateGlueDot(Vector3 aSurfacePoint, Transform aParentTransform)
     {
-        Instantiate(Splatter, aSurfacePoint, aParentTransform.rotation, aParentTransform).GetComponent<GlueSplattQuad>().SetSnapPosition(Muzzle.position);
+        Instantiate(Splatter, aSurfacePoint, aParentTransform.rotation, aParentTransform).GetComponent<GlueSplattQuad>().SetSnapPosition(aSurfacePoint);
         
     }
 

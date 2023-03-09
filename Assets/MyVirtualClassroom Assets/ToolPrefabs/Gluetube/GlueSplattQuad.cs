@@ -109,7 +109,6 @@ public class GlueSplattQuad : MonoBehaviour
                 if (hit.transform.parent == null)
                 {
                     myParentSubstance.AttachingNewPart(hit.transform.GetComponent<Substance>(), transform);
-                    //myParentSubstance.AttachingNewPart(hit, transform);
                     Destroy(this.gameObject);
                 }
             }

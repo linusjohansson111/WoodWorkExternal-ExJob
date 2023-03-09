@@ -25,6 +25,16 @@ public class XRGrabInteractabkeBase : XRGrabInteractable
         
     }
 
+    protected override void OnHoverEntered(HoverEnterEventArgs args)
+    {
+        base.OnHoverEntered(args);
+    }
+
+    protected override void OnHoverExited(HoverExitEventArgs args)
+    {
+        base.OnHoverExited(args);
+    }
+
     protected override void OnSelectEntered(SelectEnterEventArgs args)
     {
         if (args.interactorObject.transform.CompareTag("Hand") && !ourGrabableObject.IsHolding)
@@ -41,10 +51,8 @@ public class XRGrabInteractabkeBase : XRGrabInteractable
                 ourGrappingHand.IsGrapingObject(IsGrapped);
                 ourGrabableObject.GrabbObject(ourGrappingHand);
             }
-            base.OnSelectEntered(args);
         }
-
-        
+        base.OnSelectEntered(args);
     }
 
     protected override void OnSelectExited(SelectExitEventArgs args)

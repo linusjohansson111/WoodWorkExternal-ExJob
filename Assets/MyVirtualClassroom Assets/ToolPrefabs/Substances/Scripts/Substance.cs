@@ -366,8 +366,10 @@ public class Substance : GrabableObject, MaterialInterface
             
         }
 
-        if(collision.transform.CompareTag("Fastener"))
-        { }
+        //if(collision.transform.CompareTag("Fastener"))
+        //{
+        //    DrawOutline((int)TouchMode.FASTENER);
+        //}
     }
 
     protected override void OnTriggerEnter(Collider other)

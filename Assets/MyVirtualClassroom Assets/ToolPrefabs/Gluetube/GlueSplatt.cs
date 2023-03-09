@@ -78,7 +78,7 @@ public class GlueSplatt : MonoBehaviour
         {
             if (hit.transform.CompareTag("Sliceable"))
             {
-                transform.parent.GetComponent<Substance>().AttachingNewPart(hit.transform.GetComponent<Substance>(), transform);
+                //transform.parent.GetComponent<Substance>().AttachingNewPart(hit.transform.GetComponent<Substance>(), transform);
                 myIsAttachingOtherSubstance = true;
                 Destroy(this.gameObject);
             }
