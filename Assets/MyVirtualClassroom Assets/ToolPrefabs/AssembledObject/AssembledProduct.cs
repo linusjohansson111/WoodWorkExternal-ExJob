@@ -15,10 +15,6 @@ public class AssembledProduct : GrabableObject
         
     }
 
-    protected override void LateUpdate()
-    {
-    }
-
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.transform.CompareTag("WorkStation"))

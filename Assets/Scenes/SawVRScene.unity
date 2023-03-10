@@ -1023,7 +1023,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &303491570
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1080,57 +1080,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cf8cdaf6f4cf6945bbab7a9770cf4d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LeftAttachPoint: {fileID: 0}
-  RightAttachPoint: {fileID: 0}
   HandTouchOutlineColor: {r: 0.3764706, g: 0.79607844, b: 0.08235294, a: 1}
-  LeftActive:
-    m_UseReference: 0
-    m_Action:
-      m_Name: Left Active
-      m_Type: 0
-      m_ExpectedControlType: 
-      m_Id: 5c057a1d-0c42-44cb-af15-a21c28344aa2
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings: []
-      m_Flags: 0
-    m_Reference: {fileID: 0}
-  RightActive:
-    m_UseReference: 0
-    m_Action:
-      m_Name: Right Active
-      m_Type: 0
-      m_ExpectedControlType: 
-      m_Id: 084370bd-cc64-46e5-bcfc-7edb6e1e0a7f
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings: []
-      m_Flags: 0
-    m_Reference: {fileID: 0}
-  LeftGrab:
-    m_UseReference: 0
-    m_Action:
-      m_Name: Left Grab
-      m_Type: 0
-      m_ExpectedControlType: 
-      m_Id: a2a622e6-94b4-49ed-8696-84aac1f23fbc
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings: []
-      m_Flags: 0
-    m_Reference: {fileID: 0}
-  RightGrab:
-    m_UseReference: 0
-    m_Action:
-      m_Name: Right Grab
-      m_Type: 0
-      m_ExpectedControlType: 
-      m_Id: 18d9b7b4-457d-4bde-884c-4c5f40987b8a
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings: []
-      m_Flags: 0
-    m_Reference: {fileID: 0}
   ourOutline: {fileID: 303491570}
   HandTouchColor: {r: 0.3764706, g: 0.79607844, b: 0.08235294, a: 1}
   SlicerTouchColor: {r: 0.79607844, g: 0.082352936, b: 0.15665567, a: 1}
@@ -1247,8 +1197,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 303491569}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.023, y: 1, z: 0.711}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.023, y: 0.943, z: 0.711}
   m_LocalScale: {x: 0.3, y: 0.035, z: 0.2}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2381,57 +2331,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cf8cdaf6f4cf6945bbab7a9770cf4d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LeftAttachPoint: {fileID: 0}
-  RightAttachPoint: {fileID: 0}
   HandTouchOutlineColor: {r: 0.3764706, g: 0.79607844, b: 0.08235294, a: 1}
-  LeftActive:
-    m_UseReference: 0
-    m_Action:
-      m_Name: Left Active
-      m_Type: 0
-      m_ExpectedControlType: 
-      m_Id: 793158dd-4f93-4114-83f3-aa267b144f18
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings: []
-      m_Flags: 0
-    m_Reference: {fileID: 0}
-  RightActive:
-    m_UseReference: 0
-    m_Action:
-      m_Name: Right Active
-      m_Type: 0
-      m_ExpectedControlType: 
-      m_Id: 7f2f146c-174c-414a-bc44-c7f237daaa9b
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings: []
-      m_Flags: 0
-    m_Reference: {fileID: 0}
-  LeftGrab:
-    m_UseReference: 0
-    m_Action:
-      m_Name: Left Grab
-      m_Type: 0
-      m_ExpectedControlType: 
-      m_Id: d3cc766b-4af7-4b0d-8294-d19809bc9570
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings: []
-      m_Flags: 0
-    m_Reference: {fileID: 0}
-  RightGrab:
-    m_UseReference: 0
-    m_Action:
-      m_Name: Right Grab
-      m_Type: 0
-      m_ExpectedControlType: 
-      m_Id: 520b2940-0ef8-4b1b-b68e-f97661e13c03
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings: []
-      m_Flags: 0
-    m_Reference: {fileID: 0}
   ourOutline: {fileID: 572549288}
   HandTouchColor: {r: 0.3764706, g: 0.79607844, b: 0.08235294, a: 1}
   SlicerTouchColor: {r: 0.79607844, g: 0.082352936, b: 0.15665567, a: 1}
@@ -2804,18 +2704,336 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 685865686}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &781142637 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 6760770614583656767, guid: 0aa1c8f8fa0c9134186416cd550a7cec,
-    type: 3}
-  m_PrefabInstance: {fileID: 6760770614175131900}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &787213089 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 42e0514496bc4714c8498c573c23c3b5,
     type: 3}
   m_PrefabInstance: {fileID: 1085755708}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &843030280
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 843030281}
+  - component: {fileID: 843030286}
+  - component: {fileID: 843030285}
+  - component: {fileID: 843030284}
+  - component: {fileID: 843030283}
+  - component: {fileID: 843030282}
+  m_Layer: 0
+  m_Name: Cube (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &843030281
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 843030280}
+  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
+  m_LocalPosition: {x: 0.0571, y: 0.0921, z: 0}
+  m_LocalScale: {x: 0.15, y: 0.035, z: 0.2}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1415090136}
+  m_Father: {fileID: 866381026}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
+--- !u!114 &843030282
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 843030280}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
+--- !u!114 &843030283
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 843030280}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11f516cb07d014f45a9d7035754e0036, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HandTouchOutlineColor: {r: 1, g: 1, b: 1, a: 1}
+  ourOutline: {fileID: 843030282}
+  AttachPoint: {fileID: 1415090136}
+--- !u!65 &843030284
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 843030280}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &843030285
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 843030280}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &843030286
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 843030280}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &866381022
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 866381026}
+  - component: {fileID: 866381025}
+  - component: {fileID: 866381024}
+  - component: {fileID: 866381023}
+  m_Layer: 0
+  m_Name: TestGrapParentChildObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &866381023
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 866381022}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3b2d8101aa81bd418899e81c73d8d80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HandTouchOutlineColor: {r: 1, g: 1, b: 1, a: 1}
+  ourOutline: {fileID: 0}
+--- !u!114 &866381024
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 866381022}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e70f2deebccef242adcf08604e06757, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_InteractionManager: {fileID: 631369407}
+  m_Colliders: []
+  m_InteractionLayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_InteractionLayers:
+    m_Bits: 12
+  m_DistanceCalculationMode: 1
+  m_SelectMode: 0
+  m_CustomReticle: {fileID: 0}
+  m_FirstHoverEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  m_LastHoverExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_HoverEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  m_HoverExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FirstSelectEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  m_LastSelectExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_SelectEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  m_SelectExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Activated:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Deactivated:
+    m_PersistentCalls:
+      m_Calls: []
+  m_StartingHoverFilters: []
+  m_StartingSelectFilters: []
+  m_OnFirstHoverEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  m_OnLastHoverExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_OnHoverEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  m_OnHoverExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_OnSelectEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  m_OnSelectExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_OnSelectCanceled:
+    m_PersistentCalls:
+      m_Calls: []
+  m_OnActivate:
+    m_PersistentCalls:
+      m_Calls: []
+  m_OnDeactivate:
+    m_PersistentCalls:
+      m_Calls: []
+  m_AttachTransform: {fileID: 0}
+  m_UseDynamicAttach: 0
+  m_MatchAttachPosition: 1
+  m_MatchAttachRotation: 1
+  m_SnapToColliderVolume: 1
+  m_AttachEaseInTime: 0.15
+  m_MovementType: 2
+  m_VelocityDamping: 1
+  m_VelocityScale: 1
+  m_AngularVelocityDamping: 1
+  m_AngularVelocityScale: 1
+  m_TrackPosition: 1
+  m_SmoothPosition: 0
+  m_SmoothPositionAmount: 5
+  m_TightenPosition: 0.5
+  m_TrackRotation: 1
+  m_SmoothRotation: 0
+  m_SmoothRotationAmount: 5
+  m_TightenRotation: 0.5
+  m_ThrowOnDetach: 1
+  m_ThrowSmoothingDuration: 0.25
+  m_ThrowSmoothingCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  m_ThrowVelocityScale: 1.5
+  m_ThrowAngularVelocityScale: 1
+  m_ForceGravityOnDetach: 0
+  m_RetainTransformParent: 1
+  m_AttachPointCompatibilityMode: 0
+  m_StartingSingleGrabTransformers: []
+  m_StartingMultipleGrabTransformers: []
+  m_AddDefaultGrabTransformers: 1
+--- !u!54 &866381025
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 866381022}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!4 &866381026
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 866381022}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.022, y: 0.963, z: 0.709}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1649813915}
+  - {fileID: 843030281}
+  m_Father: {fileID: 0}
+  m_RootOrder: 24
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &899206470
 GameObject:
   m_ObjectHideFlags: 0
@@ -2896,57 +3114,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cf8cdaf6f4cf6945bbab7a9770cf4d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LeftAttachPoint: {fileID: 0}
-  RightAttachPoint: {fileID: 0}
   HandTouchOutlineColor: {r: 0.3764706, g: 0.79607844, b: 0.08235294, a: 1}
-  LeftActive:
-    m_UseReference: 0
-    m_Action:
-      m_Name: Left Active
-      m_Type: 0
-      m_ExpectedControlType: 
-      m_Id: 592e14f5-02dd-4cee-a0d8-d9eb431160be
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings: []
-      m_Flags: 0
-    m_Reference: {fileID: 0}
-  RightActive:
-    m_UseReference: 0
-    m_Action:
-      m_Name: Right Active
-      m_Type: 0
-      m_ExpectedControlType: 
-      m_Id: 6d7f96ea-2e4d-42dd-8121-e6ec986c73aa
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings: []
-      m_Flags: 0
-    m_Reference: {fileID: 0}
-  LeftGrab:
-    m_UseReference: 0
-    m_Action:
-      m_Name: Left Grab
-      m_Type: 0
-      m_ExpectedControlType: 
-      m_Id: 292b836c-5c39-49a2-96e6-390efdbf29c0
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings: []
-      m_Flags: 0
-    m_Reference: {fileID: 0}
-  RightGrab:
-    m_UseReference: 0
-    m_Action:
-      m_Name: Right Grab
-      m_Type: 0
-      m_ExpectedControlType: 
-      m_Id: 7ed66896-e292-46e1-833e-0166ec671522
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings: []
-      m_Flags: 0
-    m_Reference: {fileID: 0}
   ourOutline: {fileID: 899206471}
   HandTouchColor: {r: 0.3764706, g: 0.79607844, b: 0.08235294, a: 1}
   SlicerTouchColor: {r: 0.79607844, g: 0.082352936, b: 0.15665567, a: 1}
@@ -3445,6 +3613,37 @@ MonoBehaviour:
   m_LocomotionProvider: {fileID: 947701004}
   m_MinHeight: 0
   m_MaxHeight: Infinity
+--- !u!1 &973850438
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 973850439}
+  m_Layer: 0
+  m_Name: AttachPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &973850439
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 973850438}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.738, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1649813915}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &980532799
 GameObject:
   m_ObjectHideFlags: 0
@@ -4261,57 +4460,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cf8cdaf6f4cf6945bbab7a9770cf4d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LeftAttachPoint: {fileID: 0}
-  RightAttachPoint: {fileID: 0}
   HandTouchOutlineColor: {r: 0.3764706, g: 0.79607844, b: 0.08235294, a: 1}
-  LeftActive:
-    m_UseReference: 0
-    m_Action:
-      m_Name: Left Active
-      m_Type: 0
-      m_ExpectedControlType: 
-      m_Id: 793158dd-4f93-4114-83f3-aa267b144f18
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings: []
-      m_Flags: 0
-    m_Reference: {fileID: 0}
-  RightActive:
-    m_UseReference: 0
-    m_Action:
-      m_Name: Right Active
-      m_Type: 0
-      m_ExpectedControlType: 
-      m_Id: 7f2f146c-174c-414a-bc44-c7f237daaa9b
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings: []
-      m_Flags: 0
-    m_Reference: {fileID: 0}
-  LeftGrab:
-    m_UseReference: 0
-    m_Action:
-      m_Name: Left Grab
-      m_Type: 0
-      m_ExpectedControlType: 
-      m_Id: d3cc766b-4af7-4b0d-8294-d19809bc9570
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings: []
-      m_Flags: 0
-    m_Reference: {fileID: 0}
-  RightGrab:
-    m_UseReference: 0
-    m_Action:
-      m_Name: Right Grab
-      m_Type: 0
-      m_ExpectedControlType: 
-      m_Id: 520b2940-0ef8-4b1b-b68e-f97661e13c03
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings: []
-      m_Flags: 0
-    m_Reference: {fileID: 0}
   ourOutline: {fileID: 1347331908}
   HandTouchColor: {r: 0.3764706, g: 0.79607844, b: 0.08235294, a: 1}
   SlicerTouchColor: {r: 0.79607844, g: 0.082352936, b: 0.15665567, a: 1}
@@ -4563,6 +4712,37 @@ MonoBehaviour:
   m_AddDefaultGrabTransformers: 1
   LeftAttachTransform: {fileID: 0}
   RightAttachTransform: {fileID: 0}
+--- !u!1 &1415090135
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1415090136}
+  m_Layer: 0
+  m_Name: AttachPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1415090136
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1415090135}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.738, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 843030281}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1465939008
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5018,6 +5198,139 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b48e56afca5ff1142a637ee58a8a1f9a, type: 3}
+--- !u!1 &1649813914
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1649813915}
+  - component: {fileID: 1649813920}
+  - component: {fileID: 1649813919}
+  - component: {fileID: 1649813918}
+  - component: {fileID: 1649813917}
+  - component: {fileID: 1649813916}
+  m_Layer: 0
+  m_Name: Cube
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1649813915
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1649813914}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.15, y: 0.035, z: 0.2}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 973850439}
+  m_Father: {fileID: 866381026}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1649813916
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1649813914}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
+--- !u!114 &1649813917
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1649813914}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11f516cb07d014f45a9d7035754e0036, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HandTouchOutlineColor: {r: 1, g: 1, b: 1, a: 1}
+  ourOutline: {fileID: 1649813916}
+  AttachPoint: {fileID: 973850439}
+--- !u!65 &1649813918
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1649813914}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &1649813919
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1649813914}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &1649813920
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1649813914}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!4 &1679629771 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 1effc9b3b37a95c459f11cfe90010af6,
@@ -6026,57 +6339,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cf8cdaf6f4cf6945bbab7a9770cf4d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LeftAttachPoint: {fileID: 0}
-  RightAttachPoint: {fileID: 0}
   HandTouchOutlineColor: {r: 1, g: 1, b: 1, a: 1}
-  LeftActive:
-    m_UseReference: 0
-    m_Action:
-      m_Name: Left Active
-      m_Type: 0
-      m_ExpectedControlType: 
-      m_Id: 60a26b23-08fc-4f95-9856-8936973b676f
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings: []
-      m_Flags: 0
-    m_Reference: {fileID: 0}
-  RightActive:
-    m_UseReference: 0
-    m_Action:
-      m_Name: Right Active
-      m_Type: 0
-      m_ExpectedControlType: 
-      m_Id: 003769b1-1120-4dcd-bc0d-9ca90e5001df
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings: []
-      m_Flags: 0
-    m_Reference: {fileID: 0}
-  LeftGrab:
-    m_UseReference: 0
-    m_Action:
-      m_Name: Left Grab
-      m_Type: 0
-      m_ExpectedControlType: 
-      m_Id: f18746c4-203b-43c9-89a8-e91ce0566269
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings: []
-      m_Flags: 0
-    m_Reference: {fileID: 0}
-  RightGrab:
-    m_UseReference: 0
-    m_Action:
-      m_Name: Right Grab
-      m_Type: 0
-      m_ExpectedControlType: 
-      m_Id: 8aa0375c-c98f-477b-92b6-ee446443f429
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings: []
-      m_Flags: 0
-    m_Reference: {fileID: 0}
   ourOutline: {fileID: 1940049148}
   HandTouchColor: {r: 0.3764706, g: 0.79607844, b: 0.08235294, a: 1}
   SlicerTouchColor: {r: 0.79607844, g: 0.082352936, b: 0.15665567, a: 1}
@@ -6489,12 +6752,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &2141559523 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 6760770613911838882, guid: 0aa1c8f8fa0c9134186416cd550a7cec,
-    type: 3}
-  m_PrefabInstance: {fileID: 6760770614175131900}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4118660340606619283
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6636,16 +6893,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Gluetube
       objectReference: {fileID: 0}
-    - target: {fileID: 6760770614018059626, guid: 0aa1c8f8fa0c9134186416cd550a7cec,
-        type: 3}
-      propertyPath: LeftAttachPoint
-      value: 
-      objectReference: {fileID: 2141559523}
-    - target: {fileID: 6760770614018059626, guid: 0aa1c8f8fa0c9134186416cd550a7cec,
-        type: 3}
-      propertyPath: RightAttachPoint
-      value: 
-      objectReference: {fileID: 781142637}
     - target: {fileID: 6760770614018059627, guid: 0aa1c8f8fa0c9134186416cd550a7cec,
         type: 3}
       propertyPath: m_InteractionManager

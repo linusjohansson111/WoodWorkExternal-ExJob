@@ -19,8 +19,6 @@ public class FastenerSpawner : MonoBehaviour
     private float myLidDirection  = -1f;
 
     private bool myLidIsMoving = false;
-    private bool myHandIsTouching = false;
-    private bool myHandIsHolding = false;
 
     private const float OPENED_ANGLE = 100f;
 
@@ -90,11 +88,6 @@ public class FastenerSpawner : MonoBehaviour
             {
                 Instantiate(Fastener, transform.position, Quaternion.identity);
             }
-
-            
-
-            //myHandIsTouching = true;
-            //myHandIsHolding = other.transform.GetComponent<HandObject>().IsGrapping;
         }
     }
 
@@ -106,8 +99,6 @@ public class FastenerSpawner : MonoBehaviour
 
             if(myGrapHand != null)
                myGrapHand = null;
-
-            myHandIsTouching = false;
         }
     }
 

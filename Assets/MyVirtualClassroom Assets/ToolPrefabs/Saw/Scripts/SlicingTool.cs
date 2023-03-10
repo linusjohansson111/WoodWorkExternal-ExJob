@@ -161,7 +161,7 @@ public class SlicingTool : MonoBehaviour
 
         }
 
-        if(other.CompareTag("Hand")/*(other.CompareTag("LeftHandTag") || other.CompareTag("RightHandTag"))*/)
+        if(other.CompareTag("Hand"))
         {
             if(!ourToolIsHolded)
                 DrawOutline(TouchMode.HAND);

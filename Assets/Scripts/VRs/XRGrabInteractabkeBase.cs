@@ -37,7 +37,7 @@ public class XRGrabInteractabkeBase : XRGrabInteractable
 
     protected override void OnSelectEntered(SelectEnterEventArgs args)
     {
-        if (args.interactorObject.transform.CompareTag("Hand") && !ourGrabableObject.IsHolding)
+        if (args.interactorObject.transform.CompareTag("Hand") && !OurObjectIsHolding())
         {
             if (ourGrappingHand == null)
                 ourGrappingHand = args.interactorObject.transform.GetComponent<HandObject>();
@@ -57,7 +57,7 @@ public class XRGrabInteractabkeBase : XRGrabInteractable
 
     protected override void OnSelectExited(SelectExitEventArgs args)
     {
-        if (args.interactorObject.transform.CompareTag("Hand") && ourGrabableObject.IsHolding)
+        if (args.interactorObject.transform.CompareTag("Hand") && OurObjectIsHolding())
         {
             ourIsGrabbed = false;
             ourGrappingHand.IsGrapingObject(IsGrapped);
@@ -77,5 +77,13 @@ public class XRGrabInteractabkeBase : XRGrabInteractable
     public void SetOptionalAttachPoint(Transform anAttachPoint)
     {
         ourOptionalAttachPoint = anAttachPoint;
+    }
+
+    private bool OurObjectIsHolding()
+    {
+        if (ourGrabableObject == null)
+            return false;
+
+        return ourGrabableObject.IsHolding;
     }
 }

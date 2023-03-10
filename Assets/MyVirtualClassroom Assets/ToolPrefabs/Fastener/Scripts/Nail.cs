@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
-public class Nail : GrabableObject, ICFasteners
+public class Nail : GrabbingTool, ICFasteners
 {
     //[SerializeField]
     //private Transform LeftAttach, RightAttach;
@@ -14,16 +14,18 @@ public class Nail : GrabableObject, ICFasteners
 
     public float HalfLenght { get; private set; }
 
-    Transform transform;
-    Rigidbody rigidbody;
+    //Transform transform;
+    //Rigidbody rigidbody;
 
     //Variables
     bool isBeingHeld = false;
-    bool isKinematic = false;
+    //bool isKinematic = false;
     bool isOnWood = false;
     bool isAttached = false;
     Vector3 localScale;
     int nrOfWoodsHammered = 0;
+
+    private bool myIsHitByHammer= false;
 
     private BoxHitSide myLastHitSubstanceFade = BoxHitSide.NONE;
     private Vector3 myHitSubstancePoint;
@@ -39,8 +41,8 @@ public class Nail : GrabableObject, ICFasteners
     {
         base.Start();
 
-        transform = GetComponent<Transform>();
-        rigidbody = GetComponent<Rigidbody>();
+        //transform = GetComponent<Transform>();
+        //rigidbody = GetComponent<Rigidbody>();
         localScale = transform.localScale;
         //Debug.Log(localScale);
 
@@ -70,7 +72,7 @@ public class Nail : GrabableObject, ICFasteners
         Debug.Log("SetIsBeingHeld got " + isHeld);
         if (isBeingHeld == false && isOnWood)
         {
-            rigidbody.isKinematic = true;
+            GetComponent<Rigidbody>().isKinematic = true;
 
             transform.parent = myAttachToGO.transform;
             transform.localScale = localScale;
@@ -81,7 +83,7 @@ public class Nail : GrabableObject, ICFasteners
         }
         else
         {
-            rigidbody.isKinematic = false;
+            GetComponent<Rigidbody>().isKinematic = false;
         }
     }
 
@@ -137,7 +139,7 @@ public class Nail : GrabableObject, ICFasteners
             //GetComponent<XRGrabInteractable>().interactionLayerMask = 0;
         }
 
-        if (other.gameObject.CompareTag("WeightHead") && isOnWood == true)
+        if (other.gameObject.CompareTag("WeightHead") && isOnWood)
         {
             if (transform.parent == null)
             {
@@ -145,6 +147,7 @@ public class Nail : GrabableObject, ICFasteners
                 BoxHitSide hitFace = myLastHitSubstanceFade;
                 myAttachToGO.GetComponent<Substance>().AttachNewNail(this, myHitSubstancePoint);
             }
+
             AddForceToObject(2f);
         }
     }

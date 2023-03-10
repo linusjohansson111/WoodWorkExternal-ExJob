@@ -315,61 +315,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11ab74ba676fa3f4c99c443bc035174a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LeftAttachPoint: {fileID: 4118660340752706493}
-  RightAttachPoint: {fileID: 4118660341966906402}
   HandTouchOutlineColor: {r: 1, g: 1, b: 1, a: 1}
-  LeftActive:
-    m_UseReference: 0
-    m_Action:
-      m_Name: Left Active
-      m_Type: 0
-      m_ExpectedControlType: 
-      m_Id: 78293399-9515-4cec-aaeb-de3f78453c34
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings: []
-      m_Flags: 0
-    m_Reference: {fileID: 0}
-  RightActive:
-    m_UseReference: 0
-    m_Action:
-      m_Name: Right Active
-      m_Type: 0
-      m_ExpectedControlType: 
-      m_Id: 7642b0cb-0519-4e1e-841e-426c9333e3cb
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings: []
-      m_Flags: 0
-    m_Reference: {fileID: 0}
-  LeftGrab:
-    m_UseReference: 0
-    m_Action:
-      m_Name: Left Grab
-      m_Type: 0
-      m_ExpectedControlType: 
-      m_Id: 9a60e377-f1b2-4d1a-94ba-547a2d16a2af
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings: []
-      m_Flags: 0
-    m_Reference: {fileID: 0}
-  RightGrab:
-    m_UseReference: 0
-    m_Action:
-      m_Name: Right Grab
-      m_Type: 0
-      m_ExpectedControlType: 
-      m_Id: 55ad5cb4-28d4-4c22-a11b-448ae5350588
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings: []
-      m_Flags: 0
-    m_Reference: {fileID: 0}
-  ourRB: {fileID: 0}
-  ourBC: {fileID: 0}
-  ourXRGrab: {fileID: 0}
   ourOutline: {fileID: 4118660341140428295}
+  AttachPoint:
+  - {fileID: 4118660340752706493}
+  - {fileID: 4118660341966906402}
   hammerOnWood: {fileID: 0}
 --- !u!1001 &4118660341140428290
 PrefabInstance:

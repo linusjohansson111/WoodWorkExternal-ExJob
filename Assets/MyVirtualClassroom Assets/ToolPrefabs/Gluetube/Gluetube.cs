@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using static Gluetube;
 
-public class Gluetube : GrabableObject
+public class Gluetube : GrabbingTool
 {
     [SerializeField]
     private Transform Muzzle;
@@ -11,9 +11,9 @@ public class Gluetube : GrabableObject
     [SerializeField]
     private GameObject Splatter;
 
-    Transform transform;
-    Rigidbody rigidbody;
-    Vector3 localScale;
+    //Transform transform;
+    //Rigidbody rigidbody;
+    //Vector3 localScale;
 
     public delegate void GluetubeRayHitObject(bool isHitByRay, string hitObjectName);
     public static GluetubeRayHitObject OnGluetubeRayHitObject;
@@ -29,9 +29,9 @@ public class Gluetube : GrabableObject
     {
         base.Start();
 
-        transform = GetComponent<Transform>();
-        rigidbody = GetComponent<Rigidbody>();
-        localScale = transform.localScale;
+        //transform = GetComponent<Transform>();
+        //rigidbody = GetComponent<Rigidbody>();
+        //localScale = transform.localScale;
 
     }
 
@@ -47,11 +47,6 @@ public class Gluetube : GrabableObject
             if (myGlueWasClicked)
                 myGlueWasClicked = ourGrabbingHand.IsActivePressed;//IsActivePressed();
         }
-    }
-
-    protected override void LateUpdate()
-    {
-        //base.LateUpdate();
     }
 
     private void HasRayHitTarget()

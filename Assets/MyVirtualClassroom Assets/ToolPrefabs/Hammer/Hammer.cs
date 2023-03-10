@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Hammer : GrabableObject
+public class Hammer : GrabbingTool
 {
     // by Senpai
     private AudioSource audioSource; //Local audiosource
@@ -23,14 +23,6 @@ public class Hammer : GrabableObject
         base.Start();
         /* Get the audiosource attached to this gameobject */
         audioSource = gameObject.GetComponent<AudioSource>();
-
-        //if (GetComponent<Outline>() != null)
-        //    myOutline = GetComponent<Outline>();
-        //else if (GetComponentInChildren<Outline>() != null)
-        //{
-        //    myOutline = GetComponentInChildren<Outline>();
-        //}
-        //DrawOutline(TouchMode.HAND);
     }
 
     private void OnCollisionEnter(Collision collision)
