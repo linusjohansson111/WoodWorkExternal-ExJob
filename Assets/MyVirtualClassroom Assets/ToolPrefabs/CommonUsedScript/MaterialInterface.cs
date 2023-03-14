@@ -11,7 +11,7 @@ public enum MaterialType
 
 interface MaterialInterface
 {
-    MaterialType ReturnMaterialType();
+    public MaterialType ReturnMaterialType();
 
     public float Width { get; }
 
@@ -19,23 +19,23 @@ interface MaterialInterface
 
     public float Lenght { get; }
 
-    public float HalfWidth { get; }
+    //public float HalfWidth { get; }
 
-    public float HalfHeight { get; }
+    //public float HalfHeight { get; }
 
-    public float HalfLenght { get; }
+    //public float HalfLenght { get; }
 
-    public Vector3 TopPos { get; }
+    //public Vector3 TopPos { get; }
 
-    public Vector3 BottomPos { get; }
+    //public Vector3 BottomPos { get; }
 
-    public Vector3 RightPos { get; }
+    //public Vector3 RightPos { get; }
 
-    public Vector3 LeftPos { get; }
+    //public Vector3 LeftPos { get; }
 
-    public Vector3 FrontPos { get; }
+    //public Vector3 FrontPos { get; }
 
-    public Vector3 BackPos { get; }
+    //public Vector3 BackPos { get; }
 
     public void BeingHitByGluetubeRay(bool isHitByRay, string hitObjectName);
 }

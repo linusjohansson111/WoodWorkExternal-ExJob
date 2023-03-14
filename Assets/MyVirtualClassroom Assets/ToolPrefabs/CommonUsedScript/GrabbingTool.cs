@@ -38,7 +38,7 @@ public class GrabbingTool : GrabableObject
             //    ourXRGrab.SetOptionalAttachPoint(RightAttachPoint);
             UseTheGivenAttachTransform(AttachPoint[(int)hand]);
 
-            DrawOutline(1);
+            DrawOutline(TouchTag.HAND);
         }
         base.OnTriggerEnter(other);
     }

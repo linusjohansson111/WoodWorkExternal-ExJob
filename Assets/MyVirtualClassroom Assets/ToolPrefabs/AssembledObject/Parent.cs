@@ -20,7 +20,7 @@ public class Parent : GrabableObject
     {
         if (other.CompareTag("Hand") && !ourIsHolding)
         {
-            DrawOutline(1);
+            DrawOutline(TouchTag.HAND);
         }
         base.OnTriggerEnter(other);
     }
@@ -29,7 +29,7 @@ public class Parent : GrabableObject
     {
         if (other.CompareTag("Hand") && ourIsHolding)
         {
-            DrawOutline(0);
+            DrawOutline(TouchTag.NONE);
         }
         base.OnTriggerExit(other);
     }

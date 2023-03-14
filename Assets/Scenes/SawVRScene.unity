@@ -1017,6 +1017,7 @@ GameObject:
   - component: {fileID: 303491572}
   - component: {fileID: 303491571}
   - component: {fileID: 303491570}
+  - component: {fileID: 303491580}
   m_Layer: 0
   m_Name: WoodPieceLong 1
   m_TagString: Sliceable
@@ -1080,7 +1081,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cf8cdaf6f4cf6945bbab7a9770cf4d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HandTouchOutlineColor: {r: 0.3764706, g: 0.79607844, b: 0.08235294, a: 1}
+  TouchOutlineColor:
+  - {r: 0.3764706, g: 0.79607844, b: 0.08235294, a: 1}
+  - {r: 0.79607844, g: 0.08235294, b: 0.15686275, a: 1}
+  - {r: 1, g: 0, b: 1, a: 1}
+  - {r: 1, g: 0.43137255, b: 0, a: 1}
+  - {r: 0, g: 0.5294118, b: 0.32941177, a: 1}
+  OutlineTouchTags: 0000000003000000010000000200000004000000
   ourOutline: {fileID: 303491570}
   HandTouchColor: {r: 0.3764706, g: 0.79607844, b: 0.08235294, a: 1}
   SlicerTouchColor: {r: 0.79607844, g: 0.082352936, b: 0.15665567, a: 1}
@@ -1332,6 +1339,38 @@ MonoBehaviour:
   m_AddDefaultGrabTransformers: 1
   LeftAttachTransform: {fileID: 0}
   RightAttachTransform: {fileID: 0}
+--- !u!114 &303491580
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 303491569}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4cf8cdaf6f4cf6945bbab7a9770cf4d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TouchOutlineColor:
+  - {r: 0.3764706, g: 0.79607844, b: 0.08235294, a: 1}
+  - {r: 0.79607844, g: 0.08235294, b: 0.15686275, a: 1}
+  - {r: 1, g: 0, b: 1, a: 1}
+  - {r: 1, g: 0.43137255, b: 0, a: 1}
+  - {r: 0, g: 0.5294118, b: 0.32941177, a: 1}
+  OutlineTouchTags: 00000000
+  ourOutline: {fileID: 899206471}
+  HandTouchColor: {r: 0.3764706, g: 0.79607844, b: 0.08235294, a: 1}
+  SlicerTouchColor: {r: 0.79607844, g: 0.082352936, b: 0.15665567, a: 1}
+  FastenerTouchColor: {r: 1, g: 0, b: 1, a: 1}
+  SubstanceTouchColor: {r: 1, g: 0.43214116, b: 0, a: 1}
+  RightAngleTouchColor: {r: 0, g: 0.5283019, b: 0.33109054, a: 1}
+  MaterialType: 0
+  AssemblyParentPrefab: {fileID: 158955700200437547, guid: f309d1a5416cd274abc9a8444a3c7be1,
+    type: 3}
+  Sliceable: {fileID: 0}
+  JumpDir: 0
+  myOutline: {fileID: 0}
+  GlueHitSide: 0
 --- !u!1 &344062292
 GameObject:
   m_ObjectHideFlags: 0
@@ -2331,7 +2370,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cf8cdaf6f4cf6945bbab7a9770cf4d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HandTouchOutlineColor: {r: 0.3764706, g: 0.79607844, b: 0.08235294, a: 1}
+  TouchOutlineColor:
+  - {r: 0.3764706, g: 0.79607844, b: 0.08235294, a: 1}
+  - {r: 0.79607844, g: 0.08235294, b: 0.15686275, a: 1}
+  - {r: 1, g: 0, b: 1, a: 1}
+  - {r: 1, g: 0.43137255, b: 0, a: 1}
+  - {r: 0, g: 0.5294118, b: 0.32941177, a: 1}
+  OutlineTouchTags: 0000000003000000010000000200000004000000
   ourOutline: {fileID: 572549288}
   HandTouchColor: {r: 0.3764706, g: 0.79607844, b: 0.08235294, a: 1}
   SlicerTouchColor: {r: 0.79607844, g: 0.082352936, b: 0.15665567, a: 1}
@@ -2721,10 +2766,11 @@ GameObject:
   - component: {fileID: 843030281}
   - component: {fileID: 843030286}
   - component: {fileID: 843030285}
+  - component: {fileID: 843030287}
   - component: {fileID: 843030284}
-  - component: {fileID: 843030283}
+  - component: {fileID: 843030288}
   - component: {fileID: 843030282}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2765,21 +2811,6 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
---- !u!114 &843030283
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 843030280}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 11f516cb07d014f45a9d7035754e0036, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  HandTouchOutlineColor: {r: 1, g: 1, b: 1, a: 1}
-  ourOutline: {fileID: 843030282}
-  AttachPoint: {fileID: 1415090136}
 --- !u!65 &843030284
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2843,6 +2874,33 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 843030280}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!65 &843030287
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 843030280}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.0000002, y: 1.0000004, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &843030288
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 843030280}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62443760a009afb4eb5d76f1374fa24b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaterialType: 0
+  AttachPoint: {fileID: 1415090136}
 --- !u!1 &866381022
 GameObject:
   m_ObjectHideFlags: 0
@@ -2854,28 +2912,14 @@ GameObject:
   - component: {fileID: 866381026}
   - component: {fileID: 866381025}
   - component: {fileID: 866381024}
-  - component: {fileID: 866381023}
-  m_Layer: 0
+  - component: {fileID: 866381027}
+  m_Layer: 12
   m_Name: TestGrapParentChildObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &866381023
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 866381022}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a3b2d8101aa81bd418899e81c73d8d80, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  HandTouchOutlineColor: {r: 1, g: 1, b: 1, a: 1}
-  ourOutline: {fileID: 0}
 --- !u!114 &866381024
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3034,6 +3078,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 24
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &866381027
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 866381022}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9323f136971d0e9498753126d82e0779, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TouchOutlineColor:
+  - {r: 0.3764706, g: 0.79607844, b: 0.08235294, a: 1}
+  - {r: 1, g: 0.43137255, b: 0, a: 1}
+  - {r: 1, g: 0, b: 1, a: 1}
+  - {r: 1, g: 0.8509494, b: 0, a: 1}
+  OutlineTouchTags: 00000000020000000100000005000000
+  ourOutline: {fileID: 0}
 --- !u!1 &899206470
 GameObject:
   m_ObjectHideFlags: 0
@@ -3114,7 +3177,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cf8cdaf6f4cf6945bbab7a9770cf4d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HandTouchOutlineColor: {r: 0.3764706, g: 0.79607844, b: 0.08235294, a: 1}
+  TouchOutlineColor:
+  - {r: 0.3764706, g: 0.79607844, b: 0.08235294, a: 1}
+  - {r: 0.79607844, g: 0.08235294, b: 0.15686275, a: 1}
+  - {r: 1, g: 0, b: 1, a: 1}
+  - {r: 1, g: 0.43137255, b: 0, a: 1}
+  - {r: 0, g: 0.5294118, b: 0.32941177, a: 1}
+  OutlineTouchTags: 0000000003000000010000000200000004000000
   ourOutline: {fileID: 899206471}
   HandTouchColor: {r: 0.3764706, g: 0.79607844, b: 0.08235294, a: 1}
   SlicerTouchColor: {r: 0.79607844, g: 0.082352936, b: 0.15665567, a: 1}
@@ -4460,7 +4529,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cf8cdaf6f4cf6945bbab7a9770cf4d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HandTouchOutlineColor: {r: 0.3764706, g: 0.79607844, b: 0.08235294, a: 1}
+  TouchOutlineColor:
+  - {r: 0.3764706, g: 0.79607844, b: 0.08235294, a: 1}
+  - {r: 0.79607844, g: 0.08235294, b: 0.15686275, a: 1}
+  - {r: 1, g: 0, b: 1, a: 1}
+  - {r: 1, g: 0.43137255, b: 0, a: 1}
+  - {r: 0, g: 0.5294118, b: 0.32941177, a: 1}
+  OutlineTouchTags: 0000000003000000010000000200000004000000
   ourOutline: {fileID: 1347331908}
   HandTouchColor: {r: 0.3764706, g: 0.79607844, b: 0.08235294, a: 1}
   SlicerTouchColor: {r: 0.79607844, g: 0.082352936, b: 0.15665567, a: 1}
@@ -5209,10 +5284,11 @@ GameObject:
   - component: {fileID: 1649813915}
   - component: {fileID: 1649813920}
   - component: {fileID: 1649813919}
+  - component: {fileID: 1649813921}
   - component: {fileID: 1649813918}
-  - component: {fileID: 1649813917}
+  - component: {fileID: 1649813922}
   - component: {fileID: 1649813916}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5253,21 +5329,6 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
---- !u!114 &1649813917
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1649813914}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 11f516cb07d014f45a9d7035754e0036, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  HandTouchOutlineColor: {r: 1, g: 1, b: 1, a: 1}
-  ourOutline: {fileID: 1649813916}
-  AttachPoint: {fileID: 973850439}
 --- !u!65 &1649813918
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5331,6 +5392,33 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1649813914}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!65 &1649813921
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1649813914}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1.0000001, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1649813922
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1649813914}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62443760a009afb4eb5d76f1374fa24b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaterialType: 0
+  AttachPoint: {fileID: 973850439}
 --- !u!4 &1679629771 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 1effc9b3b37a95c459f11cfe90010af6,
@@ -6339,7 +6427,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cf8cdaf6f4cf6945bbab7a9770cf4d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HandTouchOutlineColor: {r: 1, g: 1, b: 1, a: 1}
+  TouchOutlineColor:
+  - {r: 1, g: 1, b: 1, a: 1}
+  OutlineTouchTags: 00000000
   ourOutline: {fileID: 1940049148}
   HandTouchColor: {r: 0.3764706, g: 0.79607844, b: 0.08235294, a: 1}
   SlicerTouchColor: {r: 0.79607844, g: 0.082352936, b: 0.15665567, a: 1}
@@ -6892,6 +6982,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Gluetube
+      objectReference: {fileID: 0}
+    - target: {fileID: 6760770614018059626, guid: 0aa1c8f8fa0c9134186416cd550a7cec,
+        type: 3}
+      propertyPath: mySphereCastRadius
+      value: 0.005
+      objectReference: {fileID: 0}
+    - target: {fileID: 6760770614018059626, guid: 0aa1c8f8fa0c9134186416cd550a7cec,
+        type: 3}
+      propertyPath: mySphereCastMaxDist
+      value: -0.005
       objectReference: {fileID: 0}
     - target: {fileID: 6760770614018059627, guid: 0aa1c8f8fa0c9134186416cd550a7cec,
         type: 3}

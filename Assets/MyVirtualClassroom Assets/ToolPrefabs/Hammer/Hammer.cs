@@ -60,8 +60,8 @@ public class Hammer : GrabbingTool
         base.OnTriggerExit(other);
     }
 
-    protected override void DrawOutline(int aModeIndex)
+    protected override void DrawOutline(TouchTag aTag)
     {
-        base.DrawOutline(aModeIndex);
+        base.DrawOutline(aTag);
     }
 }

@@ -100,7 +100,7 @@ public class Substance : GrabableObject, MaterialInterface
     private Vector3 myVerticalDirectionToGlueHitPoint = Vector3.zero;
 
 
-    private enum TouchMode { HAND = 0, SLICER = 2, SUBSTANCE = 3, RIGHTANGLED = 5, RAY = 4, FASTENER = 6, NONE = 0 }
+    private enum TouchMode { NONE = -1, HAND = 0, SLICER = 1, FASTENER = 2, SUBSTANCE = 3, RIGHTANGLED = 4, RAY = 5 }
 
     protected override void Awake()
     {
@@ -138,7 +138,7 @@ public class Substance : GrabableObject, MaterialInterface
 
         WhenSliced();
 
-        DrawOutline((int)TouchMode.NONE);
+        DrawOutline(TouchTag.NONE);
 
         mySubstanceInfo = new SubstanceInfo(
             GetComponent<BoxCollider>().bounds.max,
@@ -250,9 +250,9 @@ public class Substance : GrabableObject, MaterialInterface
             return;
 
         if(isHitByRay)
-            DrawOutline((int)TouchMode.RAY);
+            DrawOutline(TouchTag.OTHER);
         else
-            DrawOutline((int)TouchMode.NONE);
+            DrawOutline(TouchTag.NONE);
     }
 
     /// <summary>
@@ -389,34 +389,34 @@ public class Substance : GrabableObject, MaterialInterface
         }
 
         if(other.CompareTag("Sliceable"))
-            DrawOutline((int)TouchMode.SUBSTANCE);
+            DrawOutline(TouchTag.SUBSTANCE);
 
         if(other.CompareTag("Slicer"))
-            DrawOutline((int)TouchMode.SLICER);
+            DrawOutline(TouchTag.SLICER);
 
         if (other.CompareTag("Fastener"))
-            DrawOutline((int)TouchMode.FASTENER);
+            DrawOutline(TouchTag.FASTERNER);
     }
 
     protected override void OnTriggerExit(Collider other)
     {
         base.OnTriggerExit(other);
 
-        DrawOutline((int)TouchMode.NONE);
+        DrawOutline(TouchTag.NONE);
     }
 
-    protected override void DrawOutline(int aModeIndex)
+    protected override void DrawOutline(TouchTag aTag)
     {
-        base.DrawOutline(aModeIndex);
+        base.DrawOutline(aTag);
 
-        if (aModeIndex == (int)TouchMode.SLICER)
-            SetOutlineAppearence(Outline.Mode.OutlineVisible, SlicerTouchColor);
-        if (aModeIndex == (int)TouchMode.SUBSTANCE)
-            SetOutlineAppearence(Outline.Mode.OutlineAndSilhouette, SubstanceTouchColor);
-        if (aModeIndex == (int)TouchMode.RAY)
+        if (aTag == TouchTag.SLICER)
+            SetOutlineAppearence(Outline.Mode.OutlineVisible, GetColorFor(TouchTag.SLICER)/*SlicerTouchColor*/);
+        if (aTag == TouchTag.SUBSTANCE)
+            SetOutlineAppearence(Outline.Mode.OutlineAndSilhouette, GetColorFor(TouchTag.SUBSTANCE)/*SubstanceTouchColor*/);
+        if (aTag == TouchTag.OTHER)
             SetOutlineAppearence(Outline.Mode.OutlineVisible, Color.grey);
-        if(aModeIndex == (int)TouchMode.FASTENER)
-            SetOutlineAppearence(Outline.Mode.OutlineVisible, FastenerTouchColor);
+        if(aTag == TouchTag.FASTERNER)
+            SetOutlineAppearence(Outline.Mode.OutlineVisible, GetColorFor(TouchTag.FASTERNER)/*FastenerTouchColor*/);
 
 
         //        case TouchMode.RIGHTANGLED:
@@ -439,7 +439,7 @@ public class Substance : GrabableObject, MaterialInterface
 
     public void HitByGlueRay()
     {
-        DrawOutline((int)TouchMode.RAY);
+        DrawOutline(TouchTag.OTHER);
     }
 
     private Vector3 GetTouchMinMaxPosition(BoxHitSide aTouchSide)
@@ -481,7 +481,7 @@ public class Substance : GrabableObject, MaterialInterface
         if(aTouchedSubstanceName != transform.name)
             return;
         ourXRGrab.enabled = false;
-        DrawOutline((int)TouchMode.SLICER);
+        DrawOutline(TouchTag.SLICER);
         mySlicerOnTouch = true;
     }
 
@@ -550,21 +550,21 @@ public class Substance : GrabableObject, MaterialInterface
         return new Vector3(Mathf.Abs(hitSideCenterPoint.x - aGluePoint.x), Mathf.Abs(hitSideCenterPoint.y - aGluePoint.y), Mathf.Abs(hitSideCenterPoint.z - aGluePoint.z));
     }
 
-    private Vector3 GetCenterPointOnSide(BoxHitSide aHitSide)
-    {
-        if (aHitSide == BoxHitSide.LEFT)
-            return LeftPos;
-        else if (aHitSide == BoxHitSide.RIGHT)
-            return RightPos;
-        else if (aHitSide == BoxHitSide.TOP)
-            return TopPos;
-        else if (aHitSide == BoxHitSide.BOTTOM)
-            return BottomPos;
-        else if (aHitSide == BoxHitSide.FRONT)
-            return FrontPos;
-        else if(aHitSide == BoxHitSide.BACK)
-            return BackPos;
+    //private Vector3 GetCenterPointOnSide(BoxHitSide aHitSide)
+    //{
+    //    if (aHitSide == BoxHitSide.LEFT)
+    //        return LeftPos;
+    //    else if (aHitSide == BoxHitSide.RIGHT)
+    //        return RightPos;
+    //    else if (aHitSide == BoxHitSide.TOP)
+    //        return TopPos;
+    //    else if (aHitSide == BoxHitSide.BOTTOM)
+    //        return BottomPos;
+    //    else if (aHitSide == BoxHitSide.FRONT)
+    //        return FrontPos;
+    //    else if(aHitSide == BoxHitSide.BACK)
+    //        return BackPos;
 
-        return transform.position;
-    }
+    //    return transform.position;
+    //}
 }

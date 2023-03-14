@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -5,12 +6,17 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.XR.Interaction.Toolkit;
 
+public enum TouchTag { HAND, FASTERNER, SUBSTANCE, SLICER, MEASUREMENT, OTHER, NONE = -1 }
 public class GrabableObject : MonoBehaviour
 {
     //[SerializeField]
     //protected Transform LeftAttachPoint, RightAttachPoint;
+    //[SerializeField]
+    //protected Color HandTouchOutlineColor = Color.white;
     [SerializeField]
-    protected Color HandTouchOutlineColor = Color.white;
+    protected Color[] TouchOutlineColor = new Color[1] { Color.white };
+    [SerializeField]
+    protected TouchTag[] OutlineTouchTags = new TouchTag[1] { TouchTag.HAND };
 
     protected Rigidbody ourRB;
     protected BoxCollider ourBC;
@@ -49,7 +55,7 @@ public class GrabableObject : MonoBehaviour
     // Start is called before the first frame update
     protected virtual void Start()
     {
-        DrawOutline(0);
+        DrawOutline(TouchTag.NONE);
     }
 
     // Update is called once per frame
@@ -85,7 +91,7 @@ public class GrabableObject : MonoBehaviour
         //{
         //    ourXRGrab.SetOptionalAttachPoint(null);
         //}
-        DrawOutline(0);
+        DrawOutline(TouchTag.NONE);
     }
 
     protected virtual void GrabingOject(HandObject aGrabbingHandObject, string aGrabbedObjectName)
@@ -107,20 +113,20 @@ public class GrabableObject : MonoBehaviour
         }
     }
 
-    protected virtual void DrawOutline(int aModeIndex)
+    protected virtual void DrawOutline(TouchTag aTag)
     {
         if (ourOutline != null)
             ourHasOutline = true;
         else
             return;
 
-        if (aModeIndex == 0)
+        if (aTag == TouchTag.NONE)
             ourOutline.enabled = false;
         else
         {
             ourOutline.enabled = true;
-            if (aModeIndex == 1)
-                SetOutlineAppearence(Outline.Mode.OutlineVisible, HandTouchOutlineColor);
+            if (aTag == TouchTag.HAND)
+                SetOutlineAppearence(Outline.Mode.OutlineVisible, GetColorFor(TouchTag.HAND));
         }
     }
 
@@ -132,6 +138,17 @@ public class GrabableObject : MonoBehaviour
     protected void NullifyGivenAttachPoint()
     {
         ourXRGrab.SetGrabbingObject(null);
+    }
+
+    protected Color GetColorFor(int anIndex)
+    {
+        return TouchOutlineColor[anIndex];
+    }
+
+    protected Color GetColorFor(TouchTag anIndexTag)
+    {
+        int index = Array.FindIndex(OutlineTouchTags, tags => tags == anIndexTag);
+        return TouchOutlineColor[index];
     }
 
     public void GrabbObject(HandObject aGrabbingHand)

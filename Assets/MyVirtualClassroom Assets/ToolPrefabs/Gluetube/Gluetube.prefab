@@ -75,7 +75,7 @@ GameObject:
   - component: {fileID: 6760770614018059620}
   - component: {fileID: 6760770614018059627}
   - component: {fileID: 6760770614018059626}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Gluetube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -269,7 +269,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5453a7c7e06b75e409ec18bf0825040e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HandTouchOutlineColor: {r: 1, g: 1, b: 1, a: 1}
+  TouchOutlineColor:
+  - {r: 1, g: 1, b: 1, a: 1}
+  OutlineTouchTags: 00000000
   ourOutline: {fileID: 750685124}
   AttachPoint:
   - {fileID: 6760770613911838882}

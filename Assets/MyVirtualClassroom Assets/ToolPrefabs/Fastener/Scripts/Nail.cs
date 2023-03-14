@@ -25,8 +25,6 @@ public class Nail : GrabbingTool, ICFasteners
     Vector3 localScale;
     int nrOfWoodsHammered = 0;
 
-    private bool myIsHitByHammer= false;
-
     private BoxHitSide myLastHitSubstanceFade = BoxHitSide.NONE;
     private Vector3 myHitSubstancePoint;
 

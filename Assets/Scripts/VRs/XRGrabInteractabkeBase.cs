@@ -13,6 +13,8 @@ public class XRGrabInteractabkeBase : XRGrabInteractable
     protected GrabableObject ourGrabableObject;
 
     protected bool ourIsGrabbed = false;
+    protected bool ourHasAttachPoint = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -76,7 +78,15 @@ public class XRGrabInteractabkeBase : XRGrabInteractable
 
     public void SetOptionalAttachPoint(Transform anAttachPoint)
     {
+        if (ourOptionalAttachPoint != null)
+            return;
+
         ourOptionalAttachPoint = anAttachPoint;
+    }
+
+    public void ResetOptionalAttachPoint()
+    {
+        ourOptionalAttachPoint = null;
     }
 
     private bool OurObjectIsHolding()

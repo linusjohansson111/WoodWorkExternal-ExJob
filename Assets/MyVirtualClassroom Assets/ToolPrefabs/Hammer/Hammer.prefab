@@ -120,7 +120,7 @@ GameObject:
   - component: {fileID: 4118660342159288689}
   - component: {fileID: 4118660342159288690}
   - component: {fileID: 4118660342159288691}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Hammer
   m_TagString: WeightHead
   m_Icon: {fileID: 0}
@@ -315,7 +315,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11ab74ba676fa3f4c99c443bc035174a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HandTouchOutlineColor: {r: 1, g: 1, b: 1, a: 1}
+  TouchOutlineColor:
+  - {r: 1, g: 1, b: 1, a: 1}
+  OutlineTouchTags: 00000000
   ourOutline: {fileID: 4118660341140428295}
   AttachPoint:
   - {fileID: 4118660340752706493}

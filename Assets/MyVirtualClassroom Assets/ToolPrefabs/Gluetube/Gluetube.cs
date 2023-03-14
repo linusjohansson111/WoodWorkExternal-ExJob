@@ -24,6 +24,11 @@ public class Gluetube : GrabbingTool
 
     private bool myGlueWasClicked = false;
 
+    private int myLayerMask = 0;
+
+    private bool myIsHitMaterialPart = false;
+    private MaterialPart myHitMaterial;
+
     // Start is called before the first frame update
     protected override void Start()
     {
@@ -32,7 +37,7 @@ public class Gluetube : GrabbingTool
         //transform = GetComponent<Transform>();
         //rigidbody = GetComponent<Rigidbody>();
         //localScale = transform.localScale;
-
+        myLayerMask = 8;//LayerMask.GetMask("Substance");
     }
 
     // Update is called once per frame
@@ -42,10 +47,11 @@ public class Gluetube : GrabbingTool
 
         if (ourIsHolding)
         {
-            HasRayHitTarget();
+            //HasRayHitTarget();
+            HasSphereCastHitTarget();
 
             if (myGlueWasClicked)
-                myGlueWasClicked = ourGrabbingHand.IsActivePressed;//IsActivePressed();
+                myGlueWasClicked = ourGrabbingHand.IsActivePressed;
         }
     }
 
@@ -66,6 +72,31 @@ public class Gluetube : GrabbingTool
         else
         {
             DrawRaycastingObjectOutline(false, myRayHitObjectName);
+        }
+    }
+
+    private void HasSphereCastHitTarget()
+    {
+        if(Physics.SphereCast(Muzzle.position, .005f, Muzzle.up, out RaycastHit hit, .005f))
+        {
+            if(hit.collider.gameObject.layer == 8)
+            { 
+                myHitMaterial = hit.collider.transform.GetComponent<MaterialPart>();
+                myIsHitMaterialPart = true; 
+
+                if(ClickOutGlue())
+                    CreateGlueDot(hit.point, hit.collider.transform);
+            }
+        }
+        else
+            myIsHitMaterialPart = false;
+
+        if(myIsHitMaterialPart)
+            myHitMaterial.DrawGlueTupeOutline(true);
+        else if(!myIsHitMaterialPart && myHitMaterial != null)
+        {
+            myHitMaterial.DrawGlueTupeOutline(false);
+            myHitMaterial = null;
         }
     }
 
@@ -110,21 +141,6 @@ public class Gluetube : GrabbingTool
     {
         Instantiate(Splatter, aSurfacePoint, aParentTransform.rotation, aParentTransform).GetComponent<GlueSplattQuad>().SetSnapPosition(aSurfacePoint);
         
-    }
-
-    protected override void DrawOutline(int aModeIndex)
-    {
-        base.DrawOutline(aModeIndex);
-
-        if(aModeIndex == 2)
-        {
-            SetOutlineAppearence(Outline.Mode.OutlineAll, Color.yellow);
-        }
-
-        if(aModeIndex == 3)
-            SetOutlineAppearence(Outline.Mode.OutlineAll, Color.red);
-        if (aModeIndex == 4)
-            SetOutlineAppearence(Outline.Mode.OutlineAll, Color.green);
     }
 
     private bool ClickOutGlue()
