@@ -25,6 +25,8 @@ public class BuildUpBlock : GrabableObject
 
     public void AddPart(MaterialPart aNewPart)
     {
+        //aNewPart.transform.parent = transform;
+        aNewPart.SetParent(this);
         myParts.Add(aNewPart);
     }
 

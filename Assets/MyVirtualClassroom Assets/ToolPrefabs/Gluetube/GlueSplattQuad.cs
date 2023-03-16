@@ -20,6 +20,9 @@ public class GlueSplattQuad : MonoBehaviour
 
     private Substance myParentSubstance;
     private Transform myParentTransform;
+    private BuildUpBlock myParentPart;
+
+    private int myReactingCastLayerMask = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -28,15 +31,19 @@ public class GlueSplattQuad : MonoBehaviour
         if(transform.parent != null)
         {
             myParentTransform = transform.parent.transform;
-            myParentSubstance = GetComponentInParent<Substance>();
+            //myParentSubstance = GetComponentInParent<Substance>();
+            myParentPart = GetComponentInParent<BuildUpBlock>();
             SetSnapTransformOn(AtParentSide);
         }
+
+        myReactingCastLayerMask = LayerMask.GetMask("Substance");
     }
 
     // Update is called once per frame
     void Update()
     {
-        RayHitSubstance();
+        //RayHitSubstance();
+        SphereCastHitMaterialBlock();
     }
 
     public void SetSnapPosition(Vector3 aTubeMuzzlePos)
@@ -112,6 +119,21 @@ public class GlueSplattQuad : MonoBehaviour
                     Destroy(this.gameObject);
                 }
             }
+        }
+    }
+
+    private void SphereCastHitMaterialBlock()
+    {
+        if(Physics.SphereCast(transform.position, .005f, transform.up, out RaycastHit hit, .005f, myReactingCastLayerMask))
+        {
+            // place and rotate the build up block
+            Transform trans = hit.collider.transform.parent;
+            hit.collider.transform.GetComponent<MaterialPart>().AttachToGlue(this, hit.point);
+            // add the child parts inside the build up block into the parent the glue was attached to
+            myParentPart.AddPart(hit.collider.transform.GetComponent<MaterialPart>());
+
+            Destroy(trans.gameObject);
+            Destroy(gameObject);
         }
     }
 

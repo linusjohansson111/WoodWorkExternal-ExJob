@@ -17,6 +17,7 @@ public class MaterialPart : MonoBehaviour, MaterialInterface
 
     public Vector3 HalfSize { get => mySize * .5f; }
 
+    public BuildUpBlock ParentBlock { get { return myParentBlock; } }
     private BuildUpBlock myParentBlock;
 
     private Outline myOutline;
@@ -62,7 +63,60 @@ public class MaterialPart : MonoBehaviour, MaterialInterface
     {
         DrawOutline((tubeMuzzleInRange ? TouchMode.GLUE : TouchMode.NONE));
     }
+
+    public void SetParent(BuildUpBlock aParentBlock)
+    {
+        myParentBlock = aParentBlock;
+        transform.parent = myParentBlock.transform;
+    }
     
+    public void AttachToGlue(GlueSplattQuad aSplatt, Vector3 hitPoint)
+    {
+        BoxHitSide side = ColliderTools.GetHitSide(transform, hitPoint);
+        
+
+        float upPos = 0;
+        Vector3 newRotation = Vector3.zero;
+        bool isVertical = false;
+        float yRot = 0;
+        if (side == BoxHitSide.FRONT || side == BoxHitSide.BACK)
+        {
+            isVertical = IsVerticalSnap(aSplatt.transform.forward, transform.up);
+            yRot = (isVertical ? 90f : 0f);
+
+            upPos = HalfSize.z;
+            newRotation = new Vector3((side == BoxHitSide.FRONT ? 90f : -90f), yRot, z: 0f);
+        }
+        else
+        {
+            isVertical = IsVerticalSnap(aSplatt.transform.forward, transform.forward);
+            yRot = (isVertical ? 0f : 90f);
+
+            if (side == BoxHitSide.LEFT || side == BoxHitSide.RIGHT)
+            {
+                upPos = HalfSize.x;
+                newRotation = new Vector3(x: 0f, yRot, (side == BoxHitSide.RIGHT ? -90f : 90f));
+            }
+            else
+            if (side == BoxHitSide.TOP || side == BoxHitSide.BOTTOM)
+            {
+                upPos = HalfSize.y;
+                newRotation = new Vector3(x: 0f, yRot, (side == BoxHitSide.TOP ? 180f : 0f));
+            }
+        }
+
+        transform.rotation = Quaternion.identity;
+        //transform.position = aSplatt.transform.position + (aSplatt.transform.up * upPos);
+        transform.position = (isVertical ? aSplatt.VerticalSnapPoint.position : aSplatt.HorizontalSnapPoint.position) + (aSplatt.transform.up * upPos);
+        transform.Rotate(newRotation);
+    }
+
+    private bool IsVerticalSnap(Vector3 aGlueTransformDir, Vector3 aSubstandeDir)
+    {
+        float angle = Vector3.Angle(aGlueTransformDir, aSubstandeDir);
+
+        return ((angle <= 45 || angle >= 135) ? true : false);
+    }
 
     private void OnTriggerEnter(Collider other)
     {

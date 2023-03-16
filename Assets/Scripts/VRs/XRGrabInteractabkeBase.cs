@@ -21,6 +21,13 @@ public class XRGrabInteractabkeBase : XRGrabInteractable
         
     }
 
+    private void TestChangeLayer()
+    {
+        int layer = interactionLayers.value;
+        this.interactionLayers = InteractionLayerMask.GetMask("DirectInteraction");
+        layer = interactionLayers.value;
+    }
+
     // Update is called once per frame
     void Update()
     {
