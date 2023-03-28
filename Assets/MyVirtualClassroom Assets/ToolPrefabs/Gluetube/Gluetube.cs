@@ -77,7 +77,7 @@ public class Gluetube : GrabbingTool
 
     private void HasSphereCastHitTarget()
     {
-        if(Physics.SphereCast(Muzzle.position, .005f, Muzzle.up, out RaycastHit hit, .005f))
+        if(Physics.Raycast(Muzzle.position/*, .01f*/, Muzzle.up, out RaycastHit hit, .05f))
         {
             if(hit.collider.gameObject.layer == 8)
             { 
@@ -101,6 +101,9 @@ public class Gluetube : GrabbingTool
     }
 
     /// <summary>
+    /// 
+    /// OBS this shall be removed later
+    /// 
     /// Calling the object that had subscribe to the delegate function OnGluetubeRayHitObject
     /// to draw their outline of being hit by the gluetube's ray.
     /// If the subscribe object is hit, it'll send the name of the hitting object
@@ -139,8 +142,15 @@ public class Gluetube : GrabbingTool
     /// <param name="aParentTransform">The object the splatter will be child to</param>
     private void CreateGlueDot(Vector3 aSurfacePoint, Transform aParentTransform)
     {
-        Instantiate(Splatter, aSurfacePoint, aParentTransform.rotation, aParentTransform).GetComponent<GlueSplattQuad>().SetSnapPosition(aSurfacePoint);
-        
+        //Instantiate(Splatter, aSurfacePoint, aParentTransform.rotation, aParentTransform).GetComponent<GlueSplattQuad>().SetSnapPosition(aSurfacePoint);
+        //GameObject newGlue = Instantiate(Splatter, aParentTransform, true);
+        //newGlue.GetComponent<GlueSplattQuad>().SetSnapPosition(aSurfacePoint);
+        //newGlue.transform.position = aSurfacePoint;
+        GameObject newGlue = Instantiate(Splatter, aSurfacePoint, aParentTransform.rotation);
+        BoxHitSide side = ColliderTools.GetHitSide(aParentTransform, aSurfacePoint);
+        newGlue.GetComponent<GlueSplattQuad>().RotateGlueOnParentFace(side);
+        newGlue.transform.parent = aParentTransform;
+
     }
 
     private bool ClickOutGlue()

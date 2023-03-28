@@ -34,6 +34,8 @@ public class Nail : GrabbingTool, ICFasteners
     /// </summary>
     private GameObject myAttachToGO;
 
+    private int myLayerForBluntFace = 0;
+
     // Start is called before the first frame update
     protected override void Start()
     {
@@ -47,6 +49,8 @@ public class Nail : GrabbingTool, ICFasteners
 
         HalfLenght = (transform.position - TipPosition).magnitude;
 
+        myLayerForBluntFace = LayerMask.NameToLayer("BluntToolHead");
+        
     }
 
     protected override void Update()
@@ -85,7 +89,7 @@ public class Nail : GrabbingTool, ICFasteners
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
+    protected override void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "Sliceable")
         {
@@ -105,9 +109,15 @@ public class Nail : GrabbingTool, ICFasteners
             //Destroy(GetComponent<XRGrabInteractabkeOnTwo>());
             //AddForceToObject(2f);
         }
+        //InfoCanvas.Ins.DisplayAboveObjectInfo(collision.gameObject.name);
+        //if (collision.gameObject.layer == LayerMask.GetMask("Tool"))
+        //{
+        //    nrOfWoodsHammered++;
+        //    InfoCanvas.Ins.DisplayAboveObjectInfo(nrOfWoodsHammered.ToString());
+        //}
     }
 
-    private void OnCollisionExit(Collision collision)
+    protected override void OnCollisionExit(Collision collision)
     {
         if (collision.gameObject.tag == "Sliceable")
         {
@@ -137,16 +147,36 @@ public class Nail : GrabbingTool, ICFasteners
             //GetComponent<XRGrabInteractable>().interactionLayerMask = 0;
         }
 
-        if (other.gameObject.CompareTag("WeightHead") && isOnWood)
+        if(other.gameObject.layer == LayerMask.NameToLayer("Substance"))
         {
-            if (transform.parent == null)
-            {
-                RemoveGrabAndRigidbody();
-                BoxHitSide hitFace = myLastHitSubstanceFade;
-                myAttachToGO.GetComponent<Substance>().AttachNewNail(this, myHitSubstancePoint);
-            }
+            isOnWood = true;
+            myAttachToGO = other.gameObject;
+        }
 
+        //InfoCanvas.Ins.DisplayAboveObjectInfo(other.gameObject.layer.ToString());
+
+        //if (other.gameObject.CompareTag("WeightHead") && isOnWood)
+        //{
+        //    if (transform.parent == null)
+        //    {
+        //        RemoveGrabAndRigidbody();
+        //        BoxHitSide hitFace = myLastHitSubstanceFade;
+        //        myAttachToGO.GetComponent<Substance>().AttachNewNail(this, myHitSubstancePoint);
+        //    }
+
+        //    AddForceToObject(2f);
+        //}
+
+        if(other.gameObject.layer == LayerMask.NameToLayer("BluntToolHead") && isOnWood)
+        {
+            if(transform.parent == null)
+            {
+                ourXRGrab.enabled = false;
+                myAttachToGO.GetComponent<MaterialPart>().AttachNewNail(this, myHitSubstancePoint);
+            }
             AddForceToObject(2f);
+            nrOfWoodsHammered++;
+            
         }
     }
 
@@ -154,13 +184,15 @@ public class Nail : GrabbingTool, ICFasteners
     {
         base.OnTriggerExit(other);
 
-        if (other.gameObject.CompareTag("Sliceable"))
+        if (other.gameObject.layer == LayerMask.NameToLayer("Substance")/*other.gameObject.CompareTag("Sliceable")*/)
         {
             isOnWood = false;
+            myAttachToGO = null;
             //Debug.Log("Left Wood");
             //isAttached = true;
             //GetComponent<XRGrabInteractable>().interactionLayerMask = 0;
         }
+
     }
 
     private void HasRayHitTarget()
@@ -172,5 +204,10 @@ public class Nail : GrabbingTool, ICFasteners
                 myHitSubstancePoint = hit.point;                
             }
         }
+
+        //if (Physics.Raycast(TipPosition, -Tip.up, out RaycastHit hit, .001f, LayerMask.GetMask("Substance")))
+        //{
+        //    myHitSubstancePoint = hit.point;
+        //}
     }
 }

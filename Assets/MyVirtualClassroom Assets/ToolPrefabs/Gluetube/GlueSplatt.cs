@@ -105,7 +105,7 @@ public class GlueSplatt : MonoBehaviour
             myVerticalSnapPosition = new Vector3(transform.position.x, myParentSubstance.GetTheFurthestPositionOn(aParentHitSide).y, transform.parent.transform.position.z);
             myHorizontalSnapPosition = new Vector3(transform.parent.transform.position.x, myParentSubstance.GetTheFurthestPositionOn(aParentHitSide).y, transform.position.z);
         }
-        else if (aParentHitSide == BoxHitSide.FRONT || aParentHitSide == BoxHitSide.BACK)
+        else if (aParentHitSide == BoxHitSide.FRONT || aParentHitSide == BoxHitSide.REAR)
         {
             transform.Rotate(new Vector3((aParentHitSide == BoxHitSide.FRONT ? 90 : -90), 0f, 0f));
             myVerticalSnapPosition = new Vector3(transform.position.x, transform.parent.transform.position.y, myParentSubstance.GetTheFurthestPositionOn(aParentHitSide).z);

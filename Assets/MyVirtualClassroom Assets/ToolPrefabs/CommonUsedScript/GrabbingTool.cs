@@ -1,12 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.XR;
 
 public class GrabbingTool : GrabableObject
 {
     [SerializeField]
     protected Transform[] AttachPoint;
 
+    protected Vector3 ourStartPosition;
+    protected Quaternion ourStartRotation;
 
     protected Vector3 myGrabbingHandLastPosition;
 
@@ -14,6 +17,8 @@ public class GrabbingTool : GrabableObject
     protected override void Start()
     {
         base.Start();
+        ourStartPosition = transform.position;
+        ourStartRotation = transform.rotation;
     }
 
     // Update is called once per frame
@@ -26,6 +31,13 @@ public class GrabbingTool : GrabableObject
         myGrabbingHandLastPosition = GrabbingHandPosition();
     }
 
+    protected override void OnCollisionEnter(Collision collision)
+    {
+        base.OnCollisionEnter(collision);
+
+            
+    }
+
     protected override void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Hand") && !ourIsHolding)
@@ -36,8 +48,8 @@ public class GrabbingTool : GrabableObject
             //else
             //if (hand == Preposition.RIGHT)
             //    ourXRGrab.SetOptionalAttachPoint(RightAttachPoint);
-            UseTheGivenAttachTransform(AttachPoint[(int)hand]);
 
+            SetToolAttachPoint(AttachPoint[(int)Preposition.LEFT], AttachPoint[(int)Preposition.RIGHT]);
             DrawOutline(TouchTag.HAND);
         }
         base.OnTriggerEnter(other);
@@ -47,11 +59,17 @@ public class GrabbingTool : GrabableObject
     {
         if (other.CompareTag("Hand"))
         {
-            NullifyGivenAttachPoint();
+            NullifyToolAttachPoint();
             
         }
 
         base.OnTriggerExit(other);
+    }
+
+    public override void DroppObject()
+    {
+        base.DroppObject();
+        transform.SetPositionAndRotation(ourStartPosition, ourStartRotation);
     }
 
     protected Vector3 GrabbingHandPosition()

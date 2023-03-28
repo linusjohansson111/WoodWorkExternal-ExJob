@@ -33,19 +33,19 @@ public class FastenerSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(myLidIsMoving)
-        {
-            myLidAngle += myLidDirection * LidOpenSpeed * Time.deltaTime;
-            if (myLidAngle > OPENED_ANGLE || myLidAngle < 0f)
-            {
-                myLidIsMoving = false;
-                if(myLidDirection == 1f)
-                    myLidAngle = OPENED_ANGLE;
-                else
-                    myLidAngle = 0f;
-            }
-            Lid.eulerAngles = new Vector3(myLidAngle, 0, 0);
-        }
+        //if(myLidIsMoving)
+        //{
+        //    myLidAngle += myLidDirection * LidOpenSpeed * Time.deltaTime;
+        //    if (myLidAngle > OPENED_ANGLE || myLidAngle < 0f)
+        //    {
+        //        myLidIsMoving = false;
+        //        if(myLidDirection == 1f)
+        //            myLidAngle = OPENED_ANGLE;
+        //        else
+        //            myLidAngle = 0f;
+        //    }
+        //    Lid.eulerAngles = new Vector3(myLidAngle, 0, 0);
+        //}
 
         //if(myHandIsTouching && !myHandIsHolding)
         //{
@@ -105,14 +105,16 @@ public class FastenerSpawner : MonoBehaviour
 
     private void OpenLid()
     {
-        myLidIsMoving = true;
-        myLidDirection = 1f;
+        Lid.eulerAngles = new Vector3(OPENED_ANGLE, 0, 0);
+        //myLidIsMoving = true;
+        //myLidDirection = 1f;
     }
 
     private void CloseLid()
     {
-        myLidIsMoving = true;
-        myLidDirection = -1f;
+        Lid.eulerAngles = new Vector3(0, 0, 0);
+        //myLidIsMoving = true;
+        //myLidDirection = -1f;
     }
 
     private bool IsHandHoldingFastener()
