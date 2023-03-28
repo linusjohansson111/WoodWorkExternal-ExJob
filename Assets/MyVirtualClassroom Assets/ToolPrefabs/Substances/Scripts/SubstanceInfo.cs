@@ -85,7 +85,7 @@ public class SubstanceInfo
 
         else if (TouchSide == BoxHitSide.FRONT)
             aPosition.z = MaxPos.z;
-        else if (TouchSide == BoxHitSide.BACK)
+        else if (TouchSide == BoxHitSide.REAR)
             aPosition.z = MinPos.z;
         return aPosition;
     }
@@ -106,7 +106,7 @@ public class SubstanceInfo
 
         else if (TouchSide == BoxHitSide.FRONT)
             edgePoint = new Vector3(aPosition.x, aPosition.y, MaxPos.z);
-        else if (TouchSide == BoxHitSide.BACK)
+        else if (TouchSide == BoxHitSide.REAR)
             edgePoint = new Vector3(aPosition.x, aPosition.y, MinPos.z);
 
         return edgePoint;
@@ -126,7 +126,7 @@ public class SubstanceInfo
                 WithinAxisBound(aTouchPoint.z, MaxPos.z, MinPos.z))
                 return true;
         }
-        else if (TouchSide == BoxHitSide.FRONT || TouchSide == BoxHitSide.BACK)
+        else if (TouchSide == BoxHitSide.FRONT || TouchSide == BoxHitSide.REAR)
         {
             if (WithinAxisBound(aTouchPoint.x, MaxPos.x, MinPos.x) &&
                 WithinAxisBound(aTouchPoint.y, MaxPos.y, MinPos.y))
@@ -159,7 +159,7 @@ public class SubstanceInfo
             if (TouchSide == BoxHitSide.FRONT)
             return Vector3.forward;
         else
-            if (TouchSide == BoxHitSide.BACK)
+            if (TouchSide == BoxHitSide.REAR)
             return Vector3.back;
         return Vector3.zero;
     }
@@ -178,7 +178,7 @@ public class SubstanceInfo
 
         else if (TouchSide == BoxHitSide.FRONT)
             aTouchPosition.z = MaxPos.z;
-        else if (TouchSide == BoxHitSide.BACK)
+        else if (TouchSide == BoxHitSide.REAR)
             aTouchPosition.z = MinPos.z;
         return aTouchPosition;
     }

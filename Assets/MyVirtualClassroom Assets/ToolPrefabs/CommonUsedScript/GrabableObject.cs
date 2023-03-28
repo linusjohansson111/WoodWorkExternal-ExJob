@@ -1,10 +1,5 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.InputSystem;
-using UnityEngine.XR.Interaction.Toolkit;
 
 public enum TouchTag { HAND, FASTERNER, SUBSTANCE, SLICER, MEASUREMENT, OTHER, NONE = -1 }
 public class GrabableObject : MonoBehaviour
@@ -70,6 +65,16 @@ public class GrabableObject : MonoBehaviour
         ourOutline.OutlineColor = aColor;
     }
 
+    protected virtual void OnCollisionEnter(Collision collision)
+    {
+        
+    }
+
+    protected virtual void OnCollisionExit(Collision collision)
+    {
+        
+    }
+
     protected virtual void OnTriggerEnter(Collider other)
     {
         //if (other.CompareTag("Hand") && !ourIsHolding)
@@ -130,14 +135,16 @@ public class GrabableObject : MonoBehaviour
         }
     }
 
-    protected void UseTheGivenAttachTransform(Transform anAttachTransform)
+    protected void SetToolAttachPoint(Transform aLeftAttach, Transform aRightAttach)
     {
-        ourXRGrab.SetOptionalAttachPoint(anAttachTransform);
+        ourXRGrab.SetLeftAttachPoint(aLeftAttach);
+        ourXRGrab.SetRightAttachPoint(aRightAttach);
     }
 
-    protected void NullifyGivenAttachPoint()
+    protected void NullifyToolAttachPoint()
     {
-        ourXRGrab.SetGrabbingObject(null);
+        ourXRGrab.SetLeftAttachPoint(null);
+        ourXRGrab.SetRightAttachPoint(null);
     }
 
     protected Color GetColorFor(int anIndex)
@@ -151,7 +158,7 @@ public class GrabableObject : MonoBehaviour
         return TouchOutlineColor[index];
     }
 
-    public void GrabbObject(HandObject aGrabbingHand)
+    public virtual void GrabbObject(HandObject aGrabbingHand)
     {
         if(ourIsHolding)
             return;
@@ -161,7 +168,7 @@ public class GrabableObject : MonoBehaviour
         DrawOutline(0);
     }
 
-    public void DroppObject()
+    public virtual void DroppObject()
     {
         if (!ourIsHolding)
             return;

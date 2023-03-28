@@ -20,6 +20,9 @@ public class GlueSplattQuad : MonoBehaviour
 
     private Substance myParentSubstance;
     private Transform myParentTransform;
+    private BuildUpBlock myParentPart;
+
+    private int myReactingCastLayerMask = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -28,15 +31,20 @@ public class GlueSplattQuad : MonoBehaviour
         if(transform.parent != null)
         {
             myParentTransform = transform.parent.transform;
-            myParentSubstance = GetComponentInParent<Substance>();
-            SetSnapTransformOn(AtParentSide);
+            SetSnapTransform();
+            //myParentSubstance = GetComponentInParent<Substance>();
+            myParentPart = GetComponentInParent<BuildUpBlock>();
+            //SetSnapTransformOn(AtParentSide);
         }
+
+        myReactingCastLayerMask = LayerMask.GetMask("Substance");
     }
 
     // Update is called once per frame
     void Update()
     {
-        RayHitSubstance();
+        //RayHitSubstance();
+        SphereCastHitMaterialBlock();
     }
 
     public void SetSnapPosition(Vector3 aTubeMuzzlePos)
@@ -115,25 +123,70 @@ public class GlueSplattQuad : MonoBehaviour
         }
     }
 
-    private void SetSnapTransformOn(BoxHitSide aParentHitSide)
+    private void SphereCastHitMaterialBlock()
     {
+        if(Physics.SphereCast(transform.position, .005f, transform.up, out RaycastHit hit, .005f, myReactingCastLayerMask))
+        {
+            // place and rotate the build up block
+            BuildUpBlock block = hit.collider.transform.GetComponentInParent<BuildUpBlock>();
+            hit.collider.transform.GetComponent<MaterialPart>().AttachToGlue(this, hit.point);
+            // add the child parts inside the build up block into the parent the glue was attached to
+            //myParentPart.AddPart(hit.collider.transform.GetComponent<MaterialPart>());
+            block.TransferChildrenTo(myParentPart);
+            block.SelfDestroy();
+            Destroy(gameObject);
+        }
+    }
+
+    public void RotateGlueOnParentFace(BoxHitSide aParentHitSide)
+    {
+        AtParentSide = aParentHitSide;
+
         if (aParentHitSide == BoxHitSide.RIGHT || aParentHitSide == BoxHitSide.LEFT)
         {
             transform.Rotate(new Vector3(0f, 0f, (aParentHitSide == BoxHitSide.RIGHT ? -90 : 90)));
             
-            myVerticalSnapPosition = new Vector3(myParentTransform.position.x, transform.position.y, transform.position.z);
-            myHorizontalSnapPosition = new Vector3(transform.position.x, transform.position.y, myParentTransform.position.z);
+            //myVerticalSnapPosition = new Vector3(myParentTransform.position.x, transform.position.y, transform.position.z);
+            //myHorizontalSnapPosition = new Vector3(transform.position.x, transform.position.y, myParentTransform.position.z);
         }
         else if (aParentHitSide == BoxHitSide.TOP || aParentHitSide == BoxHitSide.BOTTOM)
         {
             transform.Rotate(new Vector3((aParentHitSide == BoxHitSide.TOP ? 0 : 180), 0f, 0f));
 
+            //myVerticalSnapPosition = new Vector3(transform.position.x, transform.position.y, myParentTransform.position.z);
+            //myHorizontalSnapPosition = new Vector3(myParentTransform.position.x, transform.position.y, transform.position.z);
+        }
+        else if (aParentHitSide == BoxHitSide.FRONT || aParentHitSide == BoxHitSide.REAR)
+        {
+            transform.Rotate(new Vector3((aParentHitSide == BoxHitSide.FRONT ? 90 : -90), 0f, 0f));
+
+            //myVerticalSnapPosition = new Vector3(transform.position.x, transform.position.y, myParentTransform.position.z);
+            //myHorizontalSnapPosition = new Vector3(myParentTransform.position.x, transform.position.y, transform.position.z);
+        }
+
+        //VerticalSnapPoint.position = myVerticalSnapPosition;
+        //HorizontalSnapPoint.position = myHorizontalSnapPosition;
+    }
+
+    private void SetSnapTransform()
+    {
+        if (AtParentSide == BoxHitSide.RIGHT || AtParentSide == BoxHitSide.LEFT)
+        {
+            //transform.Rotate(new Vector3(0f, 0f, (aParentHitSide == BoxHitSide.RIGHT ? -90 : 90)));
+
+            myVerticalSnapPosition = new Vector3(myParentTransform.position.x, transform.position.y, transform.position.z);
+            myHorizontalSnapPosition = new Vector3(transform.position.x, transform.position.y, myParentTransform.position.z);
+        }
+        else if (AtParentSide == BoxHitSide.TOP || AtParentSide == BoxHitSide.BOTTOM)
+        {
+            //transform.Rotate(new Vector3((aParentHitSide == BoxHitSide.TOP ? 0 : 180), 0f, 0f));
+
             myVerticalSnapPosition = new Vector3(transform.position.x, transform.position.y, myParentTransform.position.z);
             myHorizontalSnapPosition = new Vector3(myParentTransform.position.x, transform.position.y, transform.position.z);
         }
-        else if (aParentHitSide == BoxHitSide.FRONT || aParentHitSide == BoxHitSide.BACK)
+        else if (AtParentSide == BoxHitSide.FRONT || AtParentSide == BoxHitSide.REAR)
         {
-            transform.Rotate(new Vector3((aParentHitSide == BoxHitSide.FRONT ? 90 : -90), 0f, 0f));
+            //transform.Rotate(new Vector3((aParentHitSide == BoxHitSide.FRONT ? 90 : -90), 0f, 0f));
 
             myVerticalSnapPosition = new Vector3(transform.position.x, transform.position.y, myParentTransform.position.z);
             myHorizontalSnapPosition = new Vector3(myParentTransform.position.x, transform.position.y, transform.position.z);

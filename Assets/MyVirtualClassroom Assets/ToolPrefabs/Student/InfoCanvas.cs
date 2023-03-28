@@ -7,42 +7,44 @@ using UnityEngine.UI;
 
 public class InfoCanvas : MonoBehaviour
 {
-    public Transform SubstanceToCheck;
+    public static InfoCanvas Ins 
+    {
+        get { return instance; }
+    }
+    private static InfoCanvas instance;
 
-    private List<TMPro.TextMeshProUGUI> Texts = new List<TMPro.TextMeshProUGUI>();
+    [SerializeField]
+    private TextMeshProUGUI DisplayAboveText;
 
-    TextMeshPro myText;
+    [SerializeField]
+    private TextMeshProUGUI DisplayUnderText;
     // Start is called before the first frame update
 
     private void Awake()
     {
-        //Substance.OnDisplayTransformInfo += DisplayObjectInfo;
-    }
-
-    private void OnDestroy()
-    {
-        //Substance.OnDisplayTransformInfo -= DisplayObjectInfo;
+        instance = this;
     }
 
     void Start()
     {
-
-        TMPro.TextMeshProUGUI[] text = GetComponentsInChildren<TMPro.TextMeshProUGUI>();
-        if (text != null)
-            Texts = text.ToList<TMPro.TextMeshProUGUI>().ToList();
-        return;
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        DisplayObjectInfo();
+        
     }
 
-    private void DisplayObjectInfo()
+    
+
+    public void DisplayAboveObjectInfo(string aTextToDisplay)
     {
-        Texts[0].text = "Pos: " + SubstanceToCheck.position.ToString();
-        Texts[1].text = "Rot: " + SubstanceToCheck.rotation.eulerAngles.ToString();
-        Texts[2].text = "Scl: " + SubstanceToCheck.localScale.ToString();
+        DisplayAboveText.text = aTextToDisplay;
+    }
+
+    public void DisplayUnderObjectInfo(string aTextToDisplay)
+    {
+        DisplayUnderText.text = aTextToDisplay;
     }
 }

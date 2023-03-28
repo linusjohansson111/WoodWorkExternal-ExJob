@@ -1,13 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.XR;
 using UnityEngine.XR.Interaction.Toolkit;
 
 public class XRGrabInteractabkeBase : XRGrabInteractable
 {
     public bool IsGrapped { get { return ourIsGrabbed; } }
 
-    protected Transform ourOptionalAttachPoint;
+    protected Transform ourLeftAttachPoint, ourRightAttachPoint;
 
     protected HandObject ourGrappingHand;
     protected GrabableObject ourGrabableObject;
@@ -19,6 +20,13 @@ public class XRGrabInteractabkeBase : XRGrabInteractable
     void Start()
     {
         
+    }
+
+    private void TestChangeLayer()
+    {
+        int layer = interactionLayers.value;
+        this.interactionLayers = InteractionLayerMask.GetMask("DirectInteraction");
+        layer = interactionLayers.value;
     }
 
     // Update is called once per frame
@@ -39,31 +47,43 @@ public class XRGrabInteractabkeBase : XRGrabInteractable
 
     protected override void OnSelectEntered(SelectEnterEventArgs args)
     {
-        if (args.interactorObject.transform.CompareTag("Hand") && !OurObjectIsHolding())
+        if (args.interactorObject.transform.CompareTag("Hand") && ourGrappingHand == null/*!OurObjectIsHolding()*/)
         {
-            if (ourGrappingHand == null)
-                ourGrappingHand = args.interactorObject.transform.GetComponent<HandObject>();
+            HandObject selectingHand = args.interactorObject.transform.GetComponent<HandObject>();
+
+            if (selectingHand == null || ourGrappingHand != selectingHand)
+                ourGrappingHand = selectingHand;
 
             if (ourGrappingHand != null && !ourGrappingHand.IsGrapping)
             {
-                if (ourOptionalAttachPoint != null)
-                    attachTransform = ourOptionalAttachPoint;
+                //if (ourOptionalAttachPoint != null)
+                //    attachTransform = ourOptionalAttachPoint;
+                if (ourGrappingHand.Side == Preposition.LEFT && ourLeftAttachPoint != null)
+                {
+                    attachTransform = ourLeftAttachPoint;                    
+                }
+                else if (ourGrappingHand.Side == Preposition.RIGHT && ourRightAttachPoint != null)
+                {
+                    attachTransform = ourRightAttachPoint;                    
+                }
 
                 ourIsGrabbed = true;
                 ourGrappingHand.IsGrapingObject(IsGrapped);
                 ourGrabableObject.GrabbObject(ourGrappingHand);
             }
+
         }
         base.OnSelectEntered(args);
     }
 
     protected override void OnSelectExited(SelectExitEventArgs args)
     {
-        if (args.interactorObject.transform.CompareTag("Hand") && OurObjectIsHolding())
+        if (args.interactorObject.transform.CompareTag("Hand") && ourGrappingHand != null/*OurObjectIsHolding()*/)
         {
             ourIsGrabbed = false;
             ourGrappingHand.IsGrapingObject(IsGrapped);
             ourGrabableObject.DroppObject();
+            ourGrappingHand = null;
         }
 
 
@@ -76,17 +96,30 @@ public class XRGrabInteractabkeBase : XRGrabInteractable
         ourGrabableObject = aGrabbingObject;
     }
 
-    public void SetOptionalAttachPoint(Transform anAttachPoint)
+    public void SetLeftAttachPoint(Transform anAttachPoint)
     {
-        if (ourOptionalAttachPoint != null)
+        if (ourLeftAttachPoint != null)
             return;
 
-        ourOptionalAttachPoint = anAttachPoint;
+        ourLeftAttachPoint = anAttachPoint;
     }
 
-    public void ResetOptionalAttachPoint()
+    public void SetRightAttachPoint(Transform anAttachPoint)
     {
-        ourOptionalAttachPoint = null;
+        if (ourRightAttachPoint != null)
+            return;
+
+        ourRightAttachPoint = anAttachPoint;
+    }
+
+    public void ResetLeftAttachPoint()
+    {
+        ourLeftAttachPoint = null;
+    }
+
+    public void ResetRightAttachPoint()
+    {
+        ourRightAttachPoint = null;
     }
 
     private bool OurObjectIsHolding()

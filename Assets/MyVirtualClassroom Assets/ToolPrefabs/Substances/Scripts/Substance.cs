@@ -55,7 +55,7 @@ public class Substance : GrabableObject, MaterialInterface
     public Vector3 FrontPos { get => GetTheFurthestPositionOn(BoxHitSide.FRONT); }
 
     [HideInInspector]
-    public Vector3 BackPos { get => GetTheFurthestPositionOn(BoxHitSide.BACK); }
+    public Vector3 BackPos { get => GetTheFurthestPositionOn(BoxHitSide.REAR); }
 
     [SerializeField, HideInInspector] 
     private Sliceable Sliceable;
@@ -278,7 +278,7 @@ public class Substance : GrabableObject, MaterialInterface
             return transform.position - (transform.right * HalfLenght);
         else if (aHitSide == BoxHitSide.FRONT)
             return transform.position + (transform.forward * HalfWidth);
-        else if (aHitSide == BoxHitSide.BACK)
+        else if (aHitSide == BoxHitSide.REAR)
             return transform.position - (transform.forward * HalfWidth);
 
         return transform.position;
@@ -504,7 +504,7 @@ public class Substance : GrabableObject, MaterialInterface
             SnapPosition(aHitSide, aSplatt, HalfHeight);
             transform.Rotate(new Vector3(0f, (myIsVertical ? 0 : 90), (aHitSide == BoxHitSide.TOP ? 180f : 0f)));
         }
-        else if (aHitSide == BoxHitSide.FRONT || aHitSide == BoxHitSide.BACK)
+        else if (aHitSide == BoxHitSide.FRONT || aHitSide == BoxHitSide.REAR)
         {
             SnapPosition(aHitSide, aSplatt, HalfWidth);
             transform.Rotate(new Vector3((aHitSide == BoxHitSide.FRONT ? 90f : -90f), (myIsVertical ? 90f : 0f), 0f));
@@ -513,7 +513,7 @@ public class Substance : GrabableObject, MaterialInterface
 
     private void SnapPosition(BoxHitSide hitSide, GlueSplattQuad aSplatt, float aMoveUpValue)
     {
-        if(hitSide == BoxHitSide.FRONT || hitSide == BoxHitSide.BACK)
+        if(hitSide == BoxHitSide.FRONT || hitSide == BoxHitSide.REAR)
             myIsVertical = IsVerticalSnap(aSplatt.transform.forward, transform.up);
         else
             myIsVertical = IsVerticalSnap(aSplatt.transform.forward, transform.forward);

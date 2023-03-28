@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum BoxHitSide { NONE, TOP, BOTTOM, FRONT, BACK, LEFT, RIGHT }
+public enum BoxHitSide { RIGHT, LEFT, TOP, BOTTOM, FRONT, REAR, NONE }
 
 public class ColliderTools
 {
@@ -21,7 +21,7 @@ public class ColliderTools
                 if (i == 0 || i == 1)
                     return BoxHitSide.FRONT;
                 else if (i == 4 || i == 5)
-                    return BoxHitSide.BACK;
+                    return BoxHitSide.REAR;
                 else if (i == 2 || i == 3)
                     return BoxHitSide.TOP;
                 else if (i == 6 || i == 7)
@@ -58,30 +58,11 @@ public class ColliderTools
             return BoxHitSide.FRONT;
         else
         if (Mathf.RoundToInt(localPoint.z) == -5f)
-            return BoxHitSide.BACK;
-        //Vector3 localDir = localPoint.normalized;
-
-        //float upDot = Vector3.Dot(localDir, Vector3.up);
-        //float fwdDot = Vector3.Dot(localDir, Vector3.forward);
-        //float rightDot = Vector3.Dot(localDir, Vector3.right);
-
-        //Vector3 side = new Vector3(Mathf.Round(rightDot), Mathf.Round(upDot), Mathf.Round(fwdDot));
-
-        //if (side.x == 1)
-        //    return BoxHitSide.RIGHT;
-        //else if (side.x == -1)
-        //    return BoxHitSide.LEFT;
-        //else if (side.y == 1)
-        //    return BoxHitSide.TOP;
-        //else if (side.y == -1)
-        //    return BoxHitSide.BOTTOM;
-        //else if (side.z == 1)
-        //    return BoxHitSide.FRONT;
-        //else if (side.z == -1)
-        //    return BoxHitSide.BACK;
+            return BoxHitSide.REAR;
 
         return BoxHitSide.NONE;
     }
+
     /// <summary>
     /// ref: https://answers.unity.com/questions/339532/how-can-i-detect-which-side-of-a-box-i-collided-wi.html
     /// </summary>
@@ -109,7 +90,7 @@ public class ColliderTools
                 if (MyNormal == MyRayHit.transform.up) { hitDirection = BoxHitSide.TOP; }
                 if (MyNormal == -MyRayHit.transform.up) { hitDirection = BoxHitSide.BOTTOM; }
                 if (MyNormal == MyRayHit.transform.forward) { hitDirection = BoxHitSide.FRONT; }
-                if (MyNormal == -MyRayHit.transform.forward) { hitDirection = BoxHitSide.BACK; }
+                if (MyNormal == -MyRayHit.transform.forward) { hitDirection = BoxHitSide.REAR; }
                 if (MyNormal == MyRayHit.transform.right) { hitDirection = BoxHitSide.RIGHT; }
                 if (MyNormal == -MyRayHit.transform.right) { hitDirection = BoxHitSide.LEFT; }
             }
