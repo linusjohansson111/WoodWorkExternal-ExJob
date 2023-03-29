@@ -182,7 +182,6 @@ public class MaterialPart : MonoBehaviour, MaterialInterface
     {
         BoxHitSide side = hitSide;
 
-        float offsetPos = 0;
         Vector3 offsetDir = Vector3.zero;
 
         Vector3 newRotation = Vector3.zero;
@@ -209,7 +208,6 @@ public class MaterialPart : MonoBehaviour, MaterialInterface
 
         
         transform.position = aGlueAreaPosition + (offsetDir * aGlueAreaTransform.OffsetDistance);
-        //transform.Rotate(newRotation);
     }
 
     public void TempAttachToGlueArea(Transform aGlueAreaTransform, Vector3 hitPoint)
@@ -281,6 +279,8 @@ public class MaterialPart : MonoBehaviour, MaterialInterface
             DrawOutline(TouchMode.FASTERNER);
             myParentBlock.SetWoodToKinematic(true);
         }
+
+        InfoCanvas.Ins.DisplayAboveObjectInfo(other.name);
     }
 
     private void OnTriggerExit(Collider other)
@@ -300,6 +300,7 @@ public class MaterialPart : MonoBehaviour, MaterialInterface
             myParentBlock.SetWoodToKinematic(false);
         }
         DrawOutline(TouchMode.NONE);
+        InfoCanvas.Ins.DisplayAboveObjectInfo("");
     }
 
     private void DrawOutline(TouchMode aSelectMode)

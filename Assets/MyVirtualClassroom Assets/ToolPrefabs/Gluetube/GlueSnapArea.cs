@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class GlueSnapArea : MonoBehaviour
@@ -39,11 +40,14 @@ public class GlueSnapArea : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.layer == LayerMask.NameToLayer("Glue") && GotGlueOn)
+        if(other.gameObject.layer == LayerMask.NameToLayer("Glue"))
         {
-            
+            if(other.transform.GetComponentInParent<Gluetube>() != null)
+            {
+                other.transform.GetComponentInParent<Gluetube>().ActiveGlueTube(true, this);
+            }
 
-            if(other.transform.GetComponent<GlueSnapArea>() != null)
+            if(other.transform.GetComponent<GlueSnapArea>() != null && GotGlueOn)
             {
                 GlueSnapArea snapArea = other.transform.GetComponent<GlueSnapArea>();
                 BoxHitSide hitSide = snapArea.Side;
@@ -53,7 +57,21 @@ public class GlueSnapArea : MonoBehaviour
                 other.transform.GetComponentInParent<MaterialPart>().TempAttachToGlueArea2(snapArea, this.transform.position, hitSide);
                 block.TransferChildrenTo(myParent.ParentBlock);
                 GotGlueOn = false;
+                Destroy(this.gameObject);
 
+            }
+        }
+
+
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.layer == LayerMask.NameToLayer("Glue"))
+        {
+            if (other.transform.GetComponentInParent<Gluetube>() != null)
+            {
+                other.transform.GetComponentInParent<Gluetube>().ActiveGlueTube(false, null);
             }
         }
     }
@@ -61,5 +79,10 @@ public class GlueSnapArea : MonoBehaviour
     public Vector3 GetOffsetDirection()
     {
         return OffsetDirection = (transform.parent.position - transform.position).normalized;
+    }
+
+    public void ThisAreaIsGlued()
+    {
+        GotGlueOn = true;
     }
 }
