@@ -45,6 +45,7 @@ public class GlueSnapArea : MonoBehaviour
             if(other.transform.GetComponentInParent<Gluetube>() != null)
             {
                 other.transform.GetComponentInParent<Gluetube>().ActiveGlueTube(true, this);
+                myParent.DrawGlueTupeOutline(true);
             }
 
             if(other.transform.GetComponent<GlueSnapArea>() != null && GotGlueOn)
@@ -73,6 +74,7 @@ public class GlueSnapArea : MonoBehaviour
             if (other.transform.GetComponentInParent<Gluetube>() != null)
             {
                 other.transform.GetComponentInParent<Gluetube>().ActiveGlueTube(false, null);
+                myParent.DrawGlueTupeOutline(false);
             }
         }
     }

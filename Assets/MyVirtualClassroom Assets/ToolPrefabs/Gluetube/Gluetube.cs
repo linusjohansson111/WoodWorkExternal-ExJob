@@ -38,7 +38,7 @@ public class Gluetube : GrabbingTool
         //transform = GetComponent<Transform>();
         //rigidbody = GetComponent<Rigidbody>();
         //localScale = transform.localScale;
-        myLayerMask = 8;//LayerMask.GetMask("Substance");
+        myLayerMask = LayerMask.NameToLayer("Glue");
     }
 
     // Update is called once per frame
@@ -53,9 +53,9 @@ public class Gluetube : GrabbingTool
 
             //if (myGlueWasClicked)
             //    myGlueWasClicked = ourGrabbingHand.IsActivePressed;
-            if(myIsHitMaterialPart && Physics.Raycast(Muzzle.position, Muzzle.up, out RaycastHit hit, .05f))
+            if (myIsHitMaterialPart && Physics.Raycast(Muzzle.position, Muzzle.up, out RaycastHit hit, .05f))
             {
-                if(ourGrabbingHand.IsActivePressed)
+                if (ourGrabbingHand.IsActivePressed)
                 {
                     CreateGlueDot(hit.point, mySnapArea.transform);
                     mySnapArea.ThisAreaIsGlued();
@@ -67,21 +67,22 @@ public class Gluetube : GrabbingTool
     protected override void OnTriggerEnter(Collider other)
     {
         base.OnTriggerEnter(other);
-        
-        //if (other.gameObject.layer == LayerMask.NameToLayer("Glue"))
-        //{
-        //    InfoCanvas.Ins.DisplayAboveObjectInfo(other.name);
-        //}
+
+        if (other.gameObject.layer == LayerMask.NameToLayer("Glue"))
+        {
+            InfoCanvas.Ins.DisplayAboveObjectInfo(other.name);
+            DrawOutline(TouchTag.OTHER);
+        }
     }
 
     protected override void OnTriggerExit(Collider other)
     {
         base.OnTriggerExit(other);
-        
-        //if (other.gameObject.layer == LayerMask.NameToLayer("Glue"))
-        //{
-        //    InfoCanvas.Ins.DisplayAboveObjectInfo("");
-        //}
+
+        if (other.gameObject.layer == LayerMask.NameToLayer("Glue"))
+        {
+            InfoCanvas.Ins.DisplayAboveObjectInfo("");
+        }
     }
 
     public void ActiveGlueTube(bool isActive, GlueSnapArea aGlueArea)
