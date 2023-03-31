@@ -28,6 +28,7 @@ public class Gluetube : GrabbingTool
 
     private bool myIsHitMaterialPart = false;
     private MaterialPart myHitMaterial;
+    private GlueSnapArea mySnapArea;
 
     // Start is called before the first frame update
     protected override void Start()
@@ -48,11 +49,45 @@ public class Gluetube : GrabbingTool
         if (ourIsHolding)
         {
             //HasRayHitTarget();
-            HasSphereCastHitTarget();
+            //HasSphereCastHitTarget();
 
-            if (myGlueWasClicked)
-                myGlueWasClicked = ourGrabbingHand.IsActivePressed;
+            //if (myGlueWasClicked)
+            //    myGlueWasClicked = ourGrabbingHand.IsActivePressed;
+            if(myIsHitMaterialPart && Physics.Raycast(Muzzle.position, Muzzle.up, out RaycastHit hit, .05f))
+            {
+                if(ourGrabbingHand.IsActivePressed)
+                {
+                    CreateGlueDot(hit.point, mySnapArea.transform);
+                    mySnapArea.ThisAreaIsGlued();
+                }
+            }
         }
+    }
+
+    protected override void OnTriggerEnter(Collider other)
+    {
+        base.OnTriggerEnter(other);
+        
+        //if (other.gameObject.layer == LayerMask.NameToLayer("Glue"))
+        //{
+        //    InfoCanvas.Ins.DisplayAboveObjectInfo(other.name);
+        //}
+    }
+
+    protected override void OnTriggerExit(Collider other)
+    {
+        base.OnTriggerExit(other);
+        
+        //if (other.gameObject.layer == LayerMask.NameToLayer("Glue"))
+        //{
+        //    InfoCanvas.Ins.DisplayAboveObjectInfo("");
+        //}
+    }
+
+    public void ActiveGlueTube(bool isActive, GlueSnapArea aGlueArea)
+    {
+        myIsHitMaterialPart = isActive;
+        mySnapArea = aGlueArea;
     }
 
     private void HasRayHitTarget()
