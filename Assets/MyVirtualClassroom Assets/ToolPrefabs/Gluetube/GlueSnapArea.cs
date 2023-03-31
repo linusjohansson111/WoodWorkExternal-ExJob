@@ -57,7 +57,8 @@ public class GlueSnapArea : MonoBehaviour
                 other.transform.GetComponentInParent<MaterialPart>().TempAttachToGlueArea2(snapArea, this.transform.position, hitSide);
                 block.TransferChildrenTo(myParent.ParentBlock);
                 GotGlueOn = false;
-                Destroy(this.gameObject);
+                //Destroy(this.gameObject);
+                Destroy(block.gameObject);
 
             }
         }

@@ -21,6 +21,15 @@ public class GrabableObject : MonoBehaviour
 
     public bool IsHolding{ get { return ourIsHolding; } }
     
+    public bool IsGrabingHandActivePressed 
+    { 
+        get 
+        {
+            if (ourGrabbingHand == null)
+                return false;
+            return ourGrabbingHand.IsActivePressed;
+        } 
+    }
     protected HandObject ourGrabbingHand;
 
     protected bool ourIsHolding = false;

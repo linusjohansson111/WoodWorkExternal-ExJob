@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.XR;
@@ -15,6 +16,11 @@ public class BuildUpBlock : GrabableObject
 
     private BoxHitSide myHitSide = BoxHitSide.NONE;
 
+    private float myActiveDeactiveCooldown = 0;
+
+    public bool IsGrabable { get; private set; }
+    private bool myTouchByHand = false;
+
     // Start is called before the first frame update
     protected override void Start()
     {
@@ -26,11 +32,15 @@ public class BuildUpBlock : GrabableObject
         }
 
         BakeBlockSize();
+
+        IsGrabable = ourXRGrab.enabled;
     }
 
     // Update is called once per frame
     protected override void Update()
     {
+        
+
         base.Update();
     }
 
@@ -46,6 +56,20 @@ public class BuildUpBlock : GrabableObject
 
     protected override void OnTriggerEnter(Collider other)
     {
+        if (other.gameObject.layer == LayerMask.NameToLayer("Hand"))
+        {
+            if (myActiveDeactiveCooldown <= 0)
+            {
+                if (other.GetComponent<HandObject>().IsActivePressed)
+                {
+                    IsGrabable = ourXRGrab.enabled = !ourXRGrab.enabled;
+                    myActiveDeactiveCooldown = 5f;
+                }
+            }
+            else
+                myActiveDeactiveCooldown -= Time.deltaTime;
+        }
+
         base.OnTriggerEnter(other);
     }
 
@@ -121,6 +145,9 @@ public class BuildUpBlock : GrabableObject
         //aNewPart.transform.parent = transform;
         aNewPart.SetParent(this);
         myParts.Add(aNewPart);
+
+        if (ourXRGrab.enabled == false && myParts.Count == 4)
+            ourXRGrab.enabled = true;
 
         BakeBlockSize();
 

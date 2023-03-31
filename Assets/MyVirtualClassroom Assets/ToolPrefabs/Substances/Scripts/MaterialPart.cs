@@ -311,7 +311,7 @@ public class MaterialPart : MonoBehaviour, MaterialInterface
         {
             myOutline.enabled = true;
             if (aSelectMode == TouchMode.HAND)
-                SetOutlineAppearence(Outline.Mode.OutlineVisible, myParentBlock.GetOutlineColorFor(TouchTag.HAND));
+                SetOutlineAppearence(Outline.Mode.OutlineVisible, (myParentBlock.IsGrabable ? myParentBlock.GetOutlineColorFor(TouchTag.HAND) : Color.black));
             else if(aSelectMode == TouchMode.GLUE)
                 SetOutlineAppearence(Outline.Mode.OutlineVisible, myParentBlock.GetOutlineColorFor(TouchTag.OTHER));
             else if(aSelectMode == TouchMode.FASTERNER)
