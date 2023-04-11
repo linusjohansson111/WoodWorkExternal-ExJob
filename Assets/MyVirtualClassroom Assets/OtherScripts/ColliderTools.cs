@@ -40,24 +40,26 @@ public class ColliderTools
 
     public static BoxHitSide GetHitSide(Transform aObjectToBeHit, Vector3 aContactPoint)
     {
-        Vector3 localPoint = aObjectToBeHit.InverseTransformPoint(aContactPoint) * 10;
+        Vector3 localPoint = aObjectToBeHit.InverseTransformPoint(aContactPoint) * 5;
 
-        if (Mathf.RoundToInt(localPoint.x) == 5f)
+        float boxHitDistance = 1f;
+        
+        if (Mathf.RoundToInt(localPoint.x) == boxHitDistance)
             return BoxHitSide.RIGHT;
         else
-        if (Mathf.RoundToInt(localPoint.x) == -5f)
+        if (Mathf.RoundToInt(localPoint.x) == -boxHitDistance)
             return BoxHitSide.LEFT;
         else
-        if (Mathf.RoundToInt(localPoint.y) == 5f)
+        if (Mathf.RoundToInt(localPoint.y) == boxHitDistance)
             return BoxHitSide.TOP;
         else
-        if (Mathf.RoundToInt(localPoint.y) == -5f)
+        if (Mathf.RoundToInt(localPoint.y) == -boxHitDistance)
             return BoxHitSide.BOTTOM;
         else
-        if (Mathf.RoundToInt(localPoint.z) == 5f)
+        if (Mathf.RoundToInt(localPoint.z) == boxHitDistance)
             return BoxHitSide.FRONT;
         else
-        if (Mathf.RoundToInt(localPoint.z) == -5f)
+        if (Mathf.RoundToInt(localPoint.z) == -boxHitDistance)
             return BoxHitSide.REAR;
 
         return BoxHitSide.NONE;

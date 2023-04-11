@@ -71,6 +71,7 @@ public class GlueSplatt : MonoBehaviour
 
     private void RayHitSubstance()
     {
+        Debug.Log("WE HERE :D");
         if (myIsAttachingOtherSubstance)
             return;
 
@@ -93,6 +94,7 @@ public class GlueSplatt : MonoBehaviour
     /// <param name="aParentHitSide">The side this glue object hit on the parent</param>
     private void SetSnapTransform(BoxHitSide aParentHitSide)
     {
+        Debug.Log("setSnapTransform");
         if (aParentHitSide == BoxHitSide.RIGHT || aParentHitSide == BoxHitSide.LEFT)
         {
             transform.Rotate(new Vector3(0f,0f,(aParentHitSide == BoxHitSide.RIGHT ? -90 : 90)));

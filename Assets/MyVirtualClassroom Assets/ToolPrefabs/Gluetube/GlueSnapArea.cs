@@ -40,6 +40,7 @@ public class GlueSnapArea : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        //Debug.Log("OnTriggerEnter GlueSnapArea");
         if(other.gameObject.layer == LayerMask.NameToLayer("Glue"))
         {
             if(other.transform.GetComponentInParent<Gluetube>() != null)
@@ -51,11 +52,24 @@ public class GlueSnapArea : MonoBehaviour
             if(other.transform.GetComponent<GlueSnapArea>() != null && GotGlueOn)
             {
                 GlueSnapArea snapArea = other.transform.GetComponent<GlueSnapArea>();
+                //Ger oss sida av hit på material
                 BoxHitSide hitSide = snapArea.Side;
                 BuildUpBlock block = other.transform.GetComponentInParent<MaterialPart>().ParentBlock;
 
+                other.transform.GetComponentInParent<MaterialPart>().transform.position = other.transform.GetComponentInParent<MaterialPart>().transform.position + (this.transform.position-other.transform.position);
+                // other.transform.GetComponentInParent<MaterialPart>().transform.rotation = other.transform.GetComponentInParent<MaterialPart>().transform.rotation * (this.transform.rotation*other.transform.rotation);
+                // other.transform.GetComponentInParent<MaterialPart>().transform.rotation = Quaternion.FromToRotation(other.transform.GetComponentInParent<MaterialPart>().transform.up, this.transform.up) * other.transform.GetComponentInParent<MaterialPart>().transform.rotation;
+                // other.transform.GetComponentInParent<MaterialPart>().transform.rotation = this.transform.rotation * other.transform.rotation;
+
+                // other.transform.GetComponentInParent<MaterialPart>().transform.rotation *= this.transform.rotation * Quaternion.Inverse(other.transform.rotation);
+
+
+                // other.transform.position = this.transform.position;
+                // other.transform.rotation = this.transform.rotation;
+
                 //other.transform.GetComponentInParent<MaterialPart>().TempAttachToGlueArea(this, hitSide);
-                other.transform.GetComponentInParent<MaterialPart>().TempAttachToGlueArea2(snapArea, this.transform.position, hitSide);
+                //other.transform.GetComponentInParent<MaterialPart>().TempAttachToGlueArea(snapArea, hitSide);
+                // other.transform.GetComponentInParent<MaterialPart>().TempAttachToGlueArea2(snapArea, this.transform.position, hitSide);
                 block.TransferChildrenTo(myParent.ParentBlock);
                 GotGlueOn = false;
                 //Destroy(this.gameObject);

@@ -23,6 +23,8 @@ public class GlueSplattQuad : MonoBehaviour
     private BuildUpBlock myParentPart;
 
     private int myReactingCastLayerMask = 0;
+    
+    private bool isSnapped = false;
 
     // Start is called before the first frame update
     void Start()
@@ -125,17 +127,18 @@ public class GlueSplattQuad : MonoBehaviour
 
     private void SphereCastHitMaterialBlock()
     {
-        if(Physics.SphereCast(transform.position, .005f, transform.up, out RaycastHit hit, .005f, myReactingCastLayerMask))
-        {
-            // place and rotate the build up block
-            BuildUpBlock block = hit.collider.transform.GetComponentInParent<BuildUpBlock>();
-            hit.collider.transform.GetComponent<MaterialPart>().AttachToGlue(this, hit.point);
-            // add the child parts inside the build up block into the parent the glue was attached to
-            //myParentPart.AddPart(hit.collider.transform.GetComponent<MaterialPart>());
-            block.TransferChildrenTo(myParentPart);
-            block.SelfDestroy();
-            Destroy(gameObject);
-        }
+        // Buggar här?
+        // if(Physics.SphereCast(transform.position, .005f, transform.up, out RaycastHit hit, .005f, myReactingCastLayerMask))
+        // {
+        //     // place and rotate the build up block
+        //     BuildUpBlock block = hit.collider.transform.GetComponentInParent<BuildUpBlock>();
+        //     hit.collider.transform.GetComponent<MaterialPart>().AttachToGlue(this, hit.point);
+        //     // add the child parts inside the build up block into the parent the glue was attached to
+        //     //myParentPart.AddPart(hit.collider.transform.GetComponent<MaterialPart>());
+        //     block.TransferChildrenTo(myParentPart);
+        //     block.SelfDestroy();
+        //     Destroy(gameObject);
+        // }
     }
 
     public void RotateGlueOnParentFace(BoxHitSide aParentHitSide)

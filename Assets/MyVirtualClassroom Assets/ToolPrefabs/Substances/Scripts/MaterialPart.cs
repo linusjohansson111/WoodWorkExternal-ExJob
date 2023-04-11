@@ -97,6 +97,7 @@ public class MaterialPart : MonoBehaviour, MaterialInterface
     
     public void AttachToGlue(GlueSplattQuad aSplatt, Vector3 hitPoint)
     {
+        Debug.Log("glue script yayaaa");
         BoxHitSide side = ColliderTools.GetHitSide(transform, hitPoint);
         
 
@@ -131,117 +132,129 @@ public class MaterialPart : MonoBehaviour, MaterialInterface
             }
         }
 
-        Vector3 glueSnapPoint = new Vector3((isVertical ? hitPoint.x : transform.position.x), transform.position.y, (isVertical ? transform.position.z : hitPoint.z));
+        // Vector3 glueSnapPoint = new Vector3((isVertical ? hitPoint.x : transform.position.x), transform.position.y, (isVertical ? transform.position.z : hitPoint.z));
 
-        Vector3 vecBetCentAndHit = (transform.position - glueSnapPoint);
-        Vector3 dir = vecBetCentAndHit.normalized;
-        float dist = vecBetCentAndHit.magnitude;
+        // Vector3 vecBetCentAndHit = (transform.position - glueSnapPoint);
+        // Vector3 dir = vecBetCentAndHit.normalized;
+        // float dist = vecBetCentAndHit.magnitude;
 
-        Vector3 newPos = aSplatt.transform.position + (dir * dist);
-        transform.rotation = Quaternion.identity;
-        //transform.position = aSplatt.transform.position + (aSplatt.transform.up * upPos);
-        transform.position = newPos + (aSplatt.transform.up * upPos);
-        transform.Rotate(newRotation);
+        // Vector3 newPos = aSplatt.transform.position + (dir * dist);
+        // transform.rotation = Quaternion.identity;
+        // //transform.position = aSplatt.transform.position + (aSplatt.transform.up * upPos);
+        // transform.position = newPos + (aSplatt.transform.up * upPos);
+        // transform.Rotate(newRotation);
+
+        // Add a hinge joint to connect splattObject to the glue object
+
+
     }
 
-    public void TempAttachToGlueArea(GlueSnapArea aGlueAreaTransform, BoxHitSide hitSide)
-    {
-        BoxHitSide side = hitSide;
 
-        float offsetPos = 0;
-        Vector3 offsetDir = Vector3.zero;
+    // public void SnapToOtherMaterial(aGlueAreaTransformBoxHitSide hitSide, )
+    // {
 
-        Vector3 newRotation = Vector3.zero;
+    // }
 
-        if (side == BoxHitSide.FRONT || side == BoxHitSide.REAR)
-        {
-            offsetPos = HalfSize.z;
-            newRotation = new Vector3((side == BoxHitSide.FRONT ? 90f : -90f), y: 0, z: 0f);
-        }
-        else
-        {
-            if (side == BoxHitSide.LEFT || side == BoxHitSide.RIGHT)
-            {
-                offsetPos = HalfSize.x;
-                newRotation = new Vector3(x: 0f, y: 0, (side == BoxHitSide.RIGHT ? -90f : 90f));
-            }
-            else
-            if (side == BoxHitSide.TOP || side == BoxHitSide.BOTTOM)
-            {
-                offsetPos = HalfSize.y;
-                newRotation = new Vector3(x: 0f, y: 0, (side == BoxHitSide.TOP ? 180f : 0f));
-            }
-        }
+    // public void TempAttachToGlueArea(GlueSnapArea aGlueAreaTransform, BoxHitSide hitSide)
+    // {
+    //     BoxHitSide side = hitSide;
 
-        transform.rotation = Quaternion.identity;
-        transform.position = aGlueAreaTransform.transform.position + (aGlueAreaTransform.transform.up * offsetPos);
-        transform.Rotate(newRotation);
-    }
+    //     float offsetPos = 0;
+    //     Vector3 offsetDir = Vector3.zero;
 
-    public void TempAttachToGlueArea2(GlueSnapArea aGlueAreaTransform, Vector3 aGlueAreaPosition, BoxHitSide hitSide)
-    {
-        BoxHitSide side = hitSide;
+    //     Vector3 newRotation = Vector3.zero;
 
-        Vector3 offsetDir = Vector3.zero;
+    //     if (side == BoxHitSide.FRONT || side == BoxHitSide.REAR)
+    //     {
+    //         offsetPos = HalfSize.z;
+    //         newRotation = new Vector3((side == BoxHitSide.FRONT ? 90f : -90f), y: 0, z: 0f);
+    //     }
+    //     else
+    //     {
+    //         if (side == BoxHitSide.LEFT || side == BoxHitSide.RIGHT)
+    //         {
+    //             offsetPos = HalfSize.x;
+    //             newRotation = new Vector3(x: 0f, y: 0, (side == BoxHitSide.RIGHT ? -90f : 90f));
+    //         }
+    //         else
+    //         if (side == BoxHitSide.TOP || side == BoxHitSide.BOTTOM)
+    //         {
+    //             offsetPos = HalfSize.y;
+    //             newRotation = new Vector3(x: 0f, y: 0, (side == BoxHitSide.TOP ? 180f : 0f));
+    //         }
+    //     }
+        
+    // }
 
-        Vector3 newRotation = Vector3.zero;
-        transform.rotation = Quaternion.identity;
-        //if (side == BoxHitSide.FRONT || side == BoxHitSide.REAR)
-        //{
-        //    offsetPos = HalfSize.z;
-        //    newRotation = new Vector3((side == BoxHitSide.FRONT ? 90f : -90f), y: 0, z: 0f);
-        //}
-        //else
-        //{
-        if (side == BoxHitSide.LEFT || side == BoxHitSide.RIGHT)
-            {
-                transform.Rotate(new Vector3(x: 0f, y: 0, (side == BoxHitSide.RIGHT ? -90f : 90f)));
-                offsetDir = aGlueAreaTransform.GetOffsetDirection();//aGlueAreaTransform.OffsetDirection;
-            }
-            else
-            if (side == BoxHitSide.TOP || side == BoxHitSide.BOTTOM)
-            {
-                transform.Rotate(new Vector3(x: 0f, y: 0, (side == BoxHitSide.TOP ? 180f : 0f)));
-                offsetDir = aGlueAreaTransform.GetOffsetDirection();//aGlueAreaTransform.OffsetDirection;
-        }
-        //}
+    //     transform.rotation = Quaternion.identity;
+    //     transform.position = aGlueAreaTransform.transform.position + (aGlueAreaTransform.transform.up * offsetPos);
+    //     transform.Rotate(newRotation);
+    // }
+
+    // public void TempAttachToGlueArea2(GlueSnapArea aGlueAreaTransform, Vector3 aGlueAreaPosition, BoxHitSide hitSide)
+    // {
+    //     BoxHitSide side = hitSide;
+
+    //     Vector3 offsetDir = Vector3.zero;
+
+    //     Vector3 newRotation = Vector3.zero;
+    //     transform.rotation = Quaternion.identity;
+    //     //if (side == BoxHitSide.FRONT || side == BoxHitSide.REAR)
+    //     //{
+    //     //    offsetPos = HalfSize.z;
+    //     //    newRotation = new Vector3((side == BoxHitSide.FRONT ? 90f : -90f), y: 0, z: 0f);
+    //     //}
+    //     //else
+    //     //{
+    //     if (side == BoxHitSide.LEFT || side == BoxHitSide.RIGHT)
+    //         {
+    //             transform.Rotate(new Vector3(x: 0f, y: 0, (side == BoxHitSide.RIGHT ? -90f : 90f)));
+    //             offsetDir = aGlueAreaTransform.GetOffsetDirection();//aGlueAreaTransform.OffsetDirection;
+    //         }
+    //         else
+    //         if (side == BoxHitSide.TOP || side == BoxHitSide.BOTTOM)
+    //         {
+    //             transform.Rotate(new Vector3(x: 0f, y: 0, (side == BoxHitSide.TOP ? 180f : 0f)));
+    //             offsetDir = aGlueAreaTransform.GetOffsetDirection();//aGlueAreaTransform.OffsetDirection;
+    //     }
+    //     //}
 
         
-        transform.position = aGlueAreaPosition + (offsetDir * aGlueAreaTransform.OffsetDistance);
-    }
+    //     transform.position = aGlueAreaPosition + (offsetDir * aGlueAreaTransform.OffsetDistance);
+    // }
 
-    public void TempAttachToGlueArea(Transform aGlueAreaTransform, Vector3 hitPoint)
-    {
-        BoxHitSide side = ColliderTools.GetHitSide(transform, hitPoint);
+    // public void TempAttachToGlueArea(Transform aGlueAreaTransform, Vector3 hitPoint)
+    // {
+    //     BoxHitSide side = ColliderTools.GetHitSide(transform, hitPoint);
 
-        float upPos = 0;
-        Vector3 newRotation = Vector3.zero;
+    //     float upPos = 0;
+    //     Vector3 newRotation = Vector3.zero;
 
-        if (side == BoxHitSide.FRONT || side == BoxHitSide.REAR)
-        {
-            upPos = HalfSize.z;
-            newRotation = new Vector3((side == BoxHitSide.FRONT ? 90f : -90f), y: 0, z: 0f);
-        }
-        else
-        {
-            if (side == BoxHitSide.LEFT || side == BoxHitSide.RIGHT)
-            {
-                upPos = HalfSize.x;
-                newRotation = new Vector3(x: 0f, y: 0, (side == BoxHitSide.RIGHT ? -90f : 90f));
-            }
-            else
-            if (side == BoxHitSide.TOP || side == BoxHitSide.BOTTOM)
-            {
-                upPos = HalfSize.y;
-                newRotation = new Vector3(x: 0f, y: 0, (side == BoxHitSide.TOP ? 180f : 0f));
-            }
-        }
+    //     if (side == BoxHitSide.FRONT || side == BoxHitSide.REAR)
+    //     {
+    //         upPos = HalfSize.z;
+    //         newRotation = new Vector3((side == BoxHitSide.FRONT ? 90f : -90f), y: 0, z: 0f);
+    //     }
+    //     else
+    //     {
+    //         if (side == BoxHitSide.LEFT || side == BoxHitSide.RIGHT)
+    //         {
+    //             upPos = HalfSize.x;
+    //             newRotation = new Vector3(x: 0f, y: 0, (side == BoxHitSide.RIGHT ? -90f : 90f));
+    //         }
+    //         else
+    //         if (side == BoxHitSide.TOP || side == BoxHitSide.BOTTOM)
+    //         {
+    //             upPos = HalfSize.y;
+    //             newRotation = new Vector3(x: 0f, y: 0, (side == BoxHitSide.TOP ? 180f : 0f));
+    //         }
+    //     }
 
-        transform.rotation = Quaternion.identity;
-        //transform.position = aSplatt.transform.position + (aSplatt.transform.up * upPos);
-        transform.position = aGlueAreaTransform.position + (aGlueAreaTransform.up * upPos);
-        transform.Rotate(newRotation);
-    }
+    //     transform.rotation = Quaternion.identity;
+    //     //transform.position = aSplatt.transform.position + (aSplatt.transform.up * upPos);
+    //     transform.position = aGlueAreaTransform.position + (aGlueAreaTransform.up * upPos);
+    //     transform.Rotate(newRotation);
+    // }
 
     public void AttachNewNail(Nail aNail, Vector3 aSurfacePoint)
     {
