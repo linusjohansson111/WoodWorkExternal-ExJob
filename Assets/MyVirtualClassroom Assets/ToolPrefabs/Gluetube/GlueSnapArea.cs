@@ -56,21 +56,37 @@ public class GlueSnapArea : MonoBehaviour
                 BoxHitSide hitSide = snapArea.Side;
                 BuildUpBlock block = other.transform.GetComponentInParent<MaterialPart>().ParentBlock;
 
+
+                Vector3 relativePos = other.transform.position - this.transform.position;
+
                 other.transform.GetComponentInParent<MaterialPart>().transform.position = other.transform.GetComponentInParent<MaterialPart>().transform.position + (this.transform.position-other.transform.position);
-                // other.transform.GetComponentInParent<MaterialPart>().transform.rotation = other.transform.GetComponentInParent<MaterialPart>().transform.rotation * (this.transform.rotation*other.transform.rotation);
-                // other.transform.GetComponentInParent<MaterialPart>().transform.rotation = Quaternion.FromToRotation(other.transform.GetComponentInParent<MaterialPart>().transform.up, this.transform.up) * other.transform.GetComponentInParent<MaterialPart>().transform.rotation;
-                // other.transform.GetComponentInParent<MaterialPart>().transform.rotation = this.transform.rotation * other.transform.rotation;
 
-                // other.transform.GetComponentInParent<MaterialPart>().transform.rotation *= this.transform.rotation * Quaternion.Inverse(other.transform.rotation);
+                // Vector3 eulerAng = other.transform.rotation.eulerAngles;
+                // eulerAng.x = (Mathf.Round(eulerAng.x / 90f)*90f);
+                // eulerAng.y = (Mathf.Round(eulerAng.y / 90f)*90f);
+                // eulerAng.z = (Mathf.Round(eulerAng.z / 90f)*90f);
+                // other.transform.GetComponentInParent<MaterialPart>().transform.rotation = other.transform.GetComponentInParent<MaterialPart>().transform.rotation * Quaternion.Euler(eulerAng);
+                Vector3 eulerAng = other.transform.rotation.eulerAngles;
+                // eulerAng.x = (Mathf.Round(eulerAng.x / 90f)*90f);
+                // eulerAng.y = (Mathf.Round(eulerAng.y / 90f)*90f);
+                // eulerAng.z = (Mathf.Round(eulerAng.z / 90f));
+                // eulerAng.z *= 90f;
 
 
-                // other.transform.position = this.transform.position;
-                // other.transform.rotation = this.transform.rotation;
-
-                //other.transform.GetComponentInParent<MaterialPart>().TempAttachToGlueArea(this, hitSide);
-                //other.transform.GetComponentInParent<MaterialPart>().TempAttachToGlueArea(snapArea, hitSide);
-                // other.transform.GetComponentInParent<MaterialPart>().TempAttachToGlueArea2(snapArea, this.transform.position, hitSide);
                 block.TransferChildrenTo(myParent.ParentBlock);
+                other.transform.GetComponentInParent<MaterialPart>().transform.localRotation = Quaternion.Euler(eulerAng);
+                //other.transform.GetComponentInParent<MaterialPart>().transform.rotation = this.transform.GetComponentInParent<MaterialPart>().transform.rotation * Quaternion.Euler(0, 0, 90);
+                
+                // other.transform.GetComponentInParent<MaterialPart>().transform.rotation = this.transform.GetComponentInParent<MaterialPart>().transform.rotation;
+                // Debug.Log(other.transform.GetComponentInParent<MaterialPart>().transform.rotation);
+                // new WaitForSeconds(4);
+                // other.transform.GetComponentInParent<MaterialPart>().transform.Rotate(eulerAng.x, eulerAng.y, eulerAng.z);
+                // Debug.Log(other.transform.GetComponentInParent<MaterialPart>().transform.rotation);
+
+                // other.transform.GetComponentInParent<MaterialPart>().transform.rotation = Quaternion.Euler(eulerAng);
+                
+
+                // block.TransferChildrenTo(myParent.ParentBlock);
                 GotGlueOn = false;
                 //Destroy(this.gameObject);
                 Destroy(block.gameObject);
