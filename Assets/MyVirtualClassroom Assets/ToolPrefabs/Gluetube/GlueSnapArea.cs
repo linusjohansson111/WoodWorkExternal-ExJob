@@ -66,7 +66,7 @@ public class GlueSnapArea : MonoBehaviour
                 // eulerAng.y = (Mathf.Round(eulerAng.y / 90f)*90f);
                 // eulerAng.z = (Mathf.Round(eulerAng.z / 90f)*90f);
                 // other.transform.GetComponentInParent<MaterialPart>().transform.rotation = other.transform.GetComponentInParent<MaterialPart>().transform.rotation * Quaternion.Euler(eulerAng);
-                Vector3 eulerAng = other.transform.rotation.eulerAngles;
+                
                 // eulerAng.x = (Mathf.Round(eulerAng.x / 90f)*90f);
                 // eulerAng.y = (Mathf.Round(eulerAng.y / 90f)*90f);
                 // eulerAng.z = (Mathf.Round(eulerAng.z / 90f));
@@ -74,6 +74,11 @@ public class GlueSnapArea : MonoBehaviour
 
 
                 block.TransferChildrenTo(myParent.ParentBlock);
+                Vector3 eulerAng = other.transform.localRotation.eulerAngles;
+                eulerAng.x = (Mathf.Round(eulerAng.x / 90f)*90f);
+                eulerAng.y = (Mathf.Round(eulerAng.y / 90f)*90f);
+                eulerAng.z = (Mathf.Round(eulerAng.z / 90f));
+                eulerAng.z *= 90f;
                 other.transform.GetComponentInParent<MaterialPart>().transform.localRotation = Quaternion.Euler(eulerAng);
                 //other.transform.GetComponentInParent<MaterialPart>().transform.rotation = this.transform.GetComponentInParent<MaterialPart>().transform.rotation * Quaternion.Euler(0, 0, 90);
                 

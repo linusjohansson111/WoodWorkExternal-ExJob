@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1520032907852585360}
   - component: {fileID: 1520032907852585361}
   - component: {fileID: 1520032907852585362}
+  - component: {fileID: -3734093135417122702}
   m_Layer: 0
   m_Name: GlueSplattQuad
   m_TagString: Glue
@@ -66,6 +67,23 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &-3734093135417122702
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1520032907852585363}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb5308c26bad244a8e057f4b54fde38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SplattMaterial: {fileID: 0}
+  AssemblyParentPrefab: {fileID: 0}
+  VerticalSnapPoint: {fileID: 0}
+  HorizontalSnapPoint: {fileID: 0}
+  AtParentSide: 6
 --- !u!1 &5314940535724881597
 GameObject:
   m_ObjectHideFlags: 0
