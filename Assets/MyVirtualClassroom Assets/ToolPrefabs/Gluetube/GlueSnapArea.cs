@@ -82,6 +82,7 @@ public class GlueSnapArea : MonoBehaviour
                 other.transform.GetComponentInParent<MaterialPart>().transform.localRotation = Quaternion.Euler(eulerAng);
 
                 Vector3 relativePos = other.transform.position - this.transform.position;
+
                 other.transform.GetComponentInParent<MaterialPart>().transform.position = other.transform.GetComponentInParent<MaterialPart>().transform.position + (this.transform.position-other.transform.position);
 
                 // other.transform.GetComponentInParent<MaterialPart>().transform.rotation = this.transform.GetComponentInParent<MaterialPart>().transform.rotation;
