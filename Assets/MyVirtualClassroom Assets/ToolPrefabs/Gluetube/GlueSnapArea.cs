@@ -57,9 +57,10 @@ public class GlueSnapArea : MonoBehaviour
                 BuildUpBlock block = other.transform.GetComponentInParent<MaterialPart>().ParentBlock;
 
 
-                Vector3 relativePos = other.transform.position - this.transform.position;
-
-                other.transform.GetComponentInParent<MaterialPart>().transform.position = other.transform.GetComponentInParent<MaterialPart>().transform.position + (this.transform.position-other.transform.position);
+                // Vector3 relativePos = other.transform.position - this.transform.position;
+                // other.transform.GetComponentInParent<MaterialPart>().transform.position = other.transform.GetComponentInParent<MaterialPart>().transform.position + (this.transform.position-other.transform.position);
+                
+                // other.transform.GetComponentInParent<MaterialPart>().transform.position = other.transform.GetComponentInParent<MaterialPart>().transform.position + this.transform.position;
 
                 // Vector3 eulerAng = other.transform.rotation.eulerAngles;
                 // eulerAng.x = (Mathf.Round(eulerAng.x / 90f)*90f);
@@ -72,15 +73,19 @@ public class GlueSnapArea : MonoBehaviour
                 // eulerAng.z = (Mathf.Round(eulerAng.z / 90f));
                 // eulerAng.z *= 90f;
 
-
+                // Rotation verkar fungera, men positionen blir lite off av den här koden
                 block.TransferChildrenTo(myParent.ParentBlock);
-                Vector3 eulerAng = other.transform.localRotation.eulerAngles;
+                Vector3 eulerAng = other.transform.GetComponentInParent<MaterialPart>().transform.localRotation.eulerAngles;
                 eulerAng.x = (Mathf.Round(eulerAng.x / 90f)*90f);
                 eulerAng.y = (Mathf.Round(eulerAng.y / 90f)*90f);
-                eulerAng.z = (Mathf.Round(eulerAng.z / 90f));
-                eulerAng.z *= 90f;
+                eulerAng.z = (Mathf.Round(eulerAng.z / 90f)*90f);
                 other.transform.GetComponentInParent<MaterialPart>().transform.localRotation = Quaternion.Euler(eulerAng);
-                //other.transform.GetComponentInParent<MaterialPart>().transform.rotation = this.transform.GetComponentInParent<MaterialPart>().transform.rotation * Quaternion.Euler(0, 0, 90);
+
+                Vector3 relativePos = other.transform.position - this.transform.position;
+                other.transform.GetComponentInParent<MaterialPart>().transform.position = other.transform.GetComponentInParent<MaterialPart>().transform.position + (this.transform.position-other.transform.position);
+
+                // other.transform.GetComponentInParent<MaterialPart>().transform.rotation = this.transform.GetComponentInParent<MaterialPart>().transform.rotation;
+                // other.transform.GetComponentInParent<MaterialPart>().transform.Rotate(0, 0, 270f);
                 
                 // other.transform.GetComponentInParent<MaterialPart>().transform.rotation = this.transform.GetComponentInParent<MaterialPart>().transform.rotation;
                 // Debug.Log(other.transform.GetComponentInParent<MaterialPart>().transform.rotation);

@@ -149,7 +149,7 @@ public class BuildUpBlock : GrabableObject
         if (ourXRGrab.enabled == false && myParts.Count == 4)
             ourXRGrab.enabled = true;
 
-        BakeBlockSize();
+        // BakeBlockSize();
 
         //center = getCenter(transform);
     }

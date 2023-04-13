@@ -42,7 +42,7 @@ public class MaterialPart : MonoBehaviour, MaterialInterface
 
         myParentBlock = GetComponentInParent<BuildUpBlock>();
         myOutline = GetComponentInParent<Outline>();
-
+        
         for(int i = 0; i < (int)BoxHitSide.NONE; i++)
         {
             AttachPoints[i].position = GetOutmostPosFor((BoxHitSide)i);
@@ -131,6 +131,7 @@ public class MaterialPart : MonoBehaviour, MaterialInterface
                 newRotation = new Vector3(x: 0f, yRot, (side == BoxHitSide.TOP ? 180f : 0f));
             }
         }
+
 
         // Vector3 glueSnapPoint = new Vector3((isVertical ? hitPoint.x : transform.position.x), transform.position.y, (isVertical ? transform.position.z : hitPoint.z));
 
@@ -359,6 +360,7 @@ public class MaterialPart : MonoBehaviour, MaterialInterface
 
     private Vector3 GetOutmostPosFor(BoxHitSide aSearchSide)
     {
+        
         Vector3 result = transform.position;
         if (aSearchSide == BoxHitSide.RIGHT)
             result = new Vector3(GetSidePeak(transform.right, HalfSize.x).x, transform.position.y, transform.position.z);

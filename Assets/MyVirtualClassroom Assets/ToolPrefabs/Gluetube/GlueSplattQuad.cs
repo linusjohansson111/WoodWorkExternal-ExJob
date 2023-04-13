@@ -33,10 +33,8 @@ public class GlueSplattQuad : MonoBehaviour
         if(transform.parent != null)
         {
             myParentTransform = transform.parent.transform;
-            SetSnapTransform();
-            //myParentSubstance = GetComponentInParent<Substance>();
+            // SetSnapTransform();
             myParentPart = GetComponentInParent<BuildUpBlock>();
-            //SetSnapTransformOn(AtParentSide);
         }
 
         myReactingCastLayerMask = LayerMask.GetMask("Substance");
@@ -46,7 +44,7 @@ public class GlueSplattQuad : MonoBehaviour
     void Update()
     {
         //RayHitSubstance();
-        SphereCastHitMaterialBlock();
+        // SphereCastHitMaterialBlock();
     }
 
     public void SetSnapPosition(Vector3 aTubeMuzzlePos)
@@ -125,21 +123,21 @@ public class GlueSplattQuad : MonoBehaviour
         }
     }
 
-    private void SphereCastHitMaterialBlock()
-    {
-        // Buggar här?
-        // if(Physics.SphereCast(transform.position, .005f, transform.up, out RaycastHit hit, .005f, myReactingCastLayerMask))
-        // {
-        //     // place and rotate the build up block
-        //     BuildUpBlock block = hit.collider.transform.GetComponentInParent<BuildUpBlock>();
-        //     hit.collider.transform.GetComponent<MaterialPart>().AttachToGlue(this, hit.point);
-        //     // add the child parts inside the build up block into the parent the glue was attached to
-        //     //myParentPart.AddPart(hit.collider.transform.GetComponent<MaterialPart>());
-        //     block.TransferChildrenTo(myParentPart);
-        //     block.SelfDestroy();
-        //     Destroy(gameObject);
-        // }
-    }
+    // private void SphereCastHitMaterialBlock()
+    // {
+        
+    //     if(Physics.SphereCast(transform.position, .005f, transform.up, out RaycastHit hit, .005f, myReactingCastLayerMask))
+    //     {
+    //         // place and rotate the build up block
+    //         BuildUpBlock block = hit.collider.transform.GetComponentInParent<BuildUpBlock>();
+    //         hit.collider.transform.GetComponent<MaterialPart>().AttachToGlue(this, hit.point);
+    //         // add the child parts inside the build up block into the parent the glue was attached to
+    //         //myParentPart.AddPart(hit.collider.transform.GetComponent<MaterialPart>());
+    //         block.TransferChildrenTo(myParentPart);
+    //         block.SelfDestroy();
+    //         Destroy(gameObject);
+    //     }
+    // }
 
     public void RotateGlueOnParentFace(BoxHitSide aParentHitSide)
     {
@@ -173,6 +171,7 @@ public class GlueSplattQuad : MonoBehaviour
 
     private void SetSnapTransform()
     {
+        Debug.Log("This is run");
         if (AtParentSide == BoxHitSide.RIGHT || AtParentSide == BoxHitSide.LEFT)
         {
             //transform.Rotate(new Vector3(0f, 0f, (aParentHitSide == BoxHitSide.RIGHT ? -90 : 90)));
