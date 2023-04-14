@@ -56,6 +56,7 @@ public class BuildUpBlock : GrabableObject
 
     protected override void OnTriggerEnter(Collider other)
     {
+        /**
         if (other.gameObject.layer == LayerMask.NameToLayer("Hand"))
         {
             if (myActiveDeactiveCooldown <= 0)
@@ -63,12 +64,13 @@ public class BuildUpBlock : GrabableObject
                 if (other.GetComponent<HandObject>().IsActivePressed)
                 {
                     IsGrabable = ourXRGrab.enabled = !ourXRGrab.enabled;
+                    Debug.Log("NOW");
                     myActiveDeactiveCooldown = 5f;
                 }
             }
             else
                 myActiveDeactiveCooldown -= Time.deltaTime;
-        }
+        }*/
 
         base.OnTriggerEnter(other);
     }
