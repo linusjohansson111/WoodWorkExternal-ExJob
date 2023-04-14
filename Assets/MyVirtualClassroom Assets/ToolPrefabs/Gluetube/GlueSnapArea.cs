@@ -71,19 +71,19 @@ public class GlueSnapArea : MonoBehaviour
                 // Move other materialPart closer to this material Part. 
                 // (In our opinion this logic should not yield a correct result. Instead the other materialPart should hover above this materialPart.)
                 otherMaterialPart.transform.position = otherMaterialPart.transform.position + (this.transform.position-other.transform.position);
-                if (difference.y < 0){
-                    Vector3 newPos = new Vector3(
-                        otherMaterialPart.transform.position.x, 
-                        otherMaterialPart.transform.position.y - halfGlueBox.y/4, 
-                        otherMaterialPart.transform.position.z);
-                    otherMaterialPart.transform.position = newPos;
-                } else {
-                    Vector3 newPos = new Vector3(
-                        otherMaterialPart.transform.position.x, 
-                        otherMaterialPart.transform.position.y + halfGlueBox.y/4, 
-                        otherMaterialPart.transform.position.z);
-                    otherMaterialPart.transform.position = newPos;
-                }
+                // if (difference.y < 0){
+                //     Vector3 newPos = new Vector3(
+                //         otherMaterialPart.transform.position.x, 
+                //         otherMaterialPart.transform.position.y - halfGlueBox.y/4, 
+                //         otherMaterialPart.transform.position.z);
+                //     otherMaterialPart.transform.position = newPos;
+                // } else {
+                //     Vector3 newPos = new Vector3(
+                //         otherMaterialPart.transform.position.x, 
+                //         otherMaterialPart.transform.position.y + halfGlueBox.y/4, 
+                //         otherMaterialPart.transform.position.z);
+                //     otherMaterialPart.transform.position = newPos;
+                // }
 
                 // Remove glue & delete parent of other materialPart (children have been transfered to this materialPart).
                 GotGlueOn = false;
