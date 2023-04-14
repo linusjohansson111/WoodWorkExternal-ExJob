@@ -22,20 +22,18 @@ public class GlueSnapArea : MonoBehaviour
     void Start()
     {
         myParent = GetComponentInParent<MaterialPart>();
-        
-        OffsetDistance = (transform.parent.position - transform.position).magnitude;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (GotGlueOn)
-        {
-            if (Physics.Raycast(transform.position, transform.up, out RaycastHit hit, 0.05f, LayerMask.NameToLayer("Glue")))
-            {
+        // if (GotGlueOn)
+        // {
+        //     if (Physics.Raycast(transform.position, transform.up, out RaycastHit hit, 0.05f, LayerMask.NameToLayer("Glue")))
+        //     {
 
-            }
-        }
+        //     }
+        // }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -51,55 +49,27 @@ public class GlueSnapArea : MonoBehaviour
 
             if(other.transform.GetComponent<GlueSnapArea>() != null && GotGlueOn)
             {
-                GlueSnapArea snapArea = other.transform.GetComponent<GlueSnapArea>();
-                //Ger oss sida av hit på material
-                BoxHitSide hitSide = snapArea.Side;
-                BuildUpBlock block = other.transform.GetComponentInParent<MaterialPart>().ParentBlock;
+                 // Variables for easy access
+                MaterialPart otherMaterialPart = other.transform.GetComponentInParent<MaterialPart>();
+                BuildUpBlock block = otherMaterialPart.ParentBlock;
 
-
-                // Vector3 relativePos = other.transform.position - this.transform.position;
-                // other.transform.GetComponentInParent<MaterialPart>().transform.position = other.transform.GetComponentInParent<MaterialPart>().transform.position + (this.transform.position-other.transform.position);
-                
-                // other.transform.GetComponentInParent<MaterialPart>().transform.position = other.transform.GetComponentInParent<MaterialPart>().transform.position + this.transform.position;
-
-                // Vector3 eulerAng = other.transform.rotation.eulerAngles;
-                // eulerAng.x = (Mathf.Round(eulerAng.x / 90f)*90f);
-                // eulerAng.y = (Mathf.Round(eulerAng.y / 90f)*90f);
-                // eulerAng.z = (Mathf.Round(eulerAng.z / 90f)*90f);
-                // other.transform.GetComponentInParent<MaterialPart>().transform.rotation = other.transform.GetComponentInParent<MaterialPart>().transform.rotation * Quaternion.Euler(eulerAng);
-                
-                // eulerAng.x = (Mathf.Round(eulerAng.x / 90f)*90f);
-                // eulerAng.y = (Mathf.Round(eulerAng.y / 90f)*90f);
-                // eulerAng.z = (Mathf.Round(eulerAng.z / 90f));
-                // eulerAng.z *= 90f;
-
-                // Rotation verkar fungera, men positionen blir lite off av den här koden
+                // Transfer children of otherMaterialPart parent to this materialPart parent
                 block.TransferChildrenTo(myParent.ParentBlock);
-                Vector3 eulerAng = other.transform.GetComponentInParent<MaterialPart>().transform.localRotation.eulerAngles;
+
+                // get angle of materialPart, round up or down in order to have a working snapping effect
+                Vector3 eulerAng = otherMaterialPart.transform.localRotation.eulerAngles;
                 eulerAng.x = (Mathf.Round(eulerAng.x / 90f)*90f);
                 eulerAng.y = (Mathf.Round(eulerAng.y / 90f)*90f);
                 eulerAng.z = (Mathf.Round(eulerAng.z / 90f)*90f);
-                other.transform.GetComponentInParent<MaterialPart>().transform.localRotation = Quaternion.Euler(eulerAng);
+                // Apply rounded numbers to otherMaterialPart
+                otherMaterialPart.transform.localRotation = Quaternion.Euler(eulerAng);
 
-                Vector3 relativePos = other.transform.position - this.transform.position;
+                // Move other materialPart closer to this material Part. 
+                // (In our opinion this logic should not yield a correct result. Instead the other materialPart should hover above this materialPart.)
+                otherMaterialPart.transform.position = otherMaterialPart.transform.position + (this.transform.position-other.transform.position);
 
-                other.transform.GetComponentInParent<MaterialPart>().transform.position = other.transform.GetComponentInParent<MaterialPart>().transform.position + (this.transform.position-other.transform.position);
-
-                // other.transform.GetComponentInParent<MaterialPart>().transform.rotation = this.transform.GetComponentInParent<MaterialPart>().transform.rotation;
-                // other.transform.GetComponentInParent<MaterialPart>().transform.Rotate(0, 0, 270f);
-                
-                // other.transform.GetComponentInParent<MaterialPart>().transform.rotation = this.transform.GetComponentInParent<MaterialPart>().transform.rotation;
-                // Debug.Log(other.transform.GetComponentInParent<MaterialPart>().transform.rotation);
-                // new WaitForSeconds(4);
-                // other.transform.GetComponentInParent<MaterialPart>().transform.Rotate(eulerAng.x, eulerAng.y, eulerAng.z);
-                // Debug.Log(other.transform.GetComponentInParent<MaterialPart>().transform.rotation);
-
-                // other.transform.GetComponentInParent<MaterialPart>().transform.rotation = Quaternion.Euler(eulerAng);
-                
-
-                // block.TransferChildrenTo(myParent.ParentBlock);
+                // Remove glue & delete parent of other materialPart (children have been transfered to this materialPart).
                 GotGlueOn = false;
-                //Destroy(this.gameObject);
                 Destroy(block.gameObject);
 
             }
