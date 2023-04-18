@@ -294,7 +294,7 @@ public class MaterialPart : MonoBehaviour, MaterialInterface
             myParentBlock.SetWoodToKinematic(true);
         }
 
-        InfoCanvas.Ins.DisplayAboveObjectInfo(other.name);
+        //InfoCanvas.Ins.DisplayAboveObjectInfo(other.name);
     }
 
     private void OnTriggerExit(Collider other)
@@ -314,7 +314,7 @@ public class MaterialPart : MonoBehaviour, MaterialInterface
             myParentBlock.SetWoodToKinematic(false);
         }
         DrawOutline(TouchMode.NONE);
-        InfoCanvas.Ins.DisplayAboveObjectInfo("");
+        //InfoCanvas.Ins.DisplayAboveObjectInfo("");
     }
 
     private void DrawOutline(TouchMode aSelectMode)
@@ -347,7 +347,8 @@ public class MaterialPart : MonoBehaviour, MaterialInterface
 
         //HandAttachPoints[(int)hand].position = GetOutmostPosFor(side);
         //myParentBlock.GetChildAttachPointFor(hand, HandAttachPoints[(int)hand]);
-        myParentBlock.GetChildAttachPointFor(hand, AttachPoints[(int)side]);
+
+        // myParentBlock.GetChildAttachPointFor(hand, AttachPoints[(int)side]);
 
         
 

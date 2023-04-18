@@ -62,11 +62,16 @@ public class GlueSplattQuad : MonoBehaviour
         float width = 1;
         float lenght = 1;
 
-        MeshRenderer meshRenderer = gameObject.AddComponent<MeshRenderer>();
+        MeshRenderer meshRenderer = gameObject.GetComponent<MeshRenderer>();
+        if (meshRenderer == null){
+            meshRenderer = gameObject.AddComponent<MeshRenderer>();
+        }
         meshRenderer.sharedMaterial = SplattMaterial;
 
-        MeshFilter meshFilter = gameObject.AddComponent<MeshFilter>();
-
+        MeshFilter meshFilter = gameObject.GetComponent<MeshFilter>();
+        if (meshFilter == null){
+            meshFilter = gameObject.AddComponent<MeshFilter>();
+        }
         Mesh mesh = new Mesh();
 
         Vector3[] vertices = new Vector3[4]

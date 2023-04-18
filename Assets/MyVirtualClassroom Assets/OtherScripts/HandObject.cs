@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+
 public enum Preposition { LEFT, RIGHT }
 public class HandObject : MonoBehaviour
 {
@@ -15,6 +16,12 @@ public class HandObject : MonoBehaviour
     protected InputActionProperty GrabProperty;
 
     [SerializeField]
+    protected InputActionProperty ButtonPrimary;
+    [SerializeField]
+    protected InputActionProperty ButtonSecondary;
+
+
+    [SerializeField]
     private float SphereCastRadius = .5f;
 
     [HideInInspector]
@@ -25,6 +32,13 @@ public class HandObject : MonoBehaviour
 
     public bool IsActivePressed { get { return ActiveProperty.action.IsPressed(); } }
     public bool IsGrabPressed { get { return GrabProperty.action.IsPressed(); } }
+
+    public bool IsButtonPrimaryPressed { get { return ButtonPrimary.action.IsPressed(); } }
+    public bool IsButtonSecondaryPressed { get { return ButtonSecondary.action.IsPressed(); } }
+    
+    // public Vector2 JoyStickValue { get { return JoyStickProperty.action?.ReadValue<Vector2>() ?? Vector2.zero; } }
+
+
 
     private SphereCollider mySC;
 
@@ -41,6 +55,9 @@ public class HandObject : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        // Debug.Log(IsAPressed);
+        // Debug.Log(IsBPressed);
         if (Physics.SphereCast(transform.position, SphereCastRadius, (HandSide == Preposition.LEFT ? transform.right : -transform.right), out RaycastHit hit, .02f, mySubstanceLayer))
         {
             hit.collider.transform.GetComponent<MaterialPart>().MoveAttachPointTo(HandSide, hit.point);

@@ -32,9 +32,10 @@ public class XRGrabInteractabkeBase : XRGrabInteractable
     // Update is called once per frame
     void Update()
     {
-        if (ourGrappingHand != null && ourGrappingHand.Side == Preposition.LEFT && ourGrappingHand.IsGrapping){
-            Debug.Log("GRABBING LEFT");
-        }
+        // ourGrabableObject.transform.rotation *= Quaternion.Euler(0f, 30f * Time.deltaTime, 0f);
+        // if (ourGrappingHand != null && ourGrappingHand.Side == Preposition.LEFT && ourGrappingHand.IsGrapping){
+        //     Debug.Log("GRABBING LEFT");
+        // }
     }
 
     protected override void OnHoverEntered(HoverEnterEventArgs args)

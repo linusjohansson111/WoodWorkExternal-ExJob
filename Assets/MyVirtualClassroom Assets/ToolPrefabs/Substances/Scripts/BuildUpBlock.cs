@@ -96,6 +96,7 @@ public class BuildUpBlock : GrabableObject
 
     public void GetChildAttachPointFor(Preposition aHand, Transform anAttachPoint)
     {
+        Debug.Log("Picked up plank @BuildUpBlocks");
         if (aHand == Preposition.LEFT)
             ourXRGrab.SetLeftAttachPoint(anAttachPoint);
         else if (aHand == Preposition.RIGHT)
