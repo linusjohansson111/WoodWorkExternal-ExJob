@@ -3750,6 +3750,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 12
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 159e805e2284c7d4290e9df6014cc75d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1151388028547126963, guid: 159e805e2284c7d4290e9df6014cc75d,
         type: 3}
       propertyPath: m_LocalPosition.y
@@ -4860,7 +4865,8 @@ MonoBehaviour:
   HandAttachPoints:
   - {fileID: 630546638}
   - {fileID: 630546638}
-  AttachPoints: []
+  AttachPoints:
+  - {fileID: 630546638}
   GlueSnapSpots: []
 --- !u!65 &280810983
 BoxCollider:
@@ -6431,7 +6437,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &325293398
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8600,7 +8606,8 @@ MonoBehaviour:
   HandAttachPoints:
   - {fileID: 1883992778}
   - {fileID: 1883992778}
-  AttachPoints: []
+  AttachPoints:
+  - {fileID: 1883992778}
   GlueSnapSpots: []
 --- !u!114 &423173555
 MonoBehaviour:
@@ -11460,7 +11467,8 @@ MonoBehaviour:
   HandAttachPoints:
   - {fileID: 2137173342}
   - {fileID: 2137173342}
-  AttachPoints: []
+  AttachPoints:
+  - {fileID: 2137173342}
   GlueSnapSpots: []
 --- !u!65 &588261481
 BoxCollider:
@@ -15024,7 +15032,8 @@ MonoBehaviour:
   HandAttachPoints:
   - {fileID: 846276900}
   - {fileID: 846276900}
-  AttachPoints: []
+  AttachPoints:
+  - {fileID: 846276900}
   GlueSnapSpots: []
 --- !u!114 &828390843
 MonoBehaviour:
@@ -15920,6 +15929,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 159e805e2284c7d4290e9df6014cc75d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1151388028547126963, guid: 159e805e2284c7d4290e9df6014cc75d,
         type: 3}
@@ -16822,7 +16836,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &906156385
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18664,6 +18678,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 12
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 159e805e2284c7d4290e9df6014cc75d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1151388028547126963, guid: 159e805e2284c7d4290e9df6014cc75d,
         type: 3}
       propertyPath: m_LocalPosition.y
@@ -20202,7 +20221,7 @@ MonoBehaviour:
   - {fileID: 1182088327}
   - {fileID: 1182088327}
   AttachPoints:
-  - {fileID: 0}
+  - {fileID: 1182088327}
   GlueSnapSpots: []
 --- !u!114 &1049312735
 MonoBehaviour:
@@ -24722,6 +24741,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 12
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 159e805e2284c7d4290e9df6014cc75d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1151388028547126963, guid: 159e805e2284c7d4290e9df6014cc75d,
         type: 3}
       propertyPath: m_LocalPosition.y
@@ -24932,7 +24956,8 @@ MonoBehaviour:
   HandAttachPoints:
   - {fileID: 1032308268}
   - {fileID: 1032308268}
-  AttachPoints: []
+  AttachPoints:
+  - {fileID: 1032308268}
   GlueSnapSpots: []
 --- !u!114 &1326448629
 MonoBehaviour:
@@ -37666,7 +37691,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &2109114721
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38744,6 +38769,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 159e805e2284c7d4290e9df6014cc75d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1151388028547126963, guid: 159e805e2284c7d4290e9df6014cc75d,
         type: 3}
