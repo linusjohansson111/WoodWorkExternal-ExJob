@@ -93,7 +93,7 @@ public class XRGrabInteractabkeBase : XRGrabInteractable
 
                     attachTransform = plankAttachPoint;
 
-                    attachTransform.transform.localRotation = Quaternion.Inverse(localRotationPlank);
+                    attachTransform.transform.localRotation = Quaternion.Inverse(localRotationPlank) * args.interactorObject.transform.rotation;
                     //attachTransform.localRotation = new Quaternion(0.25f, 0.25f, 0.25f, 0.25f);
 
                     // attachTransform.SetPositionAndRotation(plankTransform.position, plankTransform.rotation); 
