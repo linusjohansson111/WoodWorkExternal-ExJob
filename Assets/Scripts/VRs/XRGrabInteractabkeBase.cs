@@ -88,7 +88,7 @@ public class XRGrabInteractabkeBase : XRGrabInteractable
                 else if (plankAttachPoint != null) {
                     Debug.Log("HEHE 3 @XRInteractablkeBase");
 
-                    Quaternion localRotationPlank = this.transform.localRotation;
+                    Quaternion localRotationPlank = this.transform.rotation;
 
 
                     attachTransform = plankAttachPoint;

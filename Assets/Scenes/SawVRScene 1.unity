@@ -13440,7 +13440,7 @@ MonoBehaviour:
   m_StartingSingleGrabTransformers: []
   m_StartingMultipleGrabTransformers: []
   m_AddDefaultGrabTransformers: 1
-  plankAttachPoint: {fileID: 0}
+  plankAttachPoint: {fileID: 1182088327}
 --- !u!114 &709643984
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34818,7 +34818,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 159e805e2284c7d4290e9df6014cc75d,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1151388028547126963, guid: 159e805e2284c7d4290e9df6014cc75d,
         type: 3}
