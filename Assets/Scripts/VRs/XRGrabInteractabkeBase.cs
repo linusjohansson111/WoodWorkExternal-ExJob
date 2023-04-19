@@ -10,6 +10,9 @@ public class XRGrabInteractabkeBase : XRGrabInteractable
 
     protected Transform ourLeftAttachPoint, ourRightAttachPoint;
 
+    [SerializeField]
+    public Transform plankAttachPoint;
+
     protected HandObject ourGrappingHand;
     protected GrabableObject ourGrabableObject;
 
@@ -50,6 +53,9 @@ public class XRGrabInteractabkeBase : XRGrabInteractable
 
     protected override void OnSelectEntered(SelectEnterEventArgs args)
     {
+        // Debug.Log(args.ToString());
+        // args.interactorObject.transform.Rotate(0, 45, 0);
+
         if (args.interactorObject.transform.CompareTag("Hand") && ourGrappingHand == null/*!OurObjectIsHolding()*/)
         {
             HandObject selectingHand = args.interactorObject.transform.GetComponent<HandObject>();
@@ -59,16 +65,64 @@ public class XRGrabInteractabkeBase : XRGrabInteractable
 
             if (ourGrappingHand != null && !ourGrappingHand.IsGrapping)
             {
+                Debug.Log("håller nånting");
                 //if (ourOptionalAttachPoint != null)
                 //    attachTransform = ourOptionalAttachPoint;
+
                 if (ourGrappingHand.Side == Preposition.LEFT && ourLeftAttachPoint != null)
                 {
+                    Debug.Log("HEHE 1");
                     attachTransform = ourLeftAttachPoint;                    
                 }
                 else if (ourGrappingHand.Side == Preposition.RIGHT && ourRightAttachPoint != null)
                 {
+                    Debug.Log("HEHE 2");
+
+                    // hämta objektet och spara rotation
+                    // rotera ourRightAttachPoint ^
+                    // sätt attachTransform = ^
+                    
+                    // ourRightAttachPoint.Rotate(0, 45, 0);
                     attachTransform = ourRightAttachPoint;                    
                 }
+                else if (plankAttachPoint != null) {
+                    Debug.Log("HEHE 3 @XRInteractablkeBase");
+
+                    Quaternion localRotationPlank = this.transform.localRotation;
+
+
+                    attachTransform = plankAttachPoint;
+
+                    attachTransform.transform.localRotation = Quaternion.Inverse(localRotationPlank);
+                    //attachTransform.localRotation = new Quaternion(0.25f, 0.25f, 0.25f, 0.25f);
+
+                    // attachTransform.SetPositionAndRotation(plankTransform.position, plankTransform.rotation); 
+                    // attachTransform.transform.rotation = new Quaternion(0.1f,0.4f,0.3f,0.1f); 
+
+                    Debug.Log(attachTransform.transform.rotation);
+
+                    // Debug.Log(attachTransform.rotation);
+                    // attachTransform.rotation = plankRotation;
+                    // Debug.Log(attachTransform.rotation);
+
+
+                    // attachTransform.rotation = this.transform.rotation;
+
+
+
+                    // -------
+
+
+                    // Spara localrotation på antingen träbiten eller attachmentpointen
+
+                    // Tilldela plankAttachpoint till attachTransform  
+
+                    // Ändra localrotation på attachTransform. 
+
+                    // 
+                }
+                
+
 
                 ourIsGrabbed = true;
                 ourGrappingHand.IsGrapingObject(IsGrapped);

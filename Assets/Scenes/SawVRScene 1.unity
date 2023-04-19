@@ -3753,7 +3753,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 159e805e2284c7d4290e9df6014cc75d,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1151388028547126963, guid: 159e805e2284c7d4290e9df6014cc75d,
         type: 3}
@@ -5573,6 +5573,7 @@ MonoBehaviour:
   m_StartingSingleGrabTransformers: []
   m_StartingMultipleGrabTransformers: []
   m_AddDefaultGrabTransformers: 1
+  plankAttachPoint: {fileID: 0}
   LeftAttachTransform: {fileID: 0}
   RightAttachTransform: {fileID: 0}
 --- !u!114 &303491580
@@ -6586,6 +6587,7 @@ MonoBehaviour:
   m_StartingSingleGrabTransformers: []
   m_StartingMultipleGrabTransformers: []
   m_AddDefaultGrabTransformers: 1
+  plankAttachPoint: {fileID: 0}
 --- !u!54 &325293400
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -11129,6 +11131,7 @@ MonoBehaviour:
   m_StartingSingleGrabTransformers: []
   m_StartingMultipleGrabTransformers: []
   m_AddDefaultGrabTransformers: 1
+  plankAttachPoint: {fileID: 0}
   LeftAttachTransform: {fileID: 0}
   RightAttachTransform: {fileID: 0}
 --- !u!1001 &581261333
@@ -13437,6 +13440,7 @@ MonoBehaviour:
   m_StartingSingleGrabTransformers: []
   m_StartingMultipleGrabTransformers: []
   m_AddDefaultGrabTransformers: 1
+  plankAttachPoint: {fileID: 0}
 --- !u!114 &709643984
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15745,6 +15749,7 @@ MonoBehaviour:
   m_StartingSingleGrabTransformers: []
   m_StartingMultipleGrabTransformers: []
   m_AddDefaultGrabTransformers: 1
+  plankAttachPoint: {fileID: 0}
 --- !u!54 &866381025
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -16114,6 +16119,7 @@ MonoBehaviour:
   m_StartingSingleGrabTransformers: []
   m_StartingMultipleGrabTransformers: []
   m_AddDefaultGrabTransformers: 1
+  plankAttachPoint: {fileID: 0}
 --- !u!54 &893160931
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -16679,6 +16685,7 @@ MonoBehaviour:
   m_StartingSingleGrabTransformers: []
   m_StartingMultipleGrabTransformers: []
   m_AddDefaultGrabTransformers: 1
+  plankAttachPoint: {fileID: 0}
   LeftAttachTransform: {fileID: 0}
   RightAttachTransform: {fileID: 0}
 --- !u!1001 &903302164
@@ -16985,6 +16992,7 @@ MonoBehaviour:
   m_StartingSingleGrabTransformers: []
   m_StartingMultipleGrabTransformers: []
   m_AddDefaultGrabTransformers: 1
+  plankAttachPoint: {fileID: 0}
 --- !u!54 &906156387
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -18681,7 +18689,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 159e805e2284c7d4290e9df6014cc75d,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1151388028547126963, guid: 159e805e2284c7d4290e9df6014cc75d,
         type: 3}
@@ -22636,6 +22644,7 @@ MonoBehaviour:
   m_StartingSingleGrabTransformers: []
   m_StartingMultipleGrabTransformers: []
   m_AddDefaultGrabTransformers: 1
+  plankAttachPoint: {fileID: 0}
 --- !u!54 &1195035140
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -23278,6 +23287,7 @@ MonoBehaviour:
   m_StartingSingleGrabTransformers: []
   m_StartingMultipleGrabTransformers: []
   m_AddDefaultGrabTransformers: 1
+  plankAttachPoint: {fileID: 630546638}
 --- !u!54 &1226993086
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -23784,6 +23794,7 @@ MonoBehaviour:
   m_StartingSingleGrabTransformers: []
   m_StartingMultipleGrabTransformers: []
   m_AddDefaultGrabTransformers: 1
+  plankAttachPoint: {fileID: 0}
 --- !u!54 &1260003881
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -24744,7 +24755,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 159e805e2284c7d4290e9df6014cc75d,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1151388028547126963, guid: 159e805e2284c7d4290e9df6014cc75d,
         type: 3}
@@ -24901,6 +24912,7 @@ MonoBehaviour:
   m_StartingSingleGrabTransformers: []
   m_StartingMultipleGrabTransformers: []
   m_AddDefaultGrabTransformers: 1
+  plankAttachPoint: {fileID: 0}
 --- !u!114 &1326448626
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25622,6 +25634,7 @@ MonoBehaviour:
   m_StartingSingleGrabTransformers: []
   m_StartingMultipleGrabTransformers: []
   m_AddDefaultGrabTransformers: 1
+  plankAttachPoint: {fileID: 0}
 --- !u!54 &1345194094
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -26086,6 +26099,7 @@ MonoBehaviour:
   m_StartingSingleGrabTransformers: []
   m_StartingMultipleGrabTransformers: []
   m_AddDefaultGrabTransformers: 1
+  plankAttachPoint: {fileID: 0}
   LeftAttachTransform: {fileID: 0}
   RightAttachTransform: {fileID: 0}
 --- !u!1 &1371373241 stripped
@@ -28434,6 +28448,7 @@ MonoBehaviour:
   m_StartingSingleGrabTransformers: []
   m_StartingMultipleGrabTransformers: []
   m_AddDefaultGrabTransformers: 1
+  plankAttachPoint: {fileID: 0}
 --- !u!114 &1534602755
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32765,6 +32780,7 @@ MonoBehaviour:
   m_StartingSingleGrabTransformers: []
   m_StartingMultipleGrabTransformers: []
   m_AddDefaultGrabTransformers: 1
+  plankAttachPoint: {fileID: 0}
 --- !u!114 &1838567485
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34799,6 +34815,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 12
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 159e805e2284c7d4290e9df6014cc75d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1151388028547126963, guid: 159e805e2284c7d4290e9df6014cc75d,
         type: 3}
       propertyPath: m_LocalPosition.y
@@ -35442,6 +35463,7 @@ MonoBehaviour:
   m_StartingSingleGrabTransformers: []
   m_StartingMultipleGrabTransformers: []
   m_AddDefaultGrabTransformers: 1
+  plankAttachPoint: {fileID: 0}
 --- !u!54 &1993876181
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -36113,6 +36135,7 @@ MonoBehaviour:
   m_StartingSingleGrabTransformers: []
   m_StartingMultipleGrabTransformers: []
   m_AddDefaultGrabTransformers: 1
+  plankAttachPoint: {fileID: 0}
 --- !u!54 &2030967146
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -37840,6 +37863,7 @@ MonoBehaviour:
   m_StartingSingleGrabTransformers: []
   m_StartingMultipleGrabTransformers: []
   m_AddDefaultGrabTransformers: 1
+  plankAttachPoint: {fileID: 0}
 --- !u!54 &2109114723
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -38773,7 +38797,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 159e805e2284c7d4290e9df6014cc75d,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1151388028547126963, guid: 159e805e2284c7d4290e9df6014cc75d,
         type: 3}

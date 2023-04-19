@@ -43,10 +43,13 @@ public class MaterialPart : MonoBehaviour, MaterialInterface
         myParentBlock = GetComponentInParent<BuildUpBlock>();
         myOutline = GetComponentInParent<Outline>();
         
-        for(int i = 0; i < (int)BoxHitSide.NONE; i++)
-        {
-            AttachPoints[i].position = GetOutmostPosFor((BoxHitSide)i);
-        }
+        // Previously used "for(int i = 0; i < (int)BoxHitSide.NONE; i++)"
+
+        // Togbort följande 1:37, 19/4
+        // for(int i = 0; i < 1; i++)
+        // {
+        //     AttachPoints[i].position = GetOutmostPosFor((BoxHitSide)i);
+        // }
 
         DrawOutline(TouchMode.NONE);
     }
@@ -341,6 +344,7 @@ public class MaterialPart : MonoBehaviour, MaterialInterface
 
     public void MoveAttachPointTo(Preposition hand, Vector3 aHitPoint)
     {
+        //Debug.Log("Hello @ MaterialParts");
         BoxHitSide side = ColliderTools.GetHitSide(transform, aHitPoint);
         if (side == BoxHitSide.NONE)
             return;
