@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
+
 public class GlueSnapArea : MonoBehaviour
 {
     [SerializeField]
@@ -22,6 +23,7 @@ public class GlueSnapArea : MonoBehaviour
     void Start()
     {
         myParent = GetComponentInParent<MaterialPart>();
+        ChangeMesh();
     }
 
     // Update is called once per frame
@@ -34,6 +36,16 @@ public class GlueSnapArea : MonoBehaviour
 
         //     }
         // }
+    }
+
+    private void OnEnable()
+    {
+        Gluetube.glueTubeHold += ChangeMesh;
+    }
+
+    private void OnDisable()
+    {
+        Gluetube.glueTubeHold -= ChangeMesh;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -112,5 +124,14 @@ public class GlueSnapArea : MonoBehaviour
     public void ThisAreaIsGlued()
     {
         GotGlueOn = true;
+    }
+
+    private void ChangeMesh() {
+        // kolla om vi har mesh, isf ta bort
+        Debug.Log("ChangeMesh ran @GLueSnapArea");
+        GetComponentInChildren<MeshRenderer>().enabled = !GetComponentInChildren<MeshRenderer>().enabled;
+        
+
+        // annars lägg till mesh 
     }
 }

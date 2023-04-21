@@ -110,6 +110,7 @@ public class GrabableObject : MonoBehaviour
 
     protected virtual void GrabingOject(HandObject aGrabbingHandObject, string aGrabbedObjectName)
     {
+        Debug.Log("GrabingOject @GrabableObject ran");
         if (transform.name != aGrabbedObjectName)
             return;
 
@@ -120,6 +121,7 @@ public class GrabableObject : MonoBehaviour
 
     protected virtual void DroppingObject()
     {
+        Debug.Log("DroppingObject @GrabableObject ran");
         if (ourIsHolding)
         {
             ourGrabbingHand = null;
@@ -175,6 +177,8 @@ public class GrabableObject : MonoBehaviour
 
     public virtual void GrabbObject(HandObject aGrabbingHand)
     {
+
+        Debug.Log("GrabbObject @GrabableObject ran");
         if(ourIsHolding)
             return;
 
@@ -185,6 +189,7 @@ public class GrabableObject : MonoBehaviour
 
     public virtual void DroppObject()
     {
+        Debug.Log("DroppObject @GrabableObject ran");
         if (!ourIsHolding)
             return;
 

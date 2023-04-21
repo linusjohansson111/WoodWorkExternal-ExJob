@@ -11,6 +11,9 @@ public class Gluetube : GrabbingTool
     [SerializeField]
     private GameObject Splatter;
 
+    public delegate void GlueTubeHold();
+    public static GlueTubeHold glueTubeHold;
+
     //Transform transform;
     //Rigidbody rigidbody;
     //Vector3 localScale;
@@ -45,6 +48,7 @@ public class Gluetube : GrabbingTool
     protected override void Update()
     {
         base.Update();
+        
 
         if (ourIsHolding)
         {
@@ -195,5 +199,19 @@ public class Gluetube : GrabbingTool
             return false;
 
         return myGlueWasClicked = ourGrabbingHand.IsActivePressed;
+    }
+
+    public override void GrabbObject(HandObject aGrabbingHandObject)
+    {
+        Debug.Log("GrabingOject @Gluetube ran");
+        glueTubeHold?.Invoke();
+        base.GrabbObject(aGrabbingHandObject);
+    }
+
+    public override void DroppObject()
+    {
+        Debug.Log("DroppingObject @Gluetube ran");
+        glueTubeHold?.Invoke();
+        base.DroppingObject();
     }
 }

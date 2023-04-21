@@ -25,7 +25,7 @@ public class XRGrabInteractabkeOnTwo : XRGrabInteractabkeBase
 
     protected override void OnSelectEntered(SelectEnterEventArgs args)
     {
-        
+        Debug.Log("OnSelectedEntered @XR grab ontwo");
         if (args.interactorObject.transform.CompareTag("LeftHandTag"))
         {
             attachTransform = LeftAttachTransform;

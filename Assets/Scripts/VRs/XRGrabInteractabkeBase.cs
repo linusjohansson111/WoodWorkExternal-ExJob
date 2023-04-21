@@ -65,18 +65,15 @@ public class XRGrabInteractabkeBase : XRGrabInteractable
 
             if (ourGrappingHand != null && !ourGrappingHand.IsGrapping)
             {
-                Debug.Log("håller nånting");
                 //if (ourOptionalAttachPoint != null)
                 //    attachTransform = ourOptionalAttachPoint;
 
                 if (ourGrappingHand.Side == Preposition.LEFT && ourLeftAttachPoint != null)
                 {
-                    Debug.Log("HEHE 1");
                     attachTransform = ourLeftAttachPoint;                    
                 }
                 else if (ourGrappingHand.Side == Preposition.RIGHT && ourRightAttachPoint != null)
                 {
-                    Debug.Log("HEHE 2");
 
                     // hämta objektet och spara rotation
                     // rotera ourRightAttachPoint ^
@@ -86,7 +83,6 @@ public class XRGrabInteractabkeBase : XRGrabInteractable
                     attachTransform = ourRightAttachPoint;                    
                 }
                 else if (plankAttachPoint != null) {
-                    Debug.Log("HEHE 3 @XRInteractablkeBase");
 
                     Quaternion localRotationPlank = this.transform.rotation;
 
@@ -94,32 +90,6 @@ public class XRGrabInteractabkeBase : XRGrabInteractable
                     attachTransform = plankAttachPoint;
 
                     attachTransform.transform.localRotation = Quaternion.Inverse(localRotationPlank) * args.interactorObject.transform.rotation;
-                    //attachTransform.localRotation = new Quaternion(0.25f, 0.25f, 0.25f, 0.25f);
-
-                    // attachTransform.SetPositionAndRotation(plankTransform.position, plankTransform.rotation); 
-                    // attachTransform.transform.rotation = new Quaternion(0.1f,0.4f,0.3f,0.1f); 
-
-                    Debug.Log(attachTransform.transform.rotation);
-
-                    // Debug.Log(attachTransform.rotation);
-                    // attachTransform.rotation = plankRotation;
-                    // Debug.Log(attachTransform.rotation);
-
-
-                    // attachTransform.rotation = this.transform.rotation;
-
-
-
-                    // -------
-
-
-                    // Spara localrotation på antingen träbiten eller attachmentpointen
-
-                    // Tilldela plankAttachpoint till attachTransform  
-
-                    // Ändra localrotation på attachTransform. 
-
-                    // 
                 }
                 
 
