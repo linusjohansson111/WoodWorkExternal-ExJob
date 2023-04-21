@@ -49,41 +49,38 @@ public class GlueSnapArea : MonoBehaviour
 
             if(other.transform.GetComponent<GlueSnapArea>() != null && GotGlueOn)
             {
+                // Plocka ut alla barn som har materialPart
+                // GÃ¶r en for loop med samma kod.
+
+
                  // Variables for easy access
-                MaterialPart otherMaterialPart = other.transform.GetComponentInParent<MaterialPart>();
-                BuildUpBlock block = otherMaterialPart.ParentBlock;
+                MaterialPart[] otherMaterialParts = other.GetComponent<GlueSnapArea>().myParent.ParentBlock.GetComponentsInChildren<MaterialPart>();
+                Debug.Log(otherMaterialParts);
 
                 // Transfer children of otherMaterialPart parent to this materialPart parent
+                BuildUpBlock block = otherMaterialParts[0].ParentBlock;
                 block.TransferChildrenTo(myParent.ParentBlock);
+                for (int i = 0; i < otherMaterialParts.Length; i++) {
+                    Debug.Log("Ran " + i + " times");
+                    // Object other = otherMaterialParts[i]; 
+                    // MaterialPart otherMaterialPart = other.transform.GetComponentInParent<MaterialPart>();
+                    MaterialPart otherMaterialPart = otherMaterialParts[i];
+                    //BuildUpBlock block = otherMaterialPart.ParentBlock;
 
-                // get angle of materialPart, round up or down in order to have a working snapping effect
-                Vector3 eulerAng = otherMaterialPart.transform.localRotation.eulerAngles;
-                eulerAng.x = (Mathf.Round(eulerAng.x / 90f)*90f);
-                eulerAng.y = (Mathf.Round(eulerAng.y / 90f)*90f);
-                eulerAng.z = (Mathf.Round(eulerAng.z / 90f)*90f);
-                // Apply rounded numbers to otherMaterialPart
-                otherMaterialPart.transform.localRotation = Quaternion.Euler(eulerAng);
-                
-                Vector3 halfGlueBox = GetComponent<BoxCollider>().size;
-                Vector3 difference = this.transform.position-other.transform.position;
-                Debug.Log(halfGlueBox);
-
-                // Move other materialPart closer to this material Part. 
-                // (In our opinion this logic should not yield a correct result. Instead the other materialPart should hover above this materialPart.)
-                otherMaterialPart.transform.position = otherMaterialPart.transform.position + (this.transform.position-other.transform.position);
-                // if (difference.y < 0){
-                //     Vector3 newPos = new Vector3(
-                //         otherMaterialPart.transform.position.x, 
-                //         otherMaterialPart.transform.position.y - halfGlueBox.y/4, 
-                //         otherMaterialPart.transform.position.z);
-                //     otherMaterialPart.transform.position = newPos;
-                // } else {
-                //     Vector3 newPos = new Vector3(
-                //         otherMaterialPart.transform.position.x, 
-                //         otherMaterialPart.transform.position.y + halfGlueBox.y/4, 
-                //         otherMaterialPart.transform.position.z);
-                //     otherMaterialPart.transform.position = newPos;
-                // }
+                    // get angle of materialPart, round up or down in order to have a working snapping effect
+                    
+                    Vector3 eulerAng = otherMaterialPart.transform.localRotation.eulerAngles;
+                    eulerAng.x = (Mathf.Round(eulerAng.x / 90f)*90f);
+                    eulerAng.y = (Mathf.Round(eulerAng.y / 90f)*90f);
+                    eulerAng.z = (Mathf.Round(eulerAng.z / 90f)*90f);
+                    // Apply rounded numbers to otherMaterialPart
+                    
+                    otherMaterialPart.transform.localRotation = Quaternion.Euler(eulerAng);
+                    
+                    // Move other materialPart closer to this material Part. 
+                    
+                    otherMaterialPart.transform.position = otherMaterialPart.transform.position + (this.transform.position-other.transform.position);
+                }
 
                 // Remove glue & delete parent of other materialPart (children have been transfered to this materialPart).
                 GotGlueOn = false;

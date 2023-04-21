@@ -327,7 +327,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 34855a280b7dc894899fb8b62952ed21,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 7
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 34855a280b7dc894899fb8b62952ed21,
         type: 3}
@@ -3753,7 +3753,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 159e805e2284c7d4290e9df6014cc75d,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1151388028547126963, guid: 159e805e2284c7d4290e9df6014cc75d,
         type: 3}
@@ -4843,7 +4843,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlineMode: 0
+  outlineMode: 1
   outlineColor: {r: 1, g: 1, b: 1, a: 1}
   outlineWidth: 2
   precomputeOutline: 0
@@ -6808,7 +6808,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 34855a280b7dc894899fb8b62952ed21,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 7
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 34855a280b7dc894899fb8b62952ed21,
         type: 3}
@@ -7458,7 +7458,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 34855a280b7dc894899fb8b62952ed21,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 6
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 34855a280b7dc894899fb8b62952ed21,
         type: 3}
@@ -8380,7 +8380,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 34855a280b7dc894899fb8b62952ed21,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 6
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 34855a280b7dc894899fb8b62952ed21,
         type: 3}
@@ -8623,7 +8623,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlineMode: 0
+  outlineMode: 1
   outlineColor: {r: 1, g: 1, b: 1, a: 1}
   outlineWidth: 2
   precomputeOutline: 0
@@ -8768,7 +8768,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 34855a280b7dc894899fb8b62952ed21,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 6
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 34855a280b7dc894899fb8b62952ed21,
         type: 3}
@@ -9168,7 +9168,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 34855a280b7dc894899fb8b62952ed21,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 6
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 34855a280b7dc894899fb8b62952ed21,
         type: 3}
@@ -9379,7 +9379,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 34855a280b7dc894899fb8b62952ed21,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 6
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 34855a280b7dc894899fb8b62952ed21,
         type: 3}
@@ -11149,7 +11149,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 34855a280b7dc894899fb8b62952ed21,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 6
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 34855a280b7dc894899fb8b62952ed21,
         type: 3}
@@ -11448,7 +11448,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlineMode: 0
+  outlineMode: 1
   outlineColor: {r: 1, g: 1, b: 1, a: 1}
   outlineWidth: 2
   precomputeOutline: 0
@@ -11727,7 +11727,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 34855a280b7dc894899fb8b62952ed21,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 7
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 34855a280b7dc894899fb8b62952ed21,
         type: 3}
@@ -11909,7 +11909,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 34855a280b7dc894899fb8b62952ed21,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 7
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 34855a280b7dc894899fb8b62952ed21,
         type: 3}
@@ -12026,7 +12026,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 34855a280b7dc894899fb8b62952ed21,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 6
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 34855a280b7dc894899fb8b62952ed21,
         type: 3}
@@ -14176,7 +14176,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 34855a280b7dc894899fb8b62952ed21,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 7
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 34855a280b7dc894899fb8b62952ed21,
         type: 3}
@@ -14813,7 +14813,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 34855a280b7dc894899fb8b62952ed21,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 7
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 34855a280b7dc894899fb8b62952ed21,
         type: 3}
@@ -15051,7 +15051,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlineMode: 0
+  outlineMode: 1
   outlineColor: {r: 1, g: 1, b: 1, a: 1}
   outlineWidth: 2
   precomputeOutline: 0
@@ -18027,7 +18027,7 @@ CharacterController:
   m_Enabled: 1
   serializedVersion: 2
   m_Height: 2
-  m_Radius: 0.2
+  m_Radius: 0
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
@@ -18689,7 +18689,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 159e805e2284c7d4290e9df6014cc75d,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1151388028547126963, guid: 159e805e2284c7d4290e9df6014cc75d,
         type: 3}
@@ -20243,7 +20243,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlineMode: 0
+  outlineMode: 1
   outlineColor: {r: 1, g: 1, b: 1, a: 1}
   outlineWidth: 2
   precomputeOutline: 0
@@ -22148,7 +22148,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 34855a280b7dc894899fb8b62952ed21,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 6
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 34855a280b7dc894899fb8b62952ed21,
         type: 3}
@@ -24450,7 +24450,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 34855a280b7dc894899fb8b62952ed21,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 7
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 34855a280b7dc894899fb8b62952ed21,
         type: 3}
@@ -24755,7 +24755,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 159e805e2284c7d4290e9df6014cc75d,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1151388028547126963, guid: 159e805e2284c7d4290e9df6014cc75d,
         type: 3}
@@ -24912,7 +24912,7 @@ MonoBehaviour:
   m_StartingSingleGrabTransformers: []
   m_StartingMultipleGrabTransformers: []
   m_AddDefaultGrabTransformers: 1
-  plankAttachPoint: {fileID: 0}
+  plankAttachPoint: {fileID: 1032308268}
 --- !u!114 &1326448626
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24983,7 +24983,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlineMode: 0
+  outlineMode: 1
   outlineColor: {r: 1, g: 1, b: 1, a: 1}
   outlineWidth: 2
   precomputeOutline: 0
@@ -26273,7 +26273,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 34855a280b7dc894899fb8b62952ed21,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 7
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 34855a280b7dc894899fb8b62952ed21,
         type: 3}
@@ -26835,7 +26835,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 34855a280b7dc894899fb8b62952ed21,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 7
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 34855a280b7dc894899fb8b62952ed21,
         type: 3}
@@ -27254,7 +27254,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 34855a280b7dc894899fb8b62952ed21,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 6
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 34855a280b7dc894899fb8b62952ed21,
         type: 3}
@@ -28448,7 +28448,7 @@ MonoBehaviour:
   m_StartingSingleGrabTransformers: []
   m_StartingMultipleGrabTransformers: []
   m_AddDefaultGrabTransformers: 1
-  plankAttachPoint: {fileID: 0}
+  plankAttachPoint: {fileID: 1883992778}
 --- !u!114 &1534602755
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30451,7 +30451,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 34855a280b7dc894899fb8b62952ed21,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 6
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 34855a280b7dc894899fb8b62952ed21,
         type: 3}
@@ -31993,7 +31993,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 34855a280b7dc894899fb8b62952ed21,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 6
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 34855a280b7dc894899fb8b62952ed21,
         type: 3}
@@ -32780,7 +32780,7 @@ MonoBehaviour:
   m_StartingSingleGrabTransformers: []
   m_StartingMultipleGrabTransformers: []
   m_AddDefaultGrabTransformers: 1
-  plankAttachPoint: {fileID: 0}
+  plankAttachPoint: {fileID: 846276900}
 --- !u!114 &1838567485
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34847,7 +34847,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 34855a280b7dc894899fb8b62952ed21,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 7
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 34855a280b7dc894899fb8b62952ed21,
         type: 3}
@@ -35544,7 +35544,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 34855a280b7dc894899fb8b62952ed21,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 6
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 34855a280b7dc894899fb8b62952ed21,
         type: 3}
@@ -36135,7 +36135,7 @@ MonoBehaviour:
   m_StartingSingleGrabTransformers: []
   m_StartingMultipleGrabTransformers: []
   m_AddDefaultGrabTransformers: 1
-  plankAttachPoint: {fileID: 0}
+  plankAttachPoint: {fileID: 2137173342}
 --- !u!54 &2030967146
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -36891,7 +36891,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 34855a280b7dc894899fb8b62952ed21,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 7
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 34855a280b7dc894899fb8b62952ed21,
         type: 3}
@@ -37264,7 +37264,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 34855a280b7dc894899fb8b62952ed21,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 7
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 34855a280b7dc894899fb8b62952ed21,
         type: 3}
@@ -38797,7 +38797,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 159e805e2284c7d4290e9df6014cc75d,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1151388028547126963, guid: 159e805e2284c7d4290e9df6014cc75d,
         type: 3}

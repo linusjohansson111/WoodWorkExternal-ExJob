@@ -164,7 +164,7 @@ public class GrabableObject : MonoBehaviour
     protected Color GetColorFor(TouchTag anIndexTag)
     {
         int index = Array.FindIndex(OutlineTouchTags, tags => tags == anIndexTag);
-        if (index < TouchOutlineColor.Length) {
+        if (index < TouchOutlineColor.Length && index >= 0) {
             //Debug.Log(index);
             //Debug.Log(TouchOutlineColor.Length);
             return TouchOutlineColor[index];
