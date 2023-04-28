@@ -29,13 +29,7 @@ public class GlueSnapArea : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // if (GotGlueOn)
-        // {
-        //     if (Physics.Raycast(transform.position, transform.up, out RaycastHit hit, 0.05f, LayerMask.NameToLayer("Glue")))
-        //     {
 
-        //     }
-        // }
     }
 
     private void OnEnable()
@@ -50,7 +44,6 @@ public class GlueSnapArea : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        //Debug.Log("OnTriggerEnter GlueSnapArea");
         if(other.gameObject.layer == LayerMask.NameToLayer("Glue"))
         {
             if(other.transform.GetComponentInParent<Gluetube>() != null)
@@ -61,36 +54,28 @@ public class GlueSnapArea : MonoBehaviour
 
             if(other.transform.GetComponent<GlueSnapArea>() != null && GotGlueOn)
             {
-                // Plocka ut alla barn som har materialPart
-                // GÃ¶r en for loop med samma kod.
-
-
-                 // Variables for easy access
+                // Variables for easy access
                 MaterialPart[] otherMaterialParts = other.GetComponent<GlueSnapArea>().myParent.ParentBlock.GetComponentsInChildren<MaterialPart>();
-                Debug.Log(otherMaterialParts);
+                BuildUpBlock block = otherMaterialParts[0].ParentBlock;
 
                 // Transfer children of otherMaterialPart parent to this materialPart parent
-                BuildUpBlock block = otherMaterialParts[0].ParentBlock;
                 block.TransferChildrenTo(myParent.ParentBlock);
+
+                
                 for (int i = 0; i < otherMaterialParts.Length; i++) {
-                    Debug.Log("Ran " + i + " times");
-                    // Object other = otherMaterialParts[i]; 
-                    // MaterialPart otherMaterialPart = other.transform.GetComponentInParent<MaterialPart>();
+
                     MaterialPart otherMaterialPart = otherMaterialParts[i];
-                    //BuildUpBlock block = otherMaterialPart.ParentBlock;
 
                     // get angle of materialPart, round up or down in order to have a working snapping effect
-                    
                     Vector3 eulerAng = otherMaterialPart.transform.localRotation.eulerAngles;
                     eulerAng.x = (Mathf.Round(eulerAng.x / 90f)*90f);
                     eulerAng.y = (Mathf.Round(eulerAng.y / 90f)*90f);
                     eulerAng.z = (Mathf.Round(eulerAng.z / 90f)*90f);
+
                     // Apply rounded numbers to otherMaterialPart
-                    
                     otherMaterialPart.transform.localRotation = Quaternion.Euler(eulerAng);
                     
                     // Move other materialPart closer to this material Part. 
-                    
                     otherMaterialPart.transform.position = otherMaterialPart.transform.position + (this.transform.position-other.transform.position);
                 }
 
@@ -100,8 +85,6 @@ public class GlueSnapArea : MonoBehaviour
 
             }
         }
-
-
     }
 
     private void OnTriggerExit(Collider other)
@@ -128,10 +111,6 @@ public class GlueSnapArea : MonoBehaviour
 
     private void ChangeMesh() {
         // kolla om vi har mesh, isf ta bort
-        Debug.Log("ChangeMesh ran @GLueSnapArea");
         GetComponentInChildren<MeshRenderer>().enabled = !GetComponentInChildren<MeshRenderer>().enabled;
-        
-
-        // annars lägg till mesh 
     }
 }

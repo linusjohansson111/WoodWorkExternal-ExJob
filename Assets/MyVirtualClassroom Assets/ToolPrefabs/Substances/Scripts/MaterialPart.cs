@@ -100,7 +100,6 @@ public class MaterialPart : MonoBehaviour, MaterialInterface
     
     public void AttachToGlue(GlueSplattQuad aSplatt, Vector3 hitPoint)
     {
-        Debug.Log("glue script yayaaa");
         BoxHitSide side = ColliderTools.GetHitSide(transform, hitPoint);
         
 

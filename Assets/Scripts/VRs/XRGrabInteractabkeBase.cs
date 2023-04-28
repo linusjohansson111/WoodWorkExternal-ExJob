@@ -35,10 +35,7 @@ public class XRGrabInteractabkeBase : XRGrabInteractable
     // Update is called once per frame
     void Update()
     {
-        // ourGrabableObject.transform.rotation *= Quaternion.Euler(0f, 30f * Time.deltaTime, 0f);
-        // if (ourGrappingHand != null && ourGrappingHand.Side == Preposition.LEFT && ourGrappingHand.IsGrapping){
-        //     Debug.Log("GRABBING LEFT");
-        // }
+
     }
 
     protected override void OnHoverEntered(HoverEnterEventArgs args)
@@ -53,10 +50,7 @@ public class XRGrabInteractabkeBase : XRGrabInteractable
 
     protected override void OnSelectEntered(SelectEnterEventArgs args)
     {
-        // Debug.Log(args.ToString());
-        // args.interactorObject.transform.Rotate(0, 45, 0);
-
-        if (args.interactorObject.transform.CompareTag("Hand") && ourGrappingHand == null/*!OurObjectIsHolding()*/)
+        if (args.interactorObject.transform.CompareTag("Hand") && ourGrappingHand == null)
         {
             HandObject selectingHand = args.interactorObject.transform.GetComponent<HandObject>();
 
@@ -74,21 +68,17 @@ public class XRGrabInteractabkeBase : XRGrabInteractable
                 }
                 else if (ourGrappingHand.Side == Preposition.RIGHT && ourRightAttachPoint != null)
                 {
-
-                    // hämta objektet och spara rotation
-                    // rotera ourRightAttachPoint ^
-                    // sätt attachTransform = ^
-                    
-                    // ourRightAttachPoint.Rotate(0, 45, 0);
                     attachTransform = ourRightAttachPoint;                    
                 }
+                // ifall plankAttachPoint inte är null, vilket den inte bör vara för någon planka. 
                 else if (plankAttachPoint != null) {
 
+                    // Spara rotation för planka i variabel
                     Quaternion localRotationPlank = this.transform.rotation;
-
 
                     attachTransform = plankAttachPoint;
 
+                    // Lägg på inverse-plankas rotation relativt handens rotation
                     attachTransform.transform.localRotation = Quaternion.Inverse(localRotationPlank) * args.interactorObject.transform.rotation;
                 }
                 
@@ -105,7 +95,7 @@ public class XRGrabInteractabkeBase : XRGrabInteractable
 
     protected override void OnSelectExited(SelectExitEventArgs args)
     {
-        if (args.interactorObject.transform.CompareTag("Hand") && ourGrappingHand != null/*OurObjectIsHolding()*/)
+        if (args.interactorObject.transform.CompareTag("Hand") && ourGrappingHand != null)
         {
             ourIsGrabbed = false;
             ourGrappingHand.IsGrapingObject(IsGrapped);

@@ -203,14 +203,12 @@ public class Gluetube : GrabbingTool
 
     public override void GrabbObject(HandObject aGrabbingHandObject)
     {
-        Debug.Log("GrabingOject @Gluetube ran");
         glueTubeHold?.Invoke();
         base.GrabbObject(aGrabbingHandObject);
     }
 
     public override void DroppObject()
     {
-        Debug.Log("DroppingObject @Gluetube ran");
         glueTubeHold?.Invoke();
         base.DroppingObject();
     }
