@@ -57,7 +57,7 @@ public class HandObject : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(holdDownCounter);
+
         if (IsButtonPrimaryPressed){
             holdDownCounter += 1;
             if (holdDownCounter > 50){

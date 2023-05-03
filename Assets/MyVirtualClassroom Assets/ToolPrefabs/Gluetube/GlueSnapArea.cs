@@ -10,7 +10,7 @@ public class GlueSnapArea : MonoBehaviour
     private BoxHitSide PlaceOnSide = BoxHitSide.NONE;
 
     [SerializeField]
-    private bool GotGlueOn = false;
+    public bool GotGlueOn = false;
     // Start is called before the first frame update
 
     public BoxHitSide Side { get { return PlaceOnSide; } }
@@ -46,16 +46,22 @@ public class GlueSnapArea : MonoBehaviour
     {
         if(other.gameObject.layer == LayerMask.NameToLayer("Glue"))
         {
-            if(other.transform.GetComponentInParent<Gluetube>() != null)
+            Gluetube glueTube = other.transform.GetComponentInParent<Gluetube>();
+            GlueSnapArea otherGlueSnapArea = other.transform.GetComponent<GlueSnapArea>(); 
+
+            if(glueTube != null)
             {
-                other.transform.GetComponentInParent<Gluetube>().ActiveGlueTube(true, this);
+                glueTube.ActiveGlueTube(true, this);
                 myParent.DrawGlueTupeOutline(true);
             }
 
-            if(other.transform.GetComponent<GlueSnapArea>() != null && GotGlueOn)
+            if(otherGlueSnapArea != null && GotGlueOn)
             {
+                // This line is important in case both glueSnapAreas got glue on. 
+                // Otherwise will Destroy both components at the end of if-statement
+                otherGlueSnapArea.GotGlueOn = false;
                 // Variables for easy access
-                MaterialPart[] otherMaterialParts = other.GetComponent<GlueSnapArea>().myParent.ParentBlock.GetComponentsInChildren<MaterialPart>();
+                MaterialPart[] otherMaterialParts = otherGlueSnapArea.myParent.ParentBlock.GetComponentsInChildren<MaterialPart>();
                 BuildUpBlock block = otherMaterialParts[0].ParentBlock;
 
                 // Transfer children of otherMaterialPart parent to this materialPart parent
