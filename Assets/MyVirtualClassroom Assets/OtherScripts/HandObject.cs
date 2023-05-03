@@ -56,7 +56,7 @@ public class HandObject : MonoBehaviour
     void Update()
     {
 
-        // Debug.Log(IsAPressed);
+        // Debug.Log(IsButtonPrimaryPressed);
         // Debug.Log(IsBPressed);
         if (Physics.SphereCast(transform.position, SphereCastRadius, (HandSide == Preposition.LEFT ? transform.right : -transform.right), out RaycastHit hit, .02f, mySubstanceLayer))
         {
