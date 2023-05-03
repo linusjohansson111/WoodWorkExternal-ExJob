@@ -13,6 +13,8 @@ public class XRGrabInteractabkeBase : XRGrabInteractable
     [SerializeField]
     public Transform plankAttachPoint;
 
+    private float rotationSpeed = 100f;
+
     protected HandObject ourGrappingHand;
     protected GrabableObject ourGrabableObject;
 
@@ -22,7 +24,7 @@ public class XRGrabInteractabkeBase : XRGrabInteractable
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     private void TestChangeLayer()
@@ -35,6 +37,21 @@ public class XRGrabInteractabkeBase : XRGrabInteractable
     // Update is called once per frame
     void Update()
     {
+        if (ourGrappingHand != null) {
+
+            
+            if (ourGrappingHand.IsButtonSecondaryPressed){
+                Quaternion handRot = ourGrappingHand.transform.rotation;
+                Vector3 handPos = ourGrappingHand.transform.position;
+                Vector3 forwardVector = handRot * Vector3.up;
+                if (plankAttachPoint != null) {
+                    plankAttachPoint.transform.RotateAround(handPos, forwardVector, rotationSpeed * Time.deltaTime);
+
+                }
+                // plankAttachPoint.transform.localRotation *= Quaternion.Euler(0f, 50f * Time.deltaTime, 0f);
+                // plankAttachPoint?.transform.Rotate(Vector3.up, 50f * Time.deltaTime);
+            }
+        }
 
     }
 
