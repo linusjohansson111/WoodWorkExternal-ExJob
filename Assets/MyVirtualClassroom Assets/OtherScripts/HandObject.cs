@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 
 public enum Preposition { LEFT, RIGHT }
@@ -43,6 +44,7 @@ public class HandObject : MonoBehaviour
     private SphereCollider mySC;
 
     private int mySubstanceLayer = 0;
+    private int holdDownCounter = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -55,7 +57,16 @@ public class HandObject : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        Debug.Log(holdDownCounter);
+        if (IsButtonPrimaryPressed){
+            holdDownCounter += 1;
+            if (holdDownCounter > 50){
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+                holdDownCounter = 0;
+            }
+        } else {
+            holdDownCounter = 0;
+        }
         // Debug.Log(IsButtonPrimaryPressed);
         // Debug.Log(IsBPressed);
         if (Physics.SphereCast(transform.position, SphereCastRadius, (HandSide == Preposition.LEFT ? transform.right : -transform.right), out RaycastHit hit, .02f, mySubstanceLayer))
