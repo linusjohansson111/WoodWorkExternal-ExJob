@@ -38,7 +38,6 @@ public class XRGrabInteractabkeBase : XRGrabInteractable
     void Update()
     {
         if (ourGrappingHand != null) {
-
             
             if (ourGrappingHand.IsButtonSecondaryPressed){
                 Quaternion handRot = ourGrappingHand.transform.rotation;

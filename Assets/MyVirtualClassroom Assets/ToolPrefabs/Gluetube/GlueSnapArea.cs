@@ -11,6 +11,9 @@ public class GlueSnapArea : MonoBehaviour
 
     [SerializeField]
     public bool GotGlueOn = false;
+
+    public delegate void RemoveGlue();
+    public static RemoveGlue removeGlue;
     // Start is called before the first frame update
 
     public BoxHitSide Side { get { return PlaceOnSide; } }
@@ -35,11 +38,13 @@ public class GlueSnapArea : MonoBehaviour
     private void OnEnable()
     {
         Gluetube.glueTubeHold += ChangeMesh;
+        removeGlue += GlueSetFalse;
     }
 
     private void OnDisable()
     {
         Gluetube.glueTubeHold -= ChangeMesh;
+        removeGlue -= GlueSetFalse;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -57,12 +62,28 @@ public class GlueSnapArea : MonoBehaviour
 
             if(otherGlueSnapArea != null && GotGlueOn)
             {
+
                 // This line is important in case both glueSnapAreas got glue on. 
                 // Otherwise will Destroy both components at the end of if-statement
-                otherGlueSnapArea.GotGlueOn = false;
+                // otherGlueSnapArea.GotGlueOn = false;
+
+
+
                 // Variables for easy access
                 MaterialPart[] otherMaterialParts = otherGlueSnapArea.myParent.ParentBlock.GetComponentsInChildren<MaterialPart>();
                 BuildUpBlock block = otherMaterialParts[0].ParentBlock;
+
+                // hämta alla barn med glueSNapArea från förälder
+                // kolla om deras collider är triggered
+                // isf sätt GotGlueOn till false
+
+                GlueSnapArea[] childrenGlueSnapArea = myParent.GetComponentsInChildren<GlueSnapArea>();
+                GlueSnapArea[] otherChildrenGlueSnapArea = block.GetComponentsInChildren<GlueSnapArea>();
+                
+
+
+
+
 
                 // Transfer children of otherMaterialPart parent to this materialPart parent
                 block.TransferChildrenTo(myParent.ParentBlock);
@@ -86,8 +107,11 @@ public class GlueSnapArea : MonoBehaviour
                 }
 
                 // Remove glue & delete parent of other materialPart (children have been transfered to this materialPart).
-                GotGlueOn = false;
-                Destroy(block.gameObject);
+                //GotGlueOn = false;
+                removeGlue.Invoke();
+                if (block != myParent.ParentBlock){
+                    Destroy(block.gameObject);
+                }
 
             }
         }
@@ -118,5 +142,9 @@ public class GlueSnapArea : MonoBehaviour
     private void ChangeMesh() {
         // kolla om vi har mesh, isf ta bort
         GetComponentInChildren<MeshRenderer>().enabled = !GetComponentInChildren<MeshRenderer>().enabled;
+    }
+
+    private void GlueSetFalse() {
+        GotGlueOn = false;
     }
 }

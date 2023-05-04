@@ -92,6 +92,7 @@ public class BuildUpBlock : GrabableObject
             aParentBlock.AddPart(transform.GetChild(i).GetComponent<MaterialPart>());
         }
         
+        
     }
 
     public void GetChildAttachPointFor(Preposition aHand, Transform anAttachPoint)

@@ -47,6 +47,16 @@ public class GlueSplattQuad : MonoBehaviour
         // SphereCastHitMaterialBlock();
     }
 
+    private void OnEnable()
+    {
+        GlueSnapArea.removeGlue += DestroyQuad;
+    }
+
+    private void OnDisable()
+    {
+        GlueSnapArea.removeGlue -= DestroyQuad;
+    }
+
     public void SetSnapPosition(Vector3 aTubeMuzzlePos)
     {
         AtParentSide = ColliderTools.GetHitSide(transform.parent, aTubeMuzzlePos);
@@ -122,7 +132,10 @@ public class GlueSplattQuad : MonoBehaviour
                 if (hit.transform.parent == null)
                 {
                     myParentSubstance.AttachingNewPart(hit.transform.GetComponent<Substance>(), transform);
-                    Destroy(this.gameObject);
+                    if (this.gameObject != null) {
+                        Destroy(this.gameObject);
+
+                    }
                 }
             }
         }
@@ -201,5 +214,12 @@ public class GlueSplattQuad : MonoBehaviour
 
         VerticalSnapPoint.position = myVerticalSnapPosition;
         HorizontalSnapPoint.position = myHorizontalSnapPosition;
+    }
+
+    private void DestroyQuad() {
+        if (this.gameObject != null) {
+            Destroy(this.gameObject);
+
+        }
     }
 }
