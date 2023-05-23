@@ -84,7 +84,6 @@ public class GlueSnapArea : MonoBehaviour
 
 
 
-
                 // Transfer children of otherMaterialPart parent to this materialPart parent
                 block.TransferChildrenTo(myParent.ParentBlock);
 
